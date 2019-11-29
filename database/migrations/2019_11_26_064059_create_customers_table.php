@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('password', 255);
             $table->string('address', 100)->nullable();
             $table->string('phone', 20)->nullable();
+            $table->tinyInteger('role');
             $table->string('remember_token', 100)->nullable();
             $table->boolean('status')->default(1);
             $table->dateTime('created_at');
