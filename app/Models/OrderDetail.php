@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class OrderDetail extends Model
 {
-    protected $table = 'categorys';
+    protected $table = 'order_details';
     public $timestamps = false;
     protected $fillable = [
-        'name' ,
-        'status' ,
-        'created_at'
+        'order_id',
+        'product_id',
+        'quantity'
     ];
 }

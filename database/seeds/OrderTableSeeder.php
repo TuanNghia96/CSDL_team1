@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Database\Seeder;
-use App\Models\Admin;
 
-class AdminsTableSeeder extends Seeder
+class OrderTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::truncate();
-        factory('App\Models\Admin', 10)->create();
+        Order::truncate();
+        factory('App\Models\Order', 10)->create();
     }
 }
