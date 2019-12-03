@@ -2,11 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Customer;
+use App\Models\User;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(Customer::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->safeEmail,
         'name' => $faker->name,
@@ -14,7 +14,7 @@ $factory->define(Customer::class, function (Faker $faker) {
         'password' => Hash::make('123456'),
         'address' => $faker->address,
         'phone' => $faker->numerify('0##########'),
-        'role' => array_rand(Customer::$role),
+        'role' => array_rand(User::$role),
         'status' => $faker->randomElement([0, 1]),
         'created_at' => Carbon::now()
     ];

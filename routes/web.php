@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 //Customers
-Route::resource('customers', 'CustomerController');
+Route::resource('users', 'UserController');
 
