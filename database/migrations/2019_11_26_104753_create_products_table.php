@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->boolean('sex');
             $table->integer('price');
             $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categorys');
+            $table->foreign('category_id')->references('id')->on('categorys')->onDelete('cascade');
             $table->tinyInteger('high');
             $table->boolean('status');
             $table->dateTime('created_at');
