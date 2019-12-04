@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Customers
-Route::resource('users', 'UserController');
+Route::prefix('admin')->group(function () {
 
+//Customers
+    Route::resource('users', 'UserController');
+    
+    //Category
+    Route::resource('categorys', 'CategoryController');
+    //Feedback
+    Route::resource('feedback', 'FeedbackController');
+    
+    
+});

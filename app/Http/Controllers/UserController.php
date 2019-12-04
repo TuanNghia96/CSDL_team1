@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $users = $this->user->getList($request->all());
         $role = User::$role;
-        return view('users.index', compact(['users', 'role']));
+        return view('admin.users.index', compact(['users', 'role']));
     }
     
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
     public function create()
     {
         $role = User::$role;
-        return view('users.create', compact('role'));
+        return view('admin.users.create', compact('role'));
     }
     
     /**
@@ -51,9 +51,9 @@ class UserController extends Controller
      */
     public function store(UsersStoreRequest $request)
     {
-
+        
         $this->user->storeData($request);
-        return redirect($request->url_back ?? route('users.index'));
+        return redirect($request->url_back ?? route('admin.users.index'));
     }
     
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user = $this->user->find($id);
         $role = User::$role;
-        return view('users.show', compact(['user', 'role']));
+        return view('admin.users.show', compact(['user', 'role']));
     }
     
     /**
@@ -78,7 +78,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->find($id);
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
     
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
     public function update(UsersStoreRequest $request, $id)
     {
         $this->user->updateData($request, $id);
-        return redirect($request->url_back ?? route('users.index'));
+        return redirect($request->url_back ?? route('admin.users.index'));
     }
     
     /**
