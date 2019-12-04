@@ -114,4 +114,24 @@ class User extends Model
         return $this->find($id)->update($input);
     }
     
+    /**
+     * relationship to feedback
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function feedbacks()
+    {
+        return $this->hasMany(\App\Models\Feedback::class);
+    }
+    
+    /**
+     * relationship to order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\Order::class);
+    }
+    
 }

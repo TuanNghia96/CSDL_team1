@@ -58,10 +58,10 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-right">created_at</label>
                         <div class="col-md-4">
-                            <input data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" name="from" value="{{ request('from') }}" placeholder="から" autocomplete="off">
+                            <input data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" name="from" value="{{ request('from') }}" placeholder="Từ" autocomplete="off">
                         </div>
                         <div class="col-md-4">
-                            <input data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" name="to" value="{{ request('to') }}" placeholder="まで" autocomplete="off">
+                            <input data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" name="to" value="{{ request('to') }}" placeholder="Đến" autocomplete="off">
                         </div>
                     </div>
                 </div>
