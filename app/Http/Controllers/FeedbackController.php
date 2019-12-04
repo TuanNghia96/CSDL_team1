@@ -2,10 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
+    protected $feedback;
+    
+    /**
+     * CustomerController constructor.
+     *
+     * @param Feedback $feedback
+     */
+    public function __construct(Feedback $feedback)
+    {
+        $this->feedback = $feedback;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +26,8 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $feedbacks = $this->feedback->paginate();
+        return view('admin.feedbacks.index', compact('feedbacks'));
     }
 
     /**

@@ -74,7 +74,6 @@
                             <td>
                                 <p class="text-right">
                                     <a href="{{ route('categorys.show', $value->id) }}">hiện thị</a>　|　
-                                    <a href="{{ route('categorys.edit', $value->id) }}">sửa</a>　|　
                                 <form action="{{ route('categorys.destroy', $value->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')

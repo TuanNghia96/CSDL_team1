@@ -22,4 +22,8 @@ Route::prefix('admin')->group(function () {
     
     //Category
     Route::resource('categorys', 'CategoryController');
+    //Feedback
+    Route::resource('feedback', 'FeedbackController');
+    
+    
 });
