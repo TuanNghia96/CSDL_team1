@@ -1,4 +1,3 @@
-{{--{{ dd($user->feedbacks()->first()) }}--}}
 <div class="section main">
     <div class="container">
         <div class="row">
