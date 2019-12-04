@@ -1,10 +1,9 @@
-{{--{{ dd($user->feedbacks()->first()) }}--}}
 <div class="section main">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header">
-                    <h2>Quản lý người dùng</h2>
+                    <h2>Quản lý thể loại</h2>
                 </div>
             </div>
         </div>
@@ -12,119 +11,59 @@
             <div class="col-md-12">
                 <div class="btn-link panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Hiển thị người dùng</h3>
+                        <h3 class="panel-title">Hiển thị thể loại</h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <td>{{ $category->id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tên</th>
+                        <td>{{ $category->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Trạng thái</th>
+                        <td>@if (($category->status) == 1)Đang sử dụng @else Ngưng sử dụng @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày tạo</th>
+                        <td>{{ $category->created_at }}</td>
+                    </tr>
+
+                </table>
+            </div>
             <td class="col-md-12">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputName" class="control-label">Name</label>
-                        </div>
-                        <div class="col-sm-10">{{ $user->name }}</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputEmail" class="control-label">email</label>
-                        </div>
-                        <div class="col-sm-10">{{ $user->email }}</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputEmail" class="control-label">avata</label>
-                        </div>
-                        <img src="{{ $user->avata_url }}" alt="">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputEmail" class="control-label">Số điện thoại</label>
-                        </div>
-                        <div class="col-sm-10">{{ $user->phone }}</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputEmail" class="control-label">Địa chỉ</label>
-                        </div>
-                        <div class="col-sm-10">{{ $user->address }}</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputEmail" class="control-label">Quyền</label>
-                        </div>
-                        <div class="col-sm-10">{{ $role[$user->role] }}</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputStatus" class="control-label">trang thái</label>
-                        </div>
-                        <div class="col-sm-10">@if ($user->status == 1) Kích hoạt @else Bị khóa @endif</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                            <label for="inputEmail" class="control-label">Ngày khởi tạo</label>
-                        </div>
-                        <div class="col-sm-10">{{ $user->created_at  }}</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <a href="{{ url()->previous() }}" class="btn btn-default">キャンセル</a>
-                        </div>
-                    </div>
-                </form>
-                <h5>Những feedback của người dùng.</h5>
+            
+                <h5>Những sản phẩm trong thể loại này.</h5>
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Mã sản phẩm.</th>
-                        <th scope="col">Nội dung.</th>
-                        <th scope="col">Thời gian.</th>
-                        <th scope="col">Hành động.</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Giá tiền</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Thời gian tạo</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if($user->feedbacks()->count())
-                        @foreach($user->feedbacks()->get() as $id => $value)
+                    @if($category->products()->count())
+                        @foreach($category->products()->get() as $id => $value)
                             <tr>
                                 <td>{{ $id }}</td>
-                                <td><a href="#">{{ $value->product_id }}</a></td>
-                                <td>{{ $value->content }}</td>
+                                <td><a href="#">{{ $value->name }}</a></td>
+                                <td>{{ $value->price }}</td>
+                                <td>{{ $value->status }}</td>
                                 <td>{{ $value->created_at }}</td>
-                                <td><a href="#">deleted</a></td>
                             </tr>
                         @endforeach
                     @else
                         <td>Không có đơn hàng nào</td>
-                    @endif
-                    </tbody>
-                </table>
-                
-                <h5>Những đơn hàng của người dùng.</h5>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Thời gian.</th>
-                        <th scope="col">Thanh toán.</th>
-                        <th scope="col">Trạng thái.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if($user->orders()->count())
-                        @foreach($user->orders()->get() as $id => $value)
-                            <tr>
-                                <td>{{ $id }}</td>
-                                <td><a href="#">{{ $value->created_at }}</a></td>
-                                <td>{{ $value->total }}</td>
-                                <td>{{ $value->status }}</td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <td rowspan="4">Không có đơn hàng nào</td >
                     @endif
                     </tbody>
                 </table>

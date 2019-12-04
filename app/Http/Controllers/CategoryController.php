@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -31,18 +32,6 @@ class CategoryController extends Controller
     }
     
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->category->create($request->all());
-        return redirect(route('admin.categorys.index'));
-    }
-    
-    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -50,30 +39,22 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = $this->category->find($id);
+        return view('admin.categorys.show', compact('category'));
     }
     
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-    
-    /**
-     * Update the specified resource in storage.
+     * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['created_at'] = Carbon::now();
+        $this->category->create($input);
+        return redirect(route('categorys.index'));
     }
     
     /**
@@ -84,6 +65,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($this->category->find($id)->products()) {
+            $this->category->find($id)->products()->delete();
+        }
+        $this->category->find($id)->delete();
+        return back();
     }
 }

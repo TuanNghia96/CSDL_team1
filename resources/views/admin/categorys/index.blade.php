@@ -73,8 +73,9 @@
                             <td>{{ $value->email }}</td>
                             <td>
                                 <p class="text-right">
-                                    <a href="{{ route('users.edit', $value->id) }}">sửa</a>　|　
-                                <form action="{{ route('users.destroy', $value->id) }}" method="post">
+                                    <a href="{{ route('categorys.show', $value->id) }}">hiện thị</a>　|　
+                                    <a href="{{ route('categorys.edit', $value->id) }}">sửa</a>　|　
+                                <form action="{{ route('categorys.destroy', $value->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" value="xóa">
