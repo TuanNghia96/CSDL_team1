@@ -102,12 +102,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->user->find($id)->feedbacks()) {
-            $this->user->find($id)->feedbacks()->delete();
-        }
-        if ($this->user->find($id)->orders()) {
-            $this->user->find($id)->orders()->delete();
-        }
         $this->user->find($id)->delete();
         return back();
     }

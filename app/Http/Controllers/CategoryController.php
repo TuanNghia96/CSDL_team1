@@ -65,9 +65,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->category->find($id)->products()) {
-            $this->category->find($id)->products()->delete();
-        }
         $this->category->find($id)->delete();
         return back();
     }
