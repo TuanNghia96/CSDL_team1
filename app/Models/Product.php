@@ -27,4 +27,21 @@ class Product extends Model
         'url3',
         'url4'
     ];
+    
+    const FEMALE_SEX = 0;
+    const MALE_SEX = 1;
+    public static $sex = [
+        self::MALE_SEX => 'Nam',
+        self::FEMALE_SEX => 'Nữ'
+    ];
+    
+    /**
+     * relation to category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

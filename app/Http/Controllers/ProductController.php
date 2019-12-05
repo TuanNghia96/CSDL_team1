@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -25,7 +26,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->product->paginate();
+        $categorys = Category::pluck('name', 'id');
+        return view('admin.products.index', compact(['products', 'categorys']));
     }
 
     /**
@@ -57,7 +60,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->product->find($id);
+        return view('admin.products.show', compact('product'));
     }
 
     /**
