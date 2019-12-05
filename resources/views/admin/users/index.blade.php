@@ -9,11 +9,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Danh sách người dùng</h2>
+                        <h2><a href="{{ route('users.index') }}">Danh sách người dùng</a></h2>
                     </div>
                 </div>
-                
-                
                 <div class="border border-primary rounded mt-3 mb-3 p-4">
                     <form action="{{ route('users.index') }}" method="get">
                         <div class="row">
@@ -35,7 +33,6 @@
                                 </div>
                             </div>
                             
-                            
                             <div class="col-md-4">
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-right">Địa chỉ:</label>
@@ -45,7 +42,6 @@
                                 </div>
                             </div>
                             
-                            
                             <div class="col-md-4">
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-right">Thời gian từ:</label>
@@ -54,6 +50,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-md-4">
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-right">đến:</label>
@@ -75,10 +72,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 &nbsp;
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-4">
                                 <div class="form-group row">
                                     <div class="col-md-4 offset-md-4">
                                         <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
@@ -115,20 +112,50 @@
                                 <td>{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                                 {{--                                <td>{{  Carbon\Carbon::createFromFormat("H:i:s Y/m/d", $value->created_at) }}</td>--}}
                                 <td>
-                                    <p class="text-right">
+                                    <p class="text-left">
                                         <a href="{{ route('users.show', $value->id) }}">hiển thị</a>　|　
-                                        <a href="{{ route('users.edit', $value->id) }}">sửa</a>　|　
-                                    <form action="{{ route('users.destroy', $value->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="submit" value="xóa">
-                                    </form>
+                                        <a href="{{ route('users.edit', $value->id) }}">Sửa</a>　|　
+                                        <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">
+                                            @if($value->role == \App\Models\User::ADMIN_ROLE)
+                                                Xóa
+                                            @elseif($value->status == 1)
+                                                Khóa
+                                            @else
+                                                Kích hoạt
+                                            @endif
+                                        </button>
                                     </p>
+                                        <!-- Modal -->
+                                    <div class="modal fade" id="{{ 'delete-modal' . $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form method="post" action="{{ route('users.destroy', $value->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Bạn có chắc chắn muốn
+                                                            @if($value->role == \App\Models\User::ADMIN_ROLE)
+                                                                xóa
+                                                            @elseif($value->status == 1)
+                                                                khóa
+                                                            @else
+                                                                kích hoạt
+                                                            @endif
+                                                            bản ghi này không?</h5>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                        <button type="submit" class="btn btn-danger">OK</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
-    
+                    
                     </table>
                     <div class="text-center">{{ $users->links() }}</div>
             </div>
