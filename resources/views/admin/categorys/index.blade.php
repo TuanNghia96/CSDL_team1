@@ -1,67 +1,24 @@
-<div class="section main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h2>Quản lý thể loại</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-link panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">thể loại thể loại</h3>
+@extends('layout.index')
+
+@section('title', 'Quản lý thể loại')
+
+@section('content')
+    <div class="section main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h2><a href="{{ route('categorys.index') }}">Danh sách thể loại</a></h2>
                     </div>
                 </div>
-            </div>
-        </div>
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('categorys.store') }}" enctype="multipart/form-data">
-            @csrf
-            <input name="url_back" type="hidden" class="form-control" value="{{ url()->previous() }}">
-            
-            {{--name--}}
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label for="name" class="control-label">Name</label>
-                </div>
-                <div class="col-sm-10">
-                    <input name="name" type="text" class="form-control @if($errors->has('name')) is-invalid @endif" id="inputName" value="{{ old('name') ?? null }}" placeholder="vd: Nguyễn Văn An">
-                </div>
-            </div>
-            @error('name')
-            <div class="text-danger">{{ $message }}</div>
-            @enderror
-            
-            
-            
-            {{--status--}}
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label for="inputStatus" class="control-label">Trạng thái.</label>
-                </div>
-                <div class="col-sm-10">
-                    <label class="radio-inline">
-                        <input type="radio" name="status" value="0" @if(old('status') == 0) checked @endif>Đang sử dụng</label>
-                    <input type="radio" name="status" value="1" @if(old('status') == 1) checked @endif>Ngưng sử dụng</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Thêm</button>
-                </div>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-md-12">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Tên</th>
-                        <th>Trang thái</th>
-                        <th>Ngày tạo</th>
-                        <th>Thao tác</th>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Tên</th>
+                        <th class="text-center">Trang thái</th>
+                        <th class="text-center">Ngày tạo</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,23 +27,39 @@
                             <td>{{ $categorys->perPage() * ($categorys->currentPage() - 1) + $key + 1 }}</td>
                             <td>{{ $value->name }}</td>
                             <td>@if (($value->status) == 1)Đang sử dụng @else Ngưng sử dụng @endif</td>
-                            <td>{{ $value->email }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                             <td>
                                 <p class="text-right">
                                     <a href="{{ route('categorys.show', $value->id) }}">hiện thị</a>　|　
-                                <form action="{{ route('categorys.destroy', $value->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" value="xóa">
-                                </form>
+                                    <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">Xóa</button>
                                 </p>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="{{ 'delete-modal' . $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <form method="post" action="{{ route('categorys.destroy', $value->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Bạn có chắc chắn muốn xóa bản ghi này không?</h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                    <button type="submit" class="btn btn-danger">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+                <div class="text-center">{{ $categorys->appends(request()->input())->links() }}</div>
             </div>
+        
         </div>
-        {{--        <div class="text-center">{{ $categorys->appends(request()->input())->links() }}</div>--}}
     </div>
-</div>
+@endsection

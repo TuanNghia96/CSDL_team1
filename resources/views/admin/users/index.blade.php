@@ -125,32 +125,7 @@
                                             @endif
                                         </button>
                                     </p>
-                                        <!-- Modal -->
-                                    <div class="modal fade" id="{{ 'delete-modal' . $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form method="post" action="{{ route('users.destroy', $value->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Bạn có chắc chắn muốn
-                                                            @if($value->role == \App\Models\User::ADMIN_ROLE)
-                                                                xóa
-                                                            @elseif($value->status == 1)
-                                                                khóa
-                                                            @else
-                                                                kích hoạt
-                                                            @endif
-                                                            bản ghi này không?</h5>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                                        <button type="submit" class="btn btn-danger">OK</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                  
                                 </td>
                             </tr>
                         @endforeach
