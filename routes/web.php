@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function () {
     //Category
     Route::resource('categorys', 'CategoryController');
     //Feedback
-    Route::resource('feedback', 'FeedbackController');
+    Route::resource('feedbacks', 'FeedbackController');
 });
 
 Route::get("home", ["as" => "home", "uses" => "ProductController@list"]);

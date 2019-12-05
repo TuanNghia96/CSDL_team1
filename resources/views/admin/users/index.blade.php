@@ -158,8 +158,8 @@
                     
                     </table>
                     <div class="text-center">{{ $users->links() }}</div>
+                @endif
             </div>
-            @endif
         </div>
     </div>
 @endsection
