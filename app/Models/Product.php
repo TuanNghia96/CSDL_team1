@@ -20,4 +20,11 @@ class Product extends Model
         'status',
         'created_at'
     ];
+    
+    const SLIDE = [
+        'url1',
+        'url2',
+        'url3',
+        'url4'
+    ];
 }
