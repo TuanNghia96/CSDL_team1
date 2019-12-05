@@ -61,8 +61,11 @@ class User extends Model
         if (isset($input['role'])) {
             $builder->where('role', '=', $input['role']);
         }
-        if (isset($input['start']) || isset($request['end']) ) {
-//            $builder->where('name', 'LIKE', '%' . $input['name'] . '%');
+        if (isset($input['start'])) {
+            $builder->where('name', '>=', $input['start']);
+        }
+        if (isset($request['end']) ) {
+            $builder->where('name', '>', $input['end']);
         }
         return $builder->paginate();
     }
@@ -114,4 +117,23 @@ class User extends Model
         return $this->find($id)->update($input);
     }
     
+    /**
+     * relationship to feedback
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function feedbacks()
+    {
+        return $this->hasMany(\App\Models\Feedback::class);
+    }
+    
+    /**
+     * relationship to order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\Order::class);
+    }
 }

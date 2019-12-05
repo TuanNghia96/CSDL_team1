@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
+    protected $product;
+    
+    /**
+     * CustomerController constructor.
+     *
+     * @param \App\Models\Product $product
+     */
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -80,5 +92,11 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function list(){
+        $products = $this->product->get();
+        
+        return view("home.trangchu",compact('products'));
     }
 }

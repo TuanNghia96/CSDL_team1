@@ -13,4 +13,9 @@ class Category extends Model
         'status' ,
         'created_at'
     ];
+    
+    public function products()
+    {
+        return $this->hasMany(\App\Models\Product::class);
+    }
 }

@@ -1,4 +1,4 @@
-@extends("home.block.index")
+@extends("block.index")
 @section("content")
 <div class="header-bottom">
 			<div class="container">
