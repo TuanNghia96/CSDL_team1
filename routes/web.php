@@ -17,28 +17,24 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
 
-//Customers
+    //Customers
     Route::resource('users', 'UserController');
     
     //Category
     Route::resource('categorys', 'CategoryController');
     //Feedback
-    Route::resource('feedback', 'FeedbackController');
+    Route::resource('feedbacks', 'FeedbackController');
     
 });
+
 Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
 
-Route::group(["prefix"=>"/product"],function(){
-        /* Ca router lien quan den san pham*/
-        
-});
-Route::group(["prefix"=>"/user"],function(){
-    /* Cac route lien quan den user */
 
-    Route::get("login",["as"=>"login","uses"=>"Customer@view_login"]);
-    Route::post("signin",["as"=>"signin","uses"=>"Customer@SignIn"]);
+/* Cac route lien quan den user */
 
-    Route::get("signup",["as"=>"signup","uses"=>"Customer@view_signup"]);
-    Route::post("sign_up",["as"=>"sign_up","uses"=>"Customer@SignUp"]);
+Route::get("login", ["as" => "login", "uses" => "Customer@view_login"]);
+Route::post("signin", ["as" => "signin", "uses" => "Customer@SignIn"]);
 
-});
+Route::get("signup", ["as" => "signup", "uses" => "Customer@view_signup"]);
+Route::post("sign_up", ["as" => "sign_up", "uses" => "Customer@SignUp"]);
+

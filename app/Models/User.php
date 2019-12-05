@@ -61,8 +61,11 @@ class User extends Model
         if (isset($input['role'])) {
             $builder->where('role', '=', $input['role']);
         }
-        if (isset($input['start']) || isset($request['end']) ) {
-//            $builder->where('name', 'LIKE', '%' . $input['name'] . '%');
+        if (isset($input['start'])) {
+            $builder->where('name', '>=', $input['start']);
+        }
+        if (isset($request['end']) ) {
+            $builder->where('name', '>', $input['end']);
         }
         return $builder->paginate();
     }
@@ -133,5 +136,4 @@ class User extends Model
     {
         return $this->hasMany(\App\Models\Order::class);
     }
-    
 }

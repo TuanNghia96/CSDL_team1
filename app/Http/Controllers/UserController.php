@@ -102,7 +102,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->user->find($id)->delete();
+        $user = $this->user->find($id);
+        if ($user->role == User::ADMIN_ROLE) {
+            $user->delete();
+        } elseif ($user->status == 1) {
+            $user->update(['status' => 0]);
+        } else {
+            $user->update(['status' => 1]);
+        }
         return back();
     }
 }
