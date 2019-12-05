@@ -24,6 +24,21 @@ Route::prefix('admin')->group(function () {
     Route::resource('categorys', 'CategoryController');
     //Feedback
     Route::resource('feedback', 'FeedbackController');
+});
     
-    
+Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
+
+Route::group(["prefix"=>"/product"],function(){
+        /* Ca router lien quan den san pham*/
+        
+});
+Route::group(["prefix"=>"/user"],function(){
+    /* Cac route lien quan den user */
+
+    Route::get("login",["as"=>"login","uses"=>"Customer@view_login"]);
+    Route::post("signin",["as"=>"signin","uses"=>"Customer@SignIn"]);
+
+    Route::get("signup",["as"=>"signup","uses"=>"Customer@view_signup"]);
+    Route::post("sign_up",["as"=>"sign_up","uses"=>"Customer@SignUp"]);
+
 });
