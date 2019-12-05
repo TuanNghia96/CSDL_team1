@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel </title>
+    <title>@yield("title")</title>
     <base href="{{asset('')}}"/>
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
@@ -24,7 +24,7 @@
     @include("layout.footer")
     <script src="assets/dest/js/jquery.js"></script>
     <script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="{{  asset('js/app.css') }}"></script>
     <script src="assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
     <script src="assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
     <script src="assets/dest/vendors/animo/Animo.js"></script>

@@ -1,4 +1,9 @@
-<div class="section main">
+@extends('layout.index')
+
+@section('content')
+    
+    
+    <div class="section main">
     <div class="container">
         <div class="border border-primary rounded mb-3 p-4">
             <form action="{{ route('users.index') }}" method="get">
@@ -122,3 +127,4 @@
         <div class="text-center">{{ $users->appends(request()->input())->links() }}</div>
     </div>
 </div>
+@endsection
