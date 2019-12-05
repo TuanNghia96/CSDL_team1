@@ -1,6 +1,6 @@
 @extends('layout.index')
 
-@section('title', 'Chỉnh sử người dùng')
+@section('title', 'Thêm mới sản phẩm')
 
 @section('content')
     <div class="section main">
@@ -9,16 +9,16 @@
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="page-header">
-                        <h2><a href="{{ route('users.create') }}">Thêm mới người dùng</a></h2>
+                        <h2><a href="{{ route('products.create') }}">Thêm mới sản phẩm</a></h2>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                         @csrf
                         <input name="url_back" type="hidden" class="form-control" value="{{ url()->previous() }}">
                         
                         <div class="form-group">
-                            <div class="col-sm-2">
+                            <div class="col-sm-12">
                                 <label for="name" class="control-label">Name</label>
                             </div>
                             <div class="col-sm-10">
@@ -28,112 +28,130 @@
                         @error('name')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
+
                         
-                        {{--email--}}
+                        {{--image_font--}}
                         <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="email" class="control-label @if($errors->has('email')) text-danger @endif">email</label>
+                            <div class="col-sm-12">
+                                <label for="avata" class="control-label @if($errors->has('image_font')) text-danger @endif">ảnh trước</label>
                             </div>
                             <div class="col-sm-10">
-                                <input name="email" type="text" class="form-control @if($errors->has('email')) is-invalid @endif" id="inputEmail" value="{{ old('email') ?? null }}" placeholder="vd:example@gmail.com">
+                                <input name="image_font" type="file" class="form-control @if($errors->has('image_font')) is-invalid @endif" id="inputPasswordConfirmation" placeholder="">
                             </div>
                         </div>
-                        @error('email')
+                        @error('image_font')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                         
-                        {{--avata_url--}}
+                        {{--image_back--}}
                         <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="avata" class="control-label @if($errors->has('avata_url')) text-danger @endif">avata</label>
+                            <div class="col-sm-12">
+                                <label for="avata" class="control-label @if($errors->has('image_back')) text-danger @endif">ảnh sau</label>
                             </div>
                             <div class="col-sm-10">
-                                <input name="avata_url" type="file" class="form-control @if($errors->has('avata_url')) is-invalid @endif" id="inputPasswordConfirmation" placeholder="">
+                                <input name="image_back" type="file" class="form-control @if($errors->has('image_back')) is-invalid @endif" id="inputPasswordConfirmation" placeholder="">
                             </div>
                         </div>
-                        @error('avata_url')
+                        @error('image_back')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                         
-                        {{--password--}}
+                        {{--image_up--}}
                         <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="password" class="control-label @if($errors->has('password')) text-danger @endif">password</label>
+                            <div class="col-sm-12">
+                                <label for="avata" class="control-label @if($errors->has('image_up')) text-danger @endif">ảnh trên</label>
                             </div>
                             <div class="col-sm-10">
-                                <input name="password" type="password" class="form-control @if($errors->has('password')) is-invalid @endif" id="inputPassword" placeholder="********">
+                                <input name="image_up" type="file" class="form-control @if($errors->has('image_up')) is-invalid @endif" id="inputPasswordConfirmation" placeholder="">
                             </div>
                         </div>
-                        @error('password')
+                        @error('image_up')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                         
-                        {{--password_confirmation--}}
+                        {{--sex--}}
                         <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="password_confirmation" class="control-label @if($errors->has('password_confirmation')) text-danger @endif">password confirm</label>
+                            <div class="col-sm-12">
+                                <label for="inputRole" class="control-label">Giới tính:</label>
                             </div>
                             <div class="col-sm-10">
-                                <input name="password_confirmation" type="password" class="form-control @if($errors->has('password_confirmation')) is-invalid @endif" id="inputPasswordConfirmation" placeholder="********">
+                                <select class="form-control" name="sex" id="">
+                                    <option value="">--Chọn giới tính--</option>
+                                    @foreach($sex as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        @error('password_confirmation')
+                        
+                        {{--category_id--}}
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="inputRole" class="control-label">Thể loại:</label>
+                            </div>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="category_id" id="">
+                                    <option value="">--Chọn thể loại--</option>
+                                    @foreach($categorys as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        
+                        {{--size--}}
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label for="size" class="control-label @if($errors->has('size')) text-danger @endif">Kích cỡ: chiều rộng(10) x chiều cao</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend3"> 10 x </span>
+                                    </div>
+                                    <input type="number" class="form-control @if($errors->has('phone')) is-invalid @endif" name="size"  id="validationServerUsername" placeholder="cao">
+                                </div>
+                            </div>
+                        </div>
+                        @error('size')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                        {{--price--}}
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label for="price" class="control-label @if($errors->has('price')) text-danger @endif">Giá tiền(đồng):</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control @if($errors->has('phone')) is-invalid @endif" name="price"  id="validationServerUsername" placeholder="cao">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend3">đ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @error('price')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                         
-                        {{--address--}}
-                        <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="address" class="control-label @if($errors->has('address')) text-danger @endif">Địa chỉ</label>
-                            </div>
-                            <div class="col-sm-10">
-                                <input name="address" type="text" class="form-control @if($errors->has('address')) is-invalid @endif" value="{{ old('address') ?? null }}" id="addressInput" placeholder="123 đường xxx, phường xxxx, quận xxx, tp xxx">
-                            </div>
-                        </div>
-                        @error('address')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                        
-                        {{--address--}}
-                        <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="phone" class="control-label @if($errors->has('phone')) text-danger @endif">Số điện thoại</label>
-                            </div>
-                            <div class="col-sm-10">
-                                <input name="phone" type="text" class="form-control @if($errors->has('phone')) is-invalid @endif" value="{{ old('phone') ?? null }}" id="phoneInput" placeholder="0123456789">
-                            </div>
-                        </div>
-                        @error('phone')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
                         
                         {{--status--}}
                         <div class="form-group">
-                            <div class="col-sm-2">
+                            <div class="col-sm-12">
                                 <label for="inputStatus" class="control-label">Trạng thái.</label>
                             </div>
                             <div class="col-sm-10">
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" value="0" @if(old('status') == 0) checked @endif>Đang khóa</label>
-                                <input type="radio" name="status" value="1" @if(old('status') == 1) checked @endif>Kích hoạt</label>
+                                    <input type="radio" name="status" value="0" @if(old('status') == 0) checked @endif>Ngừng bán</label>
+                                <input type="radio" name="status" value="1" @if(old('status') == 1) checked @endif>Kinh doanh</label>
                             </div>
                         </div>
-                        
-                        {{--role--}}
-                        <div class="form-group">
-                            <div class="col-sm-2">
-                                <label for="inputRole" class="control-label">Quyền hạn:</label>
-                            </div>
-                            <div class="col-sm-10">
-                                <p>Admin</p>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">Lưu.</button>
                             </div>
                         </div>
-                    
                     </form>
                 </div>
             </div>

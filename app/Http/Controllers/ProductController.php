@@ -38,7 +38,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $sex = Product::$sex;
+        $categorys = Category::pluck('name', 'id');
+        return view('admin.products.create', compact(['sex', 'categorys']));
     }
 
     /**
@@ -49,7 +51,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->product->storeData($request);
+        return redirect($request->url_back ?? route('admin.products.index'));
     }
 
     /**
@@ -72,7 +75,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = $this->product->find($id);
+        $sex = Product::$sex;
+        $categorys = Category::pluck('name', 'id');
+        return view('admin.products.edit', compact(['product', 'sex', 'categorys']));
+    
+    
     }
 
     /**
@@ -84,7 +92,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->product->updateData($request);
+        return redirect($request->url_back ?? route('admin.products.index'));
+    
     }
 
     /**

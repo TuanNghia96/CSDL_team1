@@ -7,8 +7,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h2><a href="{{ route('categorys.index') }}">Danh sách thể loại</a></h2>
+                    <div class="page-header row">
+                        <div class="col">
+                            <h2><a href="{{ route('categorys.index') }}">Danh sách thể loại</a></h2>
+                        </div>
+                        <div class="col text-right">
+                            <a href="{{ route('categorys.create') }}" class="btn btn-success">Tạo mới</a>
+                        </div>
                     </div>
                 </div>
                 <table class="table">

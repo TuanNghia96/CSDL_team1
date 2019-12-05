@@ -5,11 +5,15 @@
 @section('content')
     <div class="section main">
         <div class="container">
-            
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h2><a href="{{ route('users.index') }}">Danh sách người dùng</a></h2>
+                    <div class="page-header row">
+                        <div class="col">
+                            <h2><a href="{{ route('users.index') }}">Danh sách người dùng</a></h2>
+                        </div>
+                        <div class="col text-right">
+                            <a href="{{ route('users.create') }}" class="btn btn-success">Tạo mới</a>
+                        </div>
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4">

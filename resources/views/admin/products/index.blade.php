@@ -1,14 +1,19 @@
 @extends('layout.index')
 
-@section('title', 'Quản lý người dùng')
+@section('title', 'Quản lý sản phẩm')
 
 @section('content')
     <div class="section main">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h2><a href="{{ route('products.index') }}">Danh sách sản phẩm</a></h2>
+                    <div class="page-header row">
+                        <div class="col">
+                            <h2><a href="{{ route('products.index') }}">Danh sách sản phẩm</a></h2>
+                        </div>
+                        <div class="col text-right">
+                            <a href="{{ route('products.create') }}" class="btn btn-success">Tạo mới</a>
+                        </div>
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4">

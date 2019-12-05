@@ -45,7 +45,11 @@
                 </tr>
                 <tr>
                     <th scope="col">Kích cỡ(h x w)</th>
-                    <td>{{ $product->hight }}</td>
+                    <td>{{ 10 * $product->size }} x 10</td>
+                </tr>
+                <tr>
+                    <th scope="col">Đã bán</th>
+                    <td>{{ $product->bought }}</td>
                 </tr>
                 <tr>
                     <th scope="col">trang thái</th>
@@ -53,7 +57,7 @@
                 </tr>
                 <tr>
                     <th scope="col">Ngày khởi tạo</th>
-                    <td>{{ $product->created_at }}</td>
+                    <td>{{ date("H:i:s d/m/Y",strtotime($product->created_at)) }}</td>
                 </tr>
             </table>
         </div>

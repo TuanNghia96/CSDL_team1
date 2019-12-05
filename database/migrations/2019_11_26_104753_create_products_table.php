@@ -23,7 +23,8 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categorys')->onDelete('cascade');
-            $table->tinyInteger('high');
+            $table->float('size', 2, 1);
+            $table->integer('bought')->default(0);
             $table->boolean('status');
             $table->dateTime('created_at');
         });
