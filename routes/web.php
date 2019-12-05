@@ -25,7 +25,7 @@ Route::prefix('admin')->group(function () {
     //Feedback
     Route::resource('feedback', 'FeedbackController');
     
-    
+});
 Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
 
 Route::group(["prefix"=>"/product"],function(){
