@@ -1,6 +1,6 @@
 @extends('layout.index')
 
-@section('title', 'Quản lý người dùng')
+@section('title', 'Quản lý sản phẩm')
 
 @section('content')
     <div class="section main">
@@ -9,15 +9,15 @@
                 <div class="col-md-12">
                     <div class="page-header row">
                         <div class="col">
-                            <h2><a href="{{ route('users.index') }}">Danh sách người dùng</a></h2>
+                            <h2><a href="{{ route('products.index') }}">Danh sách sản phẩm</a></h2>
                         </div>
                         <div class="col text-right">
-                            <a href="{{ route('users.create') }}" class="btn btn-success">Tạo mới</a>
+                            <a href="{{ route('products.create') }}" class="btn btn-success">Tạo mới</a>
                         </div>
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4">
-                    <form action="{{ route('users.index') }}" method="get">
+                    <form action="{{ route('products.index') }}" method="get">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group row">
@@ -30,18 +30,26 @@
                             
                             <div class="col-md-4">
                                 <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-right">email</label>
+                                    <label class="col-md-4 col-form-label text-right">Thể loại</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="email" value="{{ request('email') }}">
+                                        <select class="form-control" name="category_id">
+                                            <option value="">--Chọn thể loại.</option>
+                                            @foreach($categorys as $key => $value)
+                                                <option value="{{ $key }}" @if(request('category_id') == $key) selected @endif>{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="col-md-4">
                                 <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-right">Địa chỉ:</label>
+                                    <label class="col-md-4 col-form-label text-right">Trang thái</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="address" value="{{ request('address') }}">
+                                        <select class="form-control" name="status">
+                                            <option value="0" @if(request('status') == 0) selected @endif>Ngừng bán</option>
+                                            <option value="1" @if(request('status') == 1) selected @endif>Kinh doanh</option>
+                                            <option value="" selected>--Chọn trạng thái.</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -63,25 +71,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-right">Quyền</label>
-                                    <div class="col-md-8">
-                                        <select class="form-control" name="role">
-                                            <option value="">--Chọn quyền.</option>
-                                            @foreach($role as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="col-md-4">
                                 &nbsp;
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <div class="form-group row">
-                                    <div class="col-md-4 offset-md-4">
+                                    <div class="col-md-2 offset-md-5">
                                         <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
                                     </div>
                                 </div>
@@ -89,8 +85,7 @@
                         </div>
                     </form>
                 </div>
-                
-                @if ($users->count() == 0)
+                @if ($products->count() == 0)
                     <div><h3 class="text-center red">{{ 'Không tìm thấy bản ghi nào.' }}</h3></div>
                 @else
                     <table class="table">
@@ -98,40 +93,33 @@
                         <tr>
                             <th>#</th>
                             <th class="text-center">Tên</th>
-                            <th class="text-center">địa chỉ mail</th>
-                            <th class="text-center">Quyền</th>
+                            <th class="text-center">Thể loại</th>
+                            <th class="text-center">Giá tiền</th>
                             <th class="text-center">Trang thái</th>
                             <th class="text-center">Thời gian</th>
                             <th class="text-center">Hành động</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $key => $value)
+                        @foreach($products as $key => $value)
                             <tr>
-                                <td>{{ $users->perPage() * ($users->currentPage() - 1) + $key + 1 }}</td>
+                                <td>{{ $products->perPage() * ($products->currentPage() - 1) + $key + 1 }}</td>
                                 <td>{{ $value->name }}</td>
-                                <td>{{ $value->email }}</td>
-                                <td>{{ \App\Models\User::$role[$value->role] }}</td>
-                                <td>@if (($value->status) == 1)Kích hoạt @else Khóa @endif</td>
+                                <td>{{ $value->category->name }}</td>
+                                <td>{{ $value->price }}</td>
+                                <td>@if (($value->status) == 0)Ngừng bán @else Kinh doanh @endif</td>
                                 <td>{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
-                                {{--                                <td>{{  Carbon\Carbon::createFromFormat("H:i:s Y/m/d", $value->created_at) }}</td>--}}
                                 <td>
                                     <p class="text-left">
-                                        <a href="{{ route('users.show', $value->id) }}">hiển thị</a>　|　
-                                        <a href="{{ route('users.edit', $value->id) }}">Sửa</a>　|　
+                                        <a href="{{ route('products.show', $value->id) }}">hiển thị</a>　|　
+                                        <a href="{{ route('products.edit', $value->id) }}">Sửa</a>　|　
                                         <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">
-                                            @if($value->role == \App\Models\User::ADMIN_ROLE)
-                                                Xóa
-                                            @elseif($value->status == 1)
-                                                Khóa
-                                            @else
-                                                Kích hoạt
-                                            @endif
+                                            Xóa
                                         </button>
                                     </p>
                                     <!-- Modal -->
                                     <div class="modal fade" id="{{ 'delete-modal' . $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form method="post" action="{{ route('users.destroy', $value->id) }}">
+                                        <form method="post" action="{{ route('products.destroy', $value->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-dialog" role="document">
@@ -151,9 +139,8 @@
                             </tr>
                         @endforeach
                         </tbody>
-                    
                     </table>
-                    <div class="text-center">{{ $users->links() }}</div>
+                    <div class="text-center">{{ $products->links() }}</div>
                 @endif
             </div>
         </div>

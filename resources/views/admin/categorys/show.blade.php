@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <th>Ngày tạo</th>
-                    <td>{{ $category->created_at }}</td>
+                    <td>{{ date("H:i:s d/m/Y",strtotime($category->created_at)) }}</td>
                 </tr>
             
             </table>
@@ -51,7 +51,7 @@
                             <td><a href="#">{{ $value->name }}</a></td>
                             <td>{{ $value->price }}</td>
                             <td>{{ $value->status }}</td>
-                            <td>{{ $value->created_at }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                         </tr>
                     @endforeach
                 @else

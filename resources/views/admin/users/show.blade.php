@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th scope="col">Ngày khởi tạo</th>
-                    <td>{{ $user->created_at }}</td>
+                    <td>{{ date("H:i:s d/m/Y",strtotime($user->created_at)) }}</td>
                 </tr>
             </table>
             <h5>Những feedback của người dùng.</h5>
@@ -66,7 +66,7 @@
                             <td>{{ $id }}</td>
                             <td>{{ $value->product_id }}</td>
                             <td>{{ $value->content }}</td>
-                            <td>{{ $value->created_at }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                             <td><a href="#">hiện thị</a></td>
                         </tr>
                     @endforeach
@@ -92,7 +92,7 @@
                     @foreach($user->orders()->get() as $id => $value)
                         <tr>
                             <td>{{ $id }}</td>
-                            <td><a href="#">{{ $value->created_at }}</a></td>
+                            <td><a href="#">{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</a></td>
                             <td>{{ $value->total }}</td>
                             <td>{{ $value->status }}</td>
                             <td><a href="#">hiện thị</a></td>

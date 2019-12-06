@@ -44,6 +44,16 @@ class CategoryController extends Controller
     }
     
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.categorys.create');
+    }
+    
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -65,7 +75,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->category->find($id)->delete();
+        $category = $this->category->find($id);
+        if ($category->status = 0) {
+            $this->category->find($id)->update(['status' => 1]);
+        } else {
+            $this->category->find($id)->update(['status' => 0]);
+        }
         return back();
     }
 }

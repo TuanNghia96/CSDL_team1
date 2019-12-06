@@ -15,9 +15,10 @@ $factory->define(Product::class, function (Faker $faker) {
         'image_up' => $faker->imageUrl(),
         'sex' => $faker->randomElement([0, 1]),
         'price' => $faker->numberBetween(10000, 500000),
+        'bought' => $faker->numberBetween(0, 1000),
         'category_id' => $faker->randomElement(Category::pluck('id')),
-        'high' => $faker->numberBetween(10, 50),
         'status' => $faker->randomElement([0, 1]),
-        'created_at' => Carbon::now()
+        'created_at' => Carbon::now(),
+        'size' => $faker->numerify('#.#')
     ];
 });
