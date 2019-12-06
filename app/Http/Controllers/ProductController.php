@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -42,14 +43,14 @@ class ProductController extends Controller
         $categorys = Category::pluck('name', 'id');
         return view('admin.products.create', compact(['sex', 'categorys']));
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param ProductStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
         $this->product->storeData($request);
         return redirect($request->url_back ?? route('products.index'));
@@ -82,30 +83,30 @@ class ProductController extends Controller
     
     
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param ProductStoreRequest $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductStoreRequest $request, $id)
     {
         $this->product->updateData($request);
         return redirect($request->url_back ?? route('products.index'));
     
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-//        dump($id);
         $this->product->delete($id);
         return redirect(route('products.index'));
     }
