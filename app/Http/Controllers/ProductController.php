@@ -24,9 +24,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = $this->product->paginate();
+        $products = $this->product->listData($request->all());
         $categorys = Category::pluck('name', 'id');
         return view('admin.products.index', compact(['products', 'categorys']));
     }
@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->product->storeData($request);
-        return redirect($request->url_back ?? route('admin.products.index'));
+        return redirect($request->url_back ?? route('products.index'));
     }
 
     /**
@@ -93,7 +93,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $this->product->updateData($request);
-        return redirect($request->url_back ?? route('admin.products.index'));
+        return redirect($request->url_back ?? route('products.index'));
     
     }
 
@@ -105,7 +105,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+//        dump($id);
+        $this->product->delete($id);
+        return redirect(route('products.index'));
     }
     
     public function list(){

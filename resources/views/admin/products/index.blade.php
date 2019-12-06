@@ -32,10 +32,10 @@
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-right">Thể loại</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" name="role">
+                                        <select class="form-control" name="category_id">
                                             <option value="">--Chọn thể loại.</option>
                                             @foreach($categorys as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                <option value="{{ $key }}" @if(request('category_id') == $key) selected @endif>{{ $value }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -45,10 +45,10 @@
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-right">Trang thái</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" name="role">
-                                            <option value="">--Chọn trạng thái.</option>
-                                            <option value="0">Ngừng bán</option>
-                                            <option value="1">Kinh doanh</option>
+                                        <select class="form-control" name="status">
+                                            <option value="0" @if(request('status') == 0) selected @endif>Ngừng bán</option>
+                                            <option value="1" @if(request('status') == 1) selected @endif>Kinh doanh</option>
+                                            <option value="" selected>--Chọn trạng thái.</option>
                                         </select>
                                     </div>
                                 </div>
@@ -85,7 +85,6 @@
                         </div>
                     </form>
                 </div>
-                
                 @if ($products->count() == 0)
                     <div><h3 class="text-center red">{{ 'Không tìm thấy bản ghi nào.' }}</h3></div>
                 @else
@@ -140,7 +139,6 @@
                             </tr>
                         @endforeach
                         </tbody>
-                    
                     </table>
                     <div class="text-center">{{ $products->links() }}</div>
                 @endif

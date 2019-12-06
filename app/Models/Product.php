@@ -47,6 +47,29 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
     
+    
+    public function listData($input)
+    {
+        
+        $builder = $this->orderBy('created_at');
+        if (isset($input['name'])) {
+            $builder->where('name', 'LIKE', '%' . $input['name'] . '%');
+        }
+
+        if (isset($input['status'])) {
+            $builder->where('status', '=', $input['status']);
+        }
+        if (isset($input['category_id'])) {
+            $builder->where('category_id', '=', $input['category_id']);
+        }
+        if (isset($input['from'])) {
+            $builder->where('created_at', '>=', $input['from']);
+        }
+        if (isset($input['to']) ) {
+            $builder->where('created_at', '<', $input['to']);
+        }
+        return $builder->paginate();
+    }
     /**
      * store product data
      *
