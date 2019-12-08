@@ -42,7 +42,18 @@
                 } else {
                     $(".header-bottom").removeClass('fixNav')
                 }
-            })
-        })
+            });
+       /*      $("#tru").click(function() {
+                let sl=Number(Number($("#sl").text())-1);
+                if(sl>=1){$('#sl').text(Number(sl));}
+            });
+            $("#cong").click(function(){
+                $('#sl').text(Number(Number($("#sl").text())+1));
+            }); */
+            $("#qty").change(function(){
+                var total_price=Number($("#qty").val())*Number($("#price").text());
+                $("#total_price").text(total_price);
+            });
+        });
     </script>
 </body>

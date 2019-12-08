@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Session;
+use App\Models\Cart;
 
 class ProductController extends Controller
 {
@@ -95,8 +96,32 @@ class ProductController extends Controller
     }
     
     public function list(){
-        $products = $this->product->get();
-        
-        return view("home.trangchu",compact('products'));
+        /* $products = $this->product->get(); */
+        $New_Product=Product::New_Product();
+       /*  var_dump($New_Product); */
+        return view("home.trangchu",compact("New_Product"));
+    } 
+    public function Cart(Request $request,$id){
+        $product=Product::find($id);
+        $oldCart=Session("cart")?session::get('cart'):NULL;
+        $cart=new Cart($oldCart);
+        $cart->add($product,$id);
+        $request->session()->put('cart',$cart);
+        return redirect()->back();
     }
+    public function delete_Cart(Request $request,$id){
+        $oldCart=Session::has('cart')?Session::get('cart'):NULL;
+        $cart=new Cart($oldCart);
+        $cart->removeItem($id);
+        if(count($cart->items)>0){
+            $request->session()->put('cart',$cart);
+        }
+        else $request->session()->forget('cart');
+        return redirect()->back();
+    }
+    public function Order(Request $request){
+        $oldCart=Session::has('cart')?session::get('cart'):NULL;
+        return view("home.cart",compact($oldCart));
+    }
+    
 }

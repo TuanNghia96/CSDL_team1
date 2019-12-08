@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
     
 });
 
-Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
+Route::get("home",["as"=>"home","uses"=>"ProductController@list"]); /*Route dieu chinh den trang chu*/
 
 
 /* Cac route lien quan den user */
@@ -38,3 +38,7 @@ Route::post("signin", ["as" => "signin", "uses" => "Customer@SignIn"]);
 Route::get("signup", ["as" => "signup", "uses" => "Customer@view_signup"]);
 Route::post("sign_up", ["as" => "sign_up", "uses" => "Customer@SignUp"]);
 
+Route::get("cart/{t}",["as"=>"cart","uses"=>"ProductController@Cart"]);
+Route::get("deleteCart/{t}",["as"=>"delete_cart","uses"=>"ProductController@delete_Cart"]);
+
+Route::get("cc",function(){return view("home.cart");})->name('ss');
