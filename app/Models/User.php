@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class User extends Model
+
+class User extends Model implements Authenticatable
 {
+    use AuthenticableTrait;
     protected $table = 'users';
     
     public $timestamps = false;

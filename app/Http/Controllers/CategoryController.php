@@ -14,9 +14,11 @@ class CategoryController extends Controller
      * CustomerController constructor.
      *
      * @param Category $category
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __construct(Category $category)
     {
+        $this->authorize('admin');
         $this->category = $category;
     }
     

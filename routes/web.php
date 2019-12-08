@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     //Customers
     Route::resource('users', 'UserController');
@@ -40,3 +40,7 @@ Route::post("signin", ["as" => "signin", "uses" => "Customer@SignIn"]);
 Route::get("signup", ["as" => "signup", "uses" => "Customer@view_signup"]);
 Route::post("sign_up", ["as" => "sign_up", "uses" => "Customer@SignUp"]);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

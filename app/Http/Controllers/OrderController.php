@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
@@ -13,7 +14,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if (Gate::allows('admin')) {
+            echo 'tét';
+        } else{
+            return redirect(route('home'));
+        }
     }
 
     /**

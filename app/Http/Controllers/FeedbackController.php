@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feedback;
+use Illuminate\Support\Facades\Gate;
 
 class FeedbackController extends Controller
 {
@@ -25,7 +26,11 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedbacks = $this->feedback->paginate();
-        return view('admin.feedbacks.index', compact('feedbacks'));
+        if (Gate::allows('admin')) {
+            $feedbacks = $this->feedback->paginate();
+            return view('admin.feedbacks.index', compact('feedbacks'));
+        } else{
+            return redirect(route('home'));
+        }
     }
 }
