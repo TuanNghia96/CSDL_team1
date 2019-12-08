@@ -15,9 +15,11 @@ class ProductController extends Controller
      * CustomerController constructor.
      *
      * @param \App\Models\Product $product
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __construct(Product $product)
     {
+        $this->authorize('admin');
         $this->product = $product;
     }
     /**
