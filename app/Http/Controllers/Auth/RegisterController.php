@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\SendOrderEmail;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\OrderMail;
 
 class RegisterController extends Controller
 {
@@ -68,11 +71,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         $data['role'] = User::CUSTOMER_ROLE;
         $data['status'] = 1;
         $data['password'] = Hash::make($data['password']);
         $data['created_at'] = Carbon::now();
-        $data['avata_url'] = $input['avata_url'] = '../image/users/anonimus.png';
+         $data['avata_url'] = '../image/users/anonimus.png';
+         
+         //sendmail
+        dispatch(new SendOrderEmail($data));
+
         return User::create($data);
     }
 }
