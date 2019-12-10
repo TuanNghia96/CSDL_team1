@@ -15,16 +15,18 @@ use App\Mail\OrderMail;
 class SendOrderEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    protected $user;
+    
+    protected $order;
+    protected $reason;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($order, $reason = null)
     {
-        $this->user = $user;
+        $this->order = $order;
+        $this->reason = $reason;
     }
 
     /**
@@ -34,8 +36,8 @@ class SendOrderEmail implements ShouldQueue
      */
     public function handle()
     {
-        $email = new OrderMail($this->user['name']);
-        Mail::to($this->user['email'])->send($email);
+        $email = new OrderMail($this->order, $this->reason);
+        Mail::to($this->order->user->email)->send($email);
     
     }
 }

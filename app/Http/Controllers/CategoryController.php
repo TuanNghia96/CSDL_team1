@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -14,11 +15,9 @@ class CategoryController extends Controller
      * CustomerController constructor.
      *
      * @param Category $category
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __construct(Category $category)
     {
-        $this->authorize('admin');
         $this->category = $category;
     }
     
@@ -26,11 +25,16 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
-        $categorys = $this->category->paginate();
-        return view('admin.categorys.index', compact('categorys'));
+        if (Gate::allows('admin')) {
+            $categorys = $this->category->paginate();
+            return view('admin.categorys.index', compact('categorys'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -41,8 +45,12 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = $this->category->find($id);
-        return view('admin.categorys.show', compact('category'));
+        if (Gate::allows('admin')) {
+            $category = $this->category->find($id);
+            return view('admin.categorys.show', compact('category'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -52,7 +60,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categorys.create');
+        if (Gate::allows('admin')) {
+            return view('admin.categorys.create');
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -63,10 +75,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $input['created_at'] = Carbon::now();
-        $this->category->create($input);
-        return redirect(route('categorys.index'));
+        if (Gate::allows('admin')) {
+            $input = $request->all();
+            $input['created_at'] = Carbon::now();
+            $this->category->create($input);
+            return redirect(route('categorys.index'));
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -77,12 +93,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = $this->category->find($id);
-        if ($category->status = 0) {
-            $this->category->find($id)->update(['status' => 1]);
-        } else {
-            $this->category->find($id)->update(['status' => 0]);
+        if (Gate::allows('admin')) {
+            $category = $this->category->find($id);
+            if ($category->status = 0) {
+                $this->category->find($id)->update(['status' => 1]);
+            } else {
+                $this->category->find($id)->update(['status' => 0]);
+            }
+            return back();
+        } else{
+            return redirect(route('home'));
         }
-        return back();
     }
 }

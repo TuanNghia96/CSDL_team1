@@ -153,7 +153,7 @@
                         </tbody>
                     
                     </table>
-                    <div class="text-center">{{ $users->links() }}</div>
+                    <div class="col-md-12">{{ $users->appends(request()->input())->links() }}</div>
                 @endif
             </div>
         </div>

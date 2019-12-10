@@ -13,6 +13,6 @@ class FeedbackTableSeeder extends Seeder
     public function run()
     {
         Feedback::truncate();
-        factory('App\Models\Feedback', 10)->create();
+        factory('App\Models\Feedback', 100)->create();
     }
 }
