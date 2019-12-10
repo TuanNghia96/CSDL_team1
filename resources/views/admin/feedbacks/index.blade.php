@@ -74,8 +74,8 @@
                         @foreach($feedbacks as $key => $value)
                             <tr>
                                 <td>{{ $feedbacks->perPage() * ($feedbacks->currentPage() - 1) + $key + 1 }}</td>
-                                <td><a href="{{ route('users.show', $value->user->id) }}">{{ $value->user->name }}</a></td>
-                                <td><a href="#">{{ $value->product->name }}</a></td>
+                                <td><a href="{{ route('users.show', $value->user_id) }}">{{ $value->user->name }}</a></td>
+                                <td><a href="{{ route('products.show', $value->product_id) }}">{{ $value->product->name }}</a></td>
                                 <td>{{ $value->content }}</td>
                                 <td>{{ $value->created_at }}</td>
                             </tr>
