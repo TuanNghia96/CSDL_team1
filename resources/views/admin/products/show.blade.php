@@ -60,6 +60,59 @@
                     <td>{{ date("H:i:s d/m/Y",strtotime($product->created_at)) }}</td>
                 </tr>
             </table>
+            </table>
+            <h5>Những đơn hàng của sản phẩm.</h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Đơn hàng số.</th>
+                    <th scope="col">Khách hàng</th>
+                    <th scope="col">Số lượng</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if($product->feedbacks()->count())
+                    @foreach($product->orderDetails()->get() as $id => $value)
+                        <tr>
+                            <td>{{ $id }}</td>
+                            <td><a href="{{ route('orders.show', $value->order->id) }}">{{ $value->order->id }}</a></td>
+                            <td><a href="{{ route('users.show', $value->order->user_id) }}">{{ $value->order->user->name }}</a></td>
+                            <td>{{ $value->quantity }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->order->created_at)) }}</td>
+                        </tr>
+                    @endforeach
+                @else
+                    <td>Không có phản hồi nào nào</td>
+                @endif
+                </tbody>
+            </table>
+            {{--list feedback--}}
+            <h5>Những feedback của sản phẩm.</h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Mã sản phẩm.</th>
+                    <th scope="col">Nội dung.</th>
+                    <th scope="col">Thời gian.</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if($product->feedbacks()->count())
+                    @foreach($product->feedbacks()->get() as $id => $value)
+                        <tr>
+                            <td>{{ $id }}</td>
+                            <td>{{ $value->product_id }}</td>
+                            <td>{{ $value->content }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
+                        </tr>
+                    @endforeach
+                @else
+                    <td>Không có phản hồi nào nào</td>
+                @endif
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

@@ -46,6 +46,25 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    /**
+     * relationship to feedback
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+    
+    /**
+     * relationship to orderdetail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
     
     
     public function listData($input)
