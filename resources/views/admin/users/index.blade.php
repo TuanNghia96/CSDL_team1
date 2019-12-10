@@ -118,7 +118,9 @@
                                 <td>
                                     <p class="text-left">
                                         <a href="{{ route('users.show', $value->id) }}">hiển thị</a>　|　
+                                        @if($value->id == Auth::user()->id)
                                         <a href="{{ route('users.edit', $value->id) }}">Sửa</a>　|　
+                                        @endif
                                         <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">
                                             @if($value->role == \App\Models\User::ADMIN_ROLE)
                                                 Xóa

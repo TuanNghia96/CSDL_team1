@@ -48,7 +48,7 @@
                 <tbody>
                 <tr>
                     <th>Tên khách hàng:</th>
-                    <td>{{ $order->user->name }}</td>
+                    <td><a href="{{ route('users.show', $order->user_id) }}">{{ $order->user->name }}</a></td>
                 </tr>
                 <tr>
                     <th>Số điện thoại:</th>
@@ -82,7 +82,7 @@
                     <th class="text-center">Tên sản phẩm</th>
                     <th class="text-center">hình ảnh</th>
                     <th class="text-center">Số lượng</th>
-                    <th class="text-center">Giá tiền</th>
+                    <th class="text-right">Giá tiền</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,11 +90,11 @@
                     <tr>
                         @php($product = $value->product)
                         <td>{{ $key }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>
+                        <td class="text-center"><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></td>
+                        <td class="text-center">
                             <img src="{{ $product->image_font }}" class="img-thumbnail" width="150" height="auto" alt="{{ $product->name }}">
                         </td>
-                        <td>{{ $value->quantity }}</td>
+                        <td class="text-center">{{ $value->quantity }}</td>
                         <td class="text-right">{{ $value->quantity * $product->price }} đ</td>
                     </tr>
                 @endforeach
