@@ -11,11 +11,11 @@
                         <div class="col-md-12 m5">
                             <h2><a href="{{ route('orders.index') }}">Danh sách đơn hàng</a></h2>
                         </div>
-                        <div class="col-md-12 mb-3 mt-3">
-                            <a href="{{ route('orders.index', 'status=1') }}" class="btn btn-secondary">Đặt hàng</a>
-                            <a href="{{ route('orders.index', 'status=2') }}" class="btn btn-info">Giao hàng</a>
-                            <a href="{{ route('orders.index', 'status=3') }}" class="btn btn-success">Đã giao</a>
-                            <a href="{{ route('orders.index', 'status=4') }}" class="btn btn-danger">Hủy đơn</a>
+                        <div class="row col-md-12 mb-3 mt-3">
+                            <div class="col text-left"><a href="{{ route('orders.index', 'status=1') }}" class="btn btn-secondary">Đặt hàng</a></div>
+                            <div class="col text-center"><a href="{{ route('orders.index', 'status=2') }}" class="btn btn-info">Giao hàng</a></div>
+                            <div class="col text-center"><a href="{{ route('orders.index', 'status=3') }}" class="btn btn-success">Đã giao</a></div>
+                            <div class="col text-right"><a href="{{ route('orders.index', 'status=4') }}" class="btn btn-danger">Hủy đơn</a></div>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         @foreach($orders as $key => $value)
                             <tr>
                                 <td>{{ $orders->perPage() * ($orders->currentPage() - 1) + $key + 1 }}</td>
-                                <td>{{ $value->user->name }}</td>
+                                <td class="text-center"><a href="{{ route('products.show', $value->user->id) }}">{{ $value->user->name }}</a></td>
                                 <td>{{ $value->total }}</td>
                                 <td>{{ $status[$value->status] }}</td>
                                 <td>{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
