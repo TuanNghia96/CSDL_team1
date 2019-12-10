@@ -78,8 +78,6 @@ class RegisterController extends Controller
         $data['created_at'] = Carbon::now();
          $data['avata_url'] = '../image/users/anonimus.png';
          
-         //sendmail
-        dispatch(new SendOrderEmail($data));
 
         return User::create($data);
     }

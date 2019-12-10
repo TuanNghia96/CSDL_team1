@@ -62,7 +62,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="text-center">{{ $categorys->appends(request()->input())->links() }}</div>
+                <div class="col-md-12">{{ $categorys->appends(request()->input())->links() }}</div>
             </div>
         
         </div>

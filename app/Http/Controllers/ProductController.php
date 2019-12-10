@@ -6,6 +6,7 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,6 @@ class ProductController extends Controller
      */
     public function __construct(Product $product)
     {
-        $this->authorize('admin');
         $this->product = $product;
     }
     /**
@@ -29,21 +29,31 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = $this->product->listData($request->all());
-        $categorys = Category::pluck('name', 'id');
-        return view('admin.products.index', compact(['products', 'categorys']));
+        if (Gate::allows('admin')) {
+            $products = $this->product->listData($request->all());
+            $categorys = Category::pluck('name', 'id');
+            return view('admin.products.index', compact(['products', 'categorys']));
+        } else {
+            return redirect(route('home'));
+        }
     }
 
-    /**
+
+
+/**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $sex = Product::$sex;
-        $categorys = Category::pluck('name', 'id');
-        return view('admin.products.create', compact(['sex', 'categorys']));
+        if (Gate::allows('admin')) {
+            $sex = Product::$sex;
+            $categorys = Category::pluck('name', 'id');
+            return view('admin.products.create', compact(['sex', 'categorys']));
+        } else {
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -54,8 +64,12 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $this->product->storeData($request);
-        return redirect($request->url_back ?? route('products.index'));
+        if (Gate::allows('admin')) {
+            $this->product->storeData($request);
+            return redirect($request->url_back ?? route('products.index'));
+        } else {
+            return redirect(route('home'));
+        }
     }
 
     /**
@@ -66,8 +80,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = $this->product->find($id);
-        return view('admin.products.show', compact('product'));
+        if (Gate::allows('admin')) {
+            $product = $this->product->find($id);
+            return view('admin.products.show', compact('product'));
+        } else {
+            return redirect(route('home'));
+        }
     }
 
     /**
@@ -78,12 +96,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->product->find($id);
-        $sex = Product::$sex;
-        $categorys = Category::pluck('name', 'id');
-        return view('admin.products.edit', compact(['product', 'sex', 'categorys']));
-    
-    
+        if (Gate::allows('admin')) {
+            $product = $this->product->find($id);
+            $sex = Product::$sex;
+            $categorys = Category::pluck('name', 'id');
+            return view('admin.products.edit', compact(['product', 'sex', 'categorys']));
+        } else {
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -95,9 +115,12 @@ class ProductController extends Controller
      */
     public function update(ProductStoreRequest $request, $id)
     {
-        $this->product->updateData($request);
-        return redirect($request->url_back ?? route('products.index'));
-    
+        if (Gate::allows('admin')) {
+            $this->product->updateData($request);
+            return redirect($request->url_back ?? route('products.index'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -109,8 +132,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->product->delete($id);
-        return redirect(route('products.index'));
+        if (Gate::allows('admin')) {
+            $this->product->delete($id);
+            return redirect(route('products.index'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     
     public function list(){

@@ -9,6 +9,7 @@
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{  asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{  asset('css/custom01.css') }}">
     <link rel="stylesheet" href="assets/dest/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/dest/vendors/colorbox/example3/colorbox.css">
     <link rel="stylesheet" href="assets/dest/rs-plugin/css/settings.css">

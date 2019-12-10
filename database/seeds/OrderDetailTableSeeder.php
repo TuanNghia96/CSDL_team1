@@ -13,6 +13,6 @@ class OrderDetailTableSeeder extends Seeder
     public function run()
     {
         OrderDetail::truncate();
-        factory('App\Models\OrderDetail', 10)->create();
+        factory('App\Models\OrderDetail', 100)->create();
     }
 }

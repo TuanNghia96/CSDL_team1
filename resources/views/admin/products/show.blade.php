@@ -1,13 +1,13 @@
 @extends('layout.index')
 
-@section('title', 'Thông tin người dùng')
+@section('title', 'Thông tin sản phầm')
 
 @section('content')
     <div class="section main">
         <div class="container">
             <div class="col-md-12">
                 <div class="page-header">
-                    <h2>Thông tin người dùng</h2>
+                    <h2>Thông tin sản phầm</h2>
                 </div>
             </div>
             <table class="table">

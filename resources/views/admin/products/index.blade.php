@@ -140,7 +140,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center">{{ $products->links() }}</div>
+                    <div class="col-md-12">{{ $products->appends(request()->input())->links() }}</div>
                 @endif
             </div>
         </div>

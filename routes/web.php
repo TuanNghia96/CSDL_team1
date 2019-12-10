@@ -26,7 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('feedbacks', 'FeedbackController');
     //Product
     Route::resource('products', 'ProductController');
-    
+    Route::resource('orders', 'OrderController');
+    Route::get('orders/status/{id}', 'OrderController@updateStatus')->name('orders.status');
+    Route::post('orders/cancel', 'OrderController@cancel')->name('orders.cancel');
 });
 
 Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/

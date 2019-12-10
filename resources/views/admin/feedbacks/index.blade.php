@@ -1,6 +1,6 @@
 @extends('layout.index')
 
-@section('title', 'Quản lý người dùng')
+@section('title', 'Quản lý phản hồi')
 
 @section('content')
     <div class="section main">
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2><a href="{{ route('feedbacks.index') }}">Danh sách người dùng</a></h2>
+                        <h2><a href="{{ route('feedbacks.index') }}">Danh sách phản hồi</a></h2>
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4 col-md-12">
@@ -82,7 +82,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center">{{ $feedbacks->appends(request()->input())->links() }}</div>
+                    <div class="col-md-12">{{ $feedbacks->appends(request()->input())->links() }}</div>
                 @endif
             </div>
         </div>
