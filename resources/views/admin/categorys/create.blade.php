@@ -1,11 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Thêm mới thể loại')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
-            
+        <!-- Page Content  -->
+        <div id="content">
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="page-header">
@@ -16,7 +15,7 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('categorys.store') }}" enctype="multipart/form-data">
                         @csrf
                         <input name="url_back" type="hidden" class="form-control" value="{{ url()->previous() }}">
-                        
+                
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <label for="name" class="control-label">Name</label>
@@ -28,7 +27,7 @@
                         @error('name')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
-            
+                
                         {{--status--}}
                         <div class="form-group">
                             <div class="col-sm-12">
@@ -40,7 +39,7 @@
                                 <input type="radio" name="status" value="1" @if(old('status') == 1) checked @endif>Kinh doanh</label>
                             </div>
                         </div>
-
+                
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">Lưu.</button>
@@ -48,7 +47,5 @@
                         </div>
                     </form>
                 </div>
-            </div>
         </div>
-    </div>
-@endsection('content')
+@endsection	('content')

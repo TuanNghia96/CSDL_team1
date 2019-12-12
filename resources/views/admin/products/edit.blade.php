@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Thay đổi sản phẩm')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             
             <div class="row">
                 <div class="col-md-12 mb-3">
@@ -161,6 +161,5 @@
                     </form>
                 </div>
             </div>
-        </div>
     </div>
-@endsection('content')
+@endsection	('content')

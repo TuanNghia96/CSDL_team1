@@ -9,7 +9,6 @@
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{  asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{  asset('css/custom01.css') }}">
     <link rel="stylesheet" href="assets/dest/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/dest/vendors/colorbox/example3/colorbox.css">
     <link rel="stylesheet" href="assets/dest/rs-plugin/css/settings.css">
@@ -20,21 +19,7 @@
 </head>
 <body>
 @include("layout.header")
-
-<main class="container">
-    <div class="row">
-        <div class="sidebar text-center">
-            @can('admin')
-                @include('layout.admin_sidebar')
-            @endcan
-        </div>
-        <div class="content">
-            @yield("content")
-        </div>
-    </div>
-</main>
-
-
+@yield("content")
 @include("layout.footer")
 <script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="{{  asset('js/app.js') }}"></script>
@@ -50,14 +35,26 @@
 <!--customjs-->
 <script src="assets/dest/js/custom2.js"></script>
 <script>
-    $(document).ready(function ($) {
-        $(window).scroll(function () {
+    $(document).ready(function($) {
+        $(window).scroll(function() {
             if ($(this).scrollTop() > 150) {
                 $(".header-bottom").addClass('fixNav')
             } else {
                 $(".header-bottom").removeClass('fixNav')
             }
-        })
-    })
+        });
+        /*      $("#tru").click(function() {
+                 let sl=Number(Number($("#sl").text())-1);
+                 if(sl>=1){$('#sl').text(Number(sl));}
+             });
+             $("#cong").click(function(){
+                 $('#sl').text(Number(Number($("#sl").text())+1));
+             }); */
+        $("#qty").change(function(){
+            var total_price=Number($("#qty").val())*Number($("#price").text());
+            $("#total_price").text(total_price);
+        });
+    });
 </script>
 </body>
+</html>
