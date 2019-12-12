@@ -9,7 +9,6 @@
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{  asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{  asset('css/custom01.css') }}">
     <link rel="stylesheet" href="assets/dest/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/dest/vendors/colorbox/example3/colorbox.css">
     <link rel="stylesheet" href="assets/dest/rs-plugin/css/settings.css">
@@ -19,31 +18,43 @@
     <link rel="stylesheet" title="style" href="assets/dest/css/huong-style.css">
 </head>
 <body>
-    @include("layout.header")
-    @yield("content")
-    @include("layout.footer")
-    <script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="{{  asset('js/app.js') }}"></script>
-    <script src="assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
-    <script src="assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
-    <script src="assets/dest/vendors/animo/Animo.js"></script>
-    <script src="assets/dest/vendors/dug/dug.js"></script>
-    <script src="assets/dest/js/scripts.min.js"></script>
-    <script src="assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script src="assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="assets/dest/js/waypoints.min.js"></script>
-    <script src="assets/dest/js/wow.min.js"></script>
-    <!--customjs-->
-    <script src="assets/dest/js/custom2.js"></script>
-    <script>
-        $(document).ready(function($) {
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 150) {
-                    $(".header-bottom").addClass('fixNav')
-                } else {
-                    $(".header-bottom").removeClass('fixNav')
-                }
-            })
-        })
-    </script>
+@include("layout.header")
+@yield("content")
+@include("layout.footer")
+<script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="{{  asset('js/app.js') }}"></script>
+<script src="assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
+<script src="assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
+<script src="assets/dest/vendors/animo/Animo.js"></script>
+<script src="assets/dest/vendors/dug/dug.js"></script>
+<script src="assets/dest/js/scripts.min.js"></script>
+<script src="assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="assets/dest/js/waypoints.min.js"></script>
+<script src="assets/dest/js/wow.min.js"></script>
+<!--customjs-->
+<script src="assets/dest/js/custom2.js"></script>
+<script>
+    $(document).ready(function($) {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 150) {
+                $(".header-bottom").addClass('fixNav')
+            } else {
+                $(".header-bottom").removeClass('fixNav')
+            }
+        });
+        /*      $("#tru").click(function() {
+                 let sl=Number(Number($("#sl").text())-1);
+                 if(sl>=1){$('#sl').text(Number(sl));}
+             });
+             $("#cong").click(function(){
+                 $('#sl').text(Number(Number($("#sl").text())+1));
+             }); */
+        $("#qty").change(function(){
+            var total_price=Number($("#qty").val())*Number($("#price").text());
+            $("#total_price").text(total_price);
+        });
+    });
+</script>
 </body>
+</html>

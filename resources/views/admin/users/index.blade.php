@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Quản lý người dùng')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header row">
@@ -158,6 +158,5 @@
                     <div class="col-md-12">{{ $users->appends(request()->input())->links() }}</div>
                 @endif
             </div>
-        </div>
     </div>
 @endsection

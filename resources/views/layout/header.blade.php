@@ -52,13 +52,13 @@
                 </div>
                 <div class="pull-right beta-components space-left ov">
                     <div class="space10">&nbsp;</div>
+                    @can('customer')
                     <div class="beta-comp">
                         <form role="search" method="get" id="searchform" action="/">
                             <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
                             <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                         </form>
                     </div>
-
                     <div class="beta-comp">
                         <div class="cart">
                             <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng (Trống) <i class="fa fa-chevron-down"></i></div>
@@ -108,6 +108,7 @@
                             </div>
                         </div>
                         <!-- .cart -->
+                        @endcan
                     </div>
                 </div>
                 <div class="clearfix"></div>

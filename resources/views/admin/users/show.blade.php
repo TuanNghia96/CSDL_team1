@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Thông tin người dùng')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             <div class="col-md-12">
                 <div class="page-header">
                     <h2>Thông tin người dùng</h2>
@@ -106,6 +106,5 @@
                     </tbody>
                 </table>
             @endif
-        </div>
     </div>
 @endsection

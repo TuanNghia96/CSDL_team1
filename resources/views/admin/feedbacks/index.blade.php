@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Quản lý phản hồi')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             
             <div class="row">
                 <div class="col-md-12">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4 col-md-12">
-                    <form action="{{ route('users.index') }}" method="get">
+                    <form action="{{ route('feedbacks.index') }}" method="get">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
@@ -85,6 +85,5 @@
                     <div class="col-md-12">{{ $feedbacks->appends(request()->input())->links() }}</div>
                 @endif
             </div>
-        </div>
     </div>
 @endsection

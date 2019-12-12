@@ -21,27 +21,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('users', 'UserController');
     
     //Category
-    Route::resource('categorys', 'CategoryController');
+    Route::resource('categorys', 'CategoryController')->except(['edit', 'update']);
     //Feedback
-    Route::resource('feedbacks', 'FeedbackController');
+    Route::resource('feedbacks', 'FeedbackController')->only('index');
     //Product
     Route::resource('products', 'ProductController');
-    Route::resource('orders', 'OrderController');
+    //Order
+    Route::resource('orders', 'OrderController')->only(['index', 'show']);
     Route::get('orders/status/{id}', 'OrderController@updateStatus')->name('orders.status');
     Route::post('orders/cancel', 'OrderController@cancel')->name('orders.cancel');
 });
 
 Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
-
-
-/* Cac route lien quan den user */
-
-Route::get("login", ["as" => "login", "uses" => "Customer@view_login"]);
-Route::post("signin", ["as" => "signin", "uses" => "Customer@SignIn"]);
-
-Route::get("signup", ["as" => "signup", "uses" => "Customer@view_signup"]);
-Route::post("sign_up", ["as" => "sign_up", "uses" => "Customer@SignUp"]);
-
 
 Auth::routes();
 

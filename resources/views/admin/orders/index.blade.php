@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Quản lý đơn hàng')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header row">
@@ -55,6 +55,5 @@
                     <div class="col-md-12">{{ $orders->appends(request()->input())->links() }}</div>
                 @endif
             </div>
-        </div>
     </div>
 @endsection
