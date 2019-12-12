@@ -30,6 +30,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('orders', 'OrderController')->only(['index', 'show']);
     Route::get('orders/status/{id}', 'OrderController@updateStatus')->name('orders.status');
     Route::post('orders/cancel', 'OrderController@cancel')->name('orders.cancel');
+    //Graphic
+    Route::get('graphics/order', 'GraphicController@order')->name('graphics.order');
+    Route::get('graphics/product', 'GraphicController@product')->name('graphics.product');
+    Route::get('graphics/user', 'GraphicController@user')->name('graphics.user');
+    
 });
 
 Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
@@ -37,3 +42,5 @@ Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

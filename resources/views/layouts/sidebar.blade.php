@@ -13,7 +13,7 @@
                     <a href="{{ route('users.index') }}">Danh sách</a>
                 </li>
                 <li>
-                    <a href="{{ route('users.index') }}">Thêm mới</a>
+                    <a href="{{ route('users.create') }}">Thêm mới</a>
                 </li>
             </ul>
         </li>
@@ -25,7 +25,7 @@
                     <a href="{{ route('categorys.index') }}">Danh sách</a>
                 </li>
                 <li>
-                    <a href="{{ route('categorys.index') }}">Thêm mới</a>
+                    <a href="{{ route('categorys.create') }}">Thêm mới</a>
                 </li>
             </ul>
         </li>
@@ -49,6 +49,21 @@
         {{--feedbacks--}}
         <li>
             <a href="{{ route('feedbacks.index') }}">Phản hồi</a>
+        </li>
+        {{--graphics--}}
+        <li class="active">
+            <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Đồ thị</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu4">
+                <li>
+                    <a href="{{ route('graphics.order') }}">Đơn hàng</a>
+                </li>
+                <li>
+                    <a href="{{ route('graphics.product') }}">Sản phẩm</a>
+                </li>
+                <li>
+                    <a href="{{ route('graphics.user') }}">Khách hàng.</a>
+                </li>
+            </ul>
         </li>
     </ul>
 </nav>
