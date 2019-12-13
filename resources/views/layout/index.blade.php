@@ -16,6 +16,7 @@
     <link rel="stylesheet" title="style" href="assets/dest/css/style.css">
     <link rel="stylesheet" href="assets/dest/css/animate.css">
     <link rel="stylesheet" title="style" href="assets/dest/css/huong-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     @include("layout.header")
@@ -43,17 +44,14 @@
                     $(".header-bottom").removeClass('fixNav')
                 }
             });
-       /*      $("#tru").click(function() {
-                let sl=Number(Number($("#sl").text())-1);
-                if(sl>=1){$('#sl').text(Number(sl));}
+            $("#o").click(function(){
+                $("#info").hide();
+                $("#order").show();
             });
-            $("#cong").click(function(){
-                $('#sl').text(Number(Number($("#sl").text())+1));
-            }); */
-            $("#qty").change(function(){
-                var total_price=Number($("#qty").val())*Number($("#price").text());
-                $("#total_price").text(total_price);
-            });
+            $("#i").click(function(){
+                $("#info").show();
+                $("#order").hide();;
+            }); 
         });
     </script>
 </body>

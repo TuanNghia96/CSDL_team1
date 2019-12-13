@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Session;
 use App\Models\Cart;
-
+use App\Models\Feedback;
+use App\Models\Category;
 class ProductController extends Controller
 {
     protected $product;
@@ -28,7 +28,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +37,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -49,7 +47,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -60,7 +57,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -71,7 +67,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -83,7 +78,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -97,17 +91,18 @@ class ProductController extends Controller
     
     public function list(){
         /* $products = $this->product->get(); */
-        $New_Product=Product::New_Product();
-       /*  var_dump($New_Product); */
+        $New_Product=Product::New_Product(8);
+/*          var_dump($New_Product); */
         return view("home.trangchu",compact("New_Product"));
     } 
     public function Cart(Request $request,$id){
+        /* $input=$request->all(); */
         $product=Product::find($id);
         $oldCart=Session("cart")?session::get('cart'):NULL;
         $cart=new Cart($oldCart);
         $cart->add($product,$id);
         $request->session()->put('cart',$cart);
-        return redirect()->back();
+        return redirect()->back(); 
     }
     public function delete_Cart(Request $request,$id){
         $oldCart=Session::has('cart')?Session::get('cart'):NULL;
@@ -123,5 +118,23 @@ class ProductController extends Controller
         $oldCart=Session::has('cart')?session::get('cart'):NULL;
         return view("home.cart",compact($oldCart));
     }
-    
+    public function ProductDetail(Request $request,$id){
+        $product=Product::find($id);
+        $new_product=Product::New_Product(4);
+        $best_product=Product::Best_Product();
+        $product_lq=Product::product_lq($product->id,$product->category_id);
+        $review=Feedback::get_review($id);
+        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review"));
+    }
+    public function Category(Request $request,$id){
+        $category=Category::get_name();
+        if(!$id) $id=$category[0]->id; 
+        $product_category=Product::category_product($id);
+        $best_product=Product::Best_category_product($id);
+        return view("home.product_type",compact("category","product_category","best_product"));
+    }
+    public function SaveOrder(Request $request){
+        $oldCart=Session::has('cart')?session::get('cart'):NULL;
+          
+    }
 }

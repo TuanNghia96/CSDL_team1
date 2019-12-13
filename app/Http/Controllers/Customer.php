@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 class Customer extends Controller
 {
     public function view_login(){
@@ -28,5 +29,13 @@ class Customer extends Controller
         else{
             return view("home.signup");
         } 
+    }
+    public function ChangeInfor($id){
+        $user=User::find($id);
+        return view("home.user",compact("user"));
+    }
+    public function SaveChange(Request $request){
+        $info=$request::all();
+        
     }
 }

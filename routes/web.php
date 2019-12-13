@@ -40,5 +40,14 @@ Route::post("sign_up", ["as" => "sign_up", "uses" => "Customer@SignUp"]);
 
 Route::get("cart/{t}",["as"=>"cart","uses"=>"ProductController@Cart"]);
 Route::get("deleteCart/{t}",["as"=>"delete_cart","uses"=>"ProductController@delete_Cart"]);
-
+Route::get("productdetail/{t}",["as"=>"productdetail","uses"=>"ProductController@ProductDetail"]);
+Route::get("category/{t}",["as"=>"category","uses"=>"ProductController@category"]);
+Route::get("about",function(){
+    return view("home.about");
+})->name("about");
+Route::get("lienhe",function(){
+    return view("home.contact");
+})->name("lienhe");
+Route::post("dathang",["as"=>"dathang","uses"=>"ProductController@SaveOrder"]);
+Route::get("user",function(){return view("home.user");});
 Route::get("cc",function(){return view("home.cart");})->name('ss');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Feedback extends Model
 {
@@ -52,5 +53,9 @@ class Feedback extends Model
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);
+    }
+    static public function get_review($id){
+        $result=DB::table('feedbacks')->join('users','users.id',"=","feedbacks.user_id")->where("product_id","=","$id")->get();
+        return $result;
     }
 }

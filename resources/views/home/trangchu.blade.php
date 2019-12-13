@@ -26,6 +26,7 @@
         <!--slider-->
     </div>
     <div class="container">
+    <div id="ketqua" class="row"></div>
         <div id="content" class="space-top-none">
             <div class="main-content">
                 <div class="space60">&nbsp;</div>
@@ -44,7 +45,7 @@
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             <div class="single-item-header">
-                                                <a href="product.html"><img src="{{$product->image_font}}" alt=""></a>
+                                                <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$product->name}}</p>
@@ -53,8 +54,8 @@
                                                 </p>
                                             </div>
                                             <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                                <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}" ><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
+                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
@@ -80,7 +81,7 @@
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             <div class="single-item-header">
-                                                <a href="product.html"><img src="{{$top->image_font}}" alt=""></a>
+                                                <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$top->name}}</p>
@@ -90,7 +91,7 @@
                                             </div>
                                             <div class="single-item-caption">
                                                 <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}" >Details <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
@@ -104,7 +105,7 @@
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             <div class="single-item-header">
-                                                <a href="product.html"><img src="{{$top->image_font}}" alt=""></a>
+                                                <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$top->name}}</p>
@@ -114,7 +115,7 @@
                                             </div>
                                             <div class="single-item-caption">
                                                 <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}" >Details <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>

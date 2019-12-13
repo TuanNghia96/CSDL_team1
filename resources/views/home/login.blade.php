@@ -10,11 +10,11 @@
 						<h4>Đăng nhập</h4>
 						<div class="space20">&nbsp;</div>
 						<div class="form-block">
-							<label for="email">Email address*</label>
+							<label for="email">Email address</label>
 							<input type="email" id="email" name="email" required>
 						</div>
 						<div class="form-block">
-							<label for="phone">Password*</label>
+							<label for="phone">Password</label>
 							<input type="password" id="phone" name="password" required>
 						</div>
 						<div class="form-block">

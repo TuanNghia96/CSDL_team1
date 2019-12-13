@@ -1,4 +1,5 @@
-@extends("layout.index") @section('content')
+@extends("layout.index") 
+@section('content')
 <div class="inner-header">
     <div class="container">
         <div class="pull-left">
@@ -49,8 +50,8 @@
                             </td>
 
                             <td class="product-quantity">
-                                <input type="number" id="qty" style="width:40px; height=20px" name="sl" value="{{$product['qty']}}" min="1" max="10" />
-                            </td>
+                                <input type="number" id="qty" style="width:40px; height=20px" name="sl" value="{{$product['qty']}}" min="1" max="10" data-id= {{ $product['item']['id'] }} />
+                            </td    >
                             <td class="product-remove">
                                 <a href="{{route('delete_cart',$product['item']['id'])}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
                             </td>
@@ -93,7 +94,7 @@
 
             </ul>
         </div>
-        <div class="text-center"><button type="submit" class="beta-btn primary" href="#">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
+        <div class="text-center"><button type="submit" class="beta-btn primary" href="{{route('dathang')}}">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
     </div>
     </form>
 </div>
