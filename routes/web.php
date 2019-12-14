@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('categorys', 'CategoryController')->except(['edit', 'update']);
     //Feedback
     Route::resource('feedbacks', 'FeedbackController')->only('index');
+    Route::post('feedbacks/answer', 'FeedbackController@answer')->name('feedbacks.answer');
     //Product
     Route::resource('products', 'ProductController');
     //Order
@@ -38,10 +39,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
 });
 
-Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
+//Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
