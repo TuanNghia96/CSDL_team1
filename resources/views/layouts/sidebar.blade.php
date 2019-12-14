@@ -61,7 +61,10 @@
                     <a href="{{ route('graphics.product') }}">Sản phẩm</a>
                 </li>
                 <li>
-                    <a href="{{ route('graphics.user') }}">Khách hàng.</a>
+                    <a href="{{ route('graphics.user') }}">Khách hàng</a>
+                </li>
+                <li>
+                    <a href="{{ route('graphics.revenue') }}">Doanh thu</a>
                 </li>
             </ul>
         </li>

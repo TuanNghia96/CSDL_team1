@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('graphics/order', 'GraphicController@order')->name('graphics.order');
     Route::get('graphics/product', 'GraphicController@product')->name('graphics.product');
     Route::get('graphics/user', 'GraphicController@user')->name('graphics.user');
+    Route::get('graphics/revenue', 'GraphicController@revenue')->name('graphics.revenue');
     
 });
 
@@ -41,6 +42,6 @@ Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 
