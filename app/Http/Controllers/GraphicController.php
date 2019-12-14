@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
+
 
 class GraphicController extends Controller
 {
@@ -18,6 +20,7 @@ class GraphicController extends Controller
      */
     public function order()
     {
+        if (Gate::allows('admin')) {
         $chart1 = new HighChart();
         $chart2 = new HighChart();
         $order = new Order();
@@ -37,9 +40,12 @@ class GraphicController extends Controller
             $chart2->dataset($value, 'column', [$order->where('status', $key)->count()]);
         }
         return view('admin.graphics.users', compact(['chart1', 'chart2']));
+        } else{
+            return redirect(route('home'));
+        }
         
     }
-    
+
     /**
      * Display a graphic of the product.
      *
@@ -47,6 +53,7 @@ class GraphicController extends Controller
      */
     public function product()
     {
+        if (Gate::allows('admin')) {
         $product = new Product();
         
         $chart1 = new HighChart();
@@ -71,6 +78,10 @@ class GraphicController extends Controller
         $chart4->dataset('Số lượng sản phẩm', 'pie', $dataset2);
         $chart4->labels($labels2);
         return view('admin.graphics.product', compact(['chart1', 'chart2', 'chart4']));
+        } else{
+            return redirect(route('home'));
+        }
+
     }
     
     /**
@@ -80,6 +91,7 @@ class GraphicController extends Controller
      */
     public function user()
     {
+        if (Gate::allows('admin')) {
         $user = new User();
         $order = new Order();
         $chart1 = new HighChart();
@@ -110,5 +122,8 @@ class GraphicController extends Controller
         $chart2->dataset($name3, 'bar', [$max3]);
     
         return view('admin.graphics.users', compact(['chart1', 'chart2']));
+        } else{
+            return redirect(route('home'));
+        }
     }
 }
