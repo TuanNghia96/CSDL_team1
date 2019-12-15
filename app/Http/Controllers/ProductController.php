@@ -158,8 +158,7 @@ class ProductController extends Controller
         }
         return redirect()->back();
     }
-    public function delete_Cart(Request $request,$id){
-        $id_cart=Session::has('id_cart')?Session::get('id_cart'):NULL;
+    public function delete_Cart(Request $request,$id_cart,$id){
         Cart::removeItem($id_cart,$id);
         return redirect()->back();
     }
@@ -188,13 +187,12 @@ class ProductController extends Controller
         $New_Product=Product::sreach_category($txt);
         return view("home.sreach",compact("New_Product")); 
     }
-    public function order($id_Cart){
-            $cart=Cart::get_cart($id_Cart);
-            $cartdetail=Cart::get_orderdetail($id_Cart);
+    public function order($cart_id){
+            $cart=Cart::get_cart($cart_id);
+            $cartdetail=Cart::get_orderdetail($cart_id);
             $productcart=[];
             $totalQty=0;
             $totalPrice=$cart[0]->total;
-            $cart_id=$cart[0]->id;
             foreach($cartdetail as $cart){
                 $p=Product::find($cart->product_id);
                 $totalQty+=$cart->quantity;

@@ -17,7 +17,7 @@
                             <p class="single-item-price">
                                 <span>Price: {{$product->price}} VND</span>
                             </p><br/>
-                            <p class="single-item-price">Product Type: {{$producttype->name}}</p><br/>
+                            <p class="single-item-price">Product Type: {{$product->name}}</p><br/>
                             <p class="single-item-price">
                                 <span>Size:(Width * Height) 10 * <?php echo 10*$product->size; ?></span>
                             </p><br/>

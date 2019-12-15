@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
-
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements Authenticatable
 {
@@ -119,21 +119,22 @@ class User extends Model implements Authenticatable
         }
         return $this->find($id)->update($input);
     }
-    public function updateinfo($request, $id)
+    static public function updateinfo($request)
     {
+        $id=$request->id;
         $input = $request->all();
-        $filePart = '/image/users/';
-      /*   if ($request->hasFile('avata_url')) { */
+        $filePart = 'public/images/users/';
+        if ($request->hasFile('avata_url')) { 
             
             $file = $request->avata_url;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['avata_url'] = '../' . $filePart . '/' . $file->getClientOriginalName();
-       /*  } else {
+            $input['avata_url'] = '../' . $filePart . $file->getClientOriginalName();
+        } else {
             unset($input['avata_url']);
         }
         $input['role'] = 1;
-        $result=DB::table('users')->where("id","=",$id)->update(["name"=>$request->name,"phone"=>$request->phone,"address"=>$request->address,"avatar_url"=>$input["avatar_url"]]); */
-        return $input['avatar_url'];
+        $result=DB::table('users')->where("id","=",$id)->update(["name"=>"$request->name","phone"=>"$request->phone","address"=>"$request->address","avata_url"=>"$input[avata_url]"]);
+        return $result;
     }
     /**
      * relationship to feedback

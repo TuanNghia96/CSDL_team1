@@ -56,7 +56,7 @@
                                 <i class="fa fa-pencil" aria-hidden="true" id="quantity" data-id="{{$product->id}}"></i>
                             </td>
                             <td class="product-remove">
-                                <a href="{{route('delete_cart',$product->id)}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
+                                <a href="{{route('delete_cart',[$cart_id,$product->id])}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -86,7 +86,7 @@
                 </li>
             </ul>
         </div>
-        <div class="text-center"><a href="{{route('dathang',$cart_id)}}"><button id ="dathang" type="submit" class="beta-btn primary"> Đặt hàng <i class="fa fa-chevron-right"></i></button></a></div>
+        <div class="text-center"><a id= "kkk" href="{{route('dathang',$cart_id)}}"><button id ="dathang" type="submit" class="beta-btn primary"> Đặt hàng <i class="fa fa-chevron-right"></i></button></a></div>
     </div>
 </div>
 <!-- .container -->

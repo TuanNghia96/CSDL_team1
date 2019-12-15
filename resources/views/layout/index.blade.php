@@ -75,7 +75,12 @@
                 else  $("#tab").css("display","none");
             });  
             $("#dathang").click(function() {
-             alert("Rất hân hạnh được phục vụ quý khách, đơn hàng của quý khách sẽ được giao sớm nhất");
+                let price=Number($("span#total_price").text());
+                if(price==0) {
+                    $("a#kkk").attr("href","{{route('home')}}");
+                    alert("Quý khách chưa chọn món đồ nào. Mời về trang chủ");
+                }
+                else alert("Rất hân hạnh được phục vụ quý khách, đơn hàng của quý khách sẽ được giao sớm nhất");
              });
             $("#submit").click(function(e){ 
                 e.preventDefault();

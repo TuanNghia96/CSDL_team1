@@ -26,6 +26,9 @@
                             </a>
                 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('user',Auth::id())}}">
+                                    {{ __('Trang Cá Nhân') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -65,7 +68,7 @@
                         <div class="beta-dropdown cart-body">
                             @if(Session::has('id_cart')) @foreach($product_cart as $cart)
                             <div class="cart-item">
-                                <a class="cart-item-delete" href="{{route('delete_cart',$cart->id)}}"><i class="fa fa-times"></i></a>
+                                <a class="cart-item-delete" href="{{route('delete_cart',[session()->get('id_cart'),$cart->id])}}"><i class="fa fa-times"></i></a>
                                 <div class="media">
                                     <a class="pull-left" href="{{route('productdetail',$cart->id)}}"><img src="{{$cart->image_font}}" alt=""></a>
                                     <div class="media-body">

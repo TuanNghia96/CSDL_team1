@@ -49,7 +49,7 @@ Auth::routes();
 
 
 Route::get("cart/{t}",["as"=>"cart","uses"=>"ProductController@Cart"])->middleware('login');
-Route::get("deletecart/{t}",["as"=>"delete_cart","uses"=>"ProductController@delete_Cart"])->middleware('login');
+Route::get("deletecart/{cart_id}/{id}",["as"=>"delete_cart","uses"=>"ProductController@delete_Cart"])->middleware('login');
 Route::get("productdetail/{t}",["as"=>"productdetail","uses"=>"ProductController@ProductDetail"]);
 Route::get("category/{t}",["as"=>"category","uses"=>"ProductController@category"]);
 Route::get("about",function(){
@@ -64,5 +64,5 @@ Route::get("sreach",["as"=>"sreach","uses"=>"ProductController@Sreach"]);
 Route::get("user/{t}",["as"=>"user","uses"=>"Customer@user"])->middleware('login');
 Route::get("order/{t}",["as"=>"order","uses"=>"ProductController@order"])->middleware('login');
 Route::get("rediect",["as"=>"rediect","uses"=>"ProductController@rediect"]);
-Route::post("changeinfo",["as"=>"changinfo","uses"=>"UserController@update"])->middleware('login');
+Route::post("changeinfo",["as"=>"changeinfo","uses"=>"UserController@changeinfo"])->middleware('login');
 Route::post("updatecart",["as"=>"updatecart","uses"=>"ProductController@updatecart"]);

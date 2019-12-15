@@ -35,13 +35,14 @@
                         <div class="beta-products-list">
                             <h4>New Products</h4><br/>
                             @if($New_Product)
+                            <form method="POST">
+                            <input name="_token" type="hidden" value="{!!csrf_token()!!}}"/>
                             <div class="beta-products-details">
                                 <p class="pull-left">{{count($New_Product)}} styles found</p>
                                 <div class="clearfix"></div>
                             </div>
                             
                             <div class="row">
-                          
                                 @foreach($New_Product as $product)
                                     <div class="col-sm-3">
                                         <div class="single-item">
@@ -55,7 +56,7 @@
                                                 </p>
                                             </div>
                                             <div class="single-item-caption" data-id="5">
-                                                <a id="mua" class="add-to-cart pull-left" href="{{route('cart',$product->id)}}" ><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
+                                                <a id="mua" class="add-to-cart pull-left" href="javascript:void(0)" ><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
                                                 <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -63,6 +64,7 @@
                                     </div>
                               @endforeach
                             </div>
+                            </form>
                             @endif
                             <br/>
                         </div>
