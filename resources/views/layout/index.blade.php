@@ -77,9 +77,12 @@
             $("#dathang").click(function() {
              alert("Rất hân hạnh được phục vụ quý khách, đơn hàng của quý khách sẽ được giao sớm nhất");
              });
-            $("#submit").click(function(e){
+            $("#submit").click(function(e){ 
                 e.preventDefault();
-                var user_id=$("#user").val();
+                var user_id=Number($("#user").val());
+                if(user_id==0) alert("Yêu cầu login"); 
+            else{
+                var email=$("#email").val();
                 var id_product=$("#product").val();
                 var url="/feedback";
                 var _token=$("form[name='SetReview']").find("input[name='_token']").val()
@@ -94,9 +97,11 @@
                         "product_id":id_product
                     },
                     success:function(data){
-                        alert("Chúng tôi sẽ phản hồi quý khách qua email");
+                        $("strong#email").text(data);
+                        $("p#rv").text(txt);
                     }
                 });
+                }
             });
            /*  $("a#mua").click(function(e){
                 e.preventDefault();

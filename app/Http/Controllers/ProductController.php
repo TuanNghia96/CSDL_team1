@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Feedback;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
 use Illuminate\Support\Facades\Gate;
@@ -137,10 +138,10 @@ class ProductController extends Controller
         }
     }  
     public function list(){
-        /* $products = $this->product->get(); */
+         //$products = $this->product->get();
         $New_Product=Product::New_Product(8);
-/*          var_dump($New_Product); */
-        return view("home.trangchu",compact("New_Product"));
+        $Best_Product=Product::Product_Best(8);
+        return view("home.trangchu",compact("New_Product","Best_Product"));
     } 
     public function Cart(Request $request,$id){
         /* $input=$request->all(); */
@@ -218,6 +219,7 @@ class ProductController extends Controller
     }
     public function rediect(Request $request){
        $request->session()->put('id_cart',NULL);
+       Auth::logout();
         return redirect()->route('home');
     }
     public function updatecart(Request $request){

@@ -43,7 +43,7 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo-cake.png" width="200px" alt=""></a>
+                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" width="200px" style="width:60px; height:60px;" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>

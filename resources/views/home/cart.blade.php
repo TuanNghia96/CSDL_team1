@@ -36,7 +36,7 @@
                         <tr class="cart_item">
                             <td class="product-name">
                                 <div class="media">
-                                    <img class="pull-left" height="40px" width="40px" style="margin-right:10px" src="{{$product['item']['image_font']}}" alt="">
+                                    <img class="pull-left" height="40px" width="40px" style="margin-right:10px" src="{{$product->image_font}}" alt="">
                                     <div class="media-body">
                                         <p class="font-large table-title">{{$product->name}}</p>
                                     </div>
@@ -70,7 +70,7 @@
         <!-- #content -->
     </div>
     <div id="content">
-        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}}</span></h5></div>
+        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}} VND</span></h5></div>
         <div class="your-order-head"  class="row">
             <h5>Hình thức thanh toán</h5><br/>
         </div>

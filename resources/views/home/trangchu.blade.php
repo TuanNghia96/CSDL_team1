@@ -41,6 +41,7 @@
                             </div>
                             
                             <div class="row">
+                            <form 
                                 @foreach($New_Product as $product)
                                     <div class="col-sm-3">
                                         <div class="single-item">
@@ -64,7 +65,6 @@
                             </div>
                             @endif
                             <br/>
-                            <div class="row">{{$New_Product->links()}}</div>
                         </div>
                         <!-- .beta-products-list -->
                         
@@ -77,7 +77,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
-                           @foreach($New_Product as $top)
+                           @foreach($Best_Product as $top)
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             <div class="single-item-header">
@@ -98,30 +98,7 @@
                                     </div>
                             @endforeach
                             </div>
-                            <div class="space40">&nbsp;</div>
-                            <h4>Product</h4><br/>
-                            <div class="row">
-                            @foreach($New_Product as $top)
-                                    <div class="col-sm-3">
-                                        <div class="single-item">
-                                            <div class="single-item-header">
-                                                <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" alt=""></a>
-                                            </div>
-                                            <div class="single-item-body">
-                                                <p class="single-item-title">{{$top->name}}</p>
-                                                <p class="single-item-price">
-                                                    <span>{{$top->price}}</span>
-                                                </p>
-                                            </div>
-                                            <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}" >Details <i class="fa fa-chevron-right"></i></a>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            @endforeach
-                            </div>
+                            <div class="row" style="margin:20px 250px;">{{$New_Product->links()}}</div>
                         </div>
                         <!-- .beta-products-list -->
                     </div>
