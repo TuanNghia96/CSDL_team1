@@ -14,6 +14,6 @@ $(document).ready(function() {
         });
     }); */
     /*   $("#dathang").click(function() {
-          alert("Rất hân hạnh được phục vụ quý khách, đơn hàng của quý khách sẽ được giao sớm nhất");
-      }); */
+      alert("Rất hân hạnh được phục vụ quý khách, đơn hàng của quý khách sẽ được giao sớm nhất");
+       }); */
 });

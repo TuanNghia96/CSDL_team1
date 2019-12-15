@@ -144,7 +144,8 @@ class ProductController extends Controller
     } 
     public function Cart(Request $request,$id){
         /* $input=$request->all(); */
-         $product=Product::find($id);
+       /*  $id=$request->product_id; */
+        $product=Product::find($id);
         $id_Cart=Session("id_cart")?session::get('id_cart'):NULL;
         $user_id=Auth::id();
         if($id_Cart==NULL){
@@ -154,7 +155,7 @@ class ProductController extends Controller
         else{ 
             $cart=Cart::add_Cart($id_Cart,$product);
         }
-        return redirect()->back(); 
+        return redirect()->back();
     }
     public function delete_Cart(Request $request,$id){
         $id_cart=Session::has('id_cart')?Session::get('id_cart'):NULL;
@@ -218,5 +219,12 @@ class ProductController extends Controller
     public function rediect(Request $request){
        $request->session()->put('id_cart',NULL);
         return redirect()->route('home');
+    }
+    public function updatecart(Request $request){
+        $cart_id=$request->cart_id;
+        $product_id=$request->product_id;
+        $quantity=$request->quantity;
+        $result=Cart::upcart($cart_id,$product_id,$quantity);
+        return $result;
     }
 }

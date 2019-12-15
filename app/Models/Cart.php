@@ -75,4 +75,16 @@ class Cart extends Model
 		$result=DB::table('orders')->where("user_id","=",$user_id)->orderByRaw('created_at DESC')->paginate(7);
 		return $result;
 	}
+	static public function upcart($cart_id,$product_id,$quantity){
+		$result=DB::table("order_details")->where([["order_id","=",$cart_id],["product_id","=",$product_id]])->get();
+		$sl=$result[0]->quantity;
+		$result=DB::table("order_details")->where([["order_id","=",$cart_id],["product_id","=",$product_id]])->update(["quantity"=>$quantity]);
+		$result=DB::table("products")->where("id","=",$product_id)->get();
+		$price=$result[0]->price;
+		$order=DB::table("orders")->where("id","=",$cart_id)->get();
+		$total=$order[0]->total;
+		$price=$total+($quantity-$sl)*$price;
+		$result=DB::table("orders")->where("id","=",$cart_id)->update(["total"=>$price]);
+		return $price;
+	}
 }

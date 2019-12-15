@@ -52,7 +52,7 @@
                         Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng
                     </div>
         </div>
-        <div class="text-center"><a href="{{route('rediect')}}"><button id ="dathang" type="submit" class="beta-btn primary"> Home <i class="fa fa-chevron-right"></i></button></a></div>
+        <div class="text-center"><a href="{{route('rediect')}}"><button type="submit" class="beta-btn primary"> Home <i class="fa fa-chevron-right"></i></button></a></div>
     </div>
 </div>
 <!-- .container -->

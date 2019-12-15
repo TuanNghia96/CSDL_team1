@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feedback;
-use Illuminate\Http\Request;
+/* use Illuminate\Http\Request; */
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class FeedbackController extends Controller
 {
     protected $feedback;
@@ -36,10 +37,10 @@ class FeedbackController extends Controller
         }
     }
     public function Savefeedback(Request $request){
-        $user_id=Auth::id();
-        $id_product=$request->id_product;
+        $id_product=$request->product_id;
         $txt=$request->feedback;
+        $user_id=$request->user_id;
         $result=Feedback::set_review($user_id,$id_product,$txt);
-        return redirect()->back();
-      }
+        echo $result;
+    }
 }

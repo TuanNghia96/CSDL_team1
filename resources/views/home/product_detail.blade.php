@@ -54,11 +54,13 @@
                                 <br/>
                             @endforeach 
                         @endif
-                        <form action="{{route('feedback')}}" method="POST">
+                        <form action="{{route('feedback')}}" method="POST" name="SetReview">
                             @csrf
+                            <input type="hidden" name="_token" value="{{!!csrf_token()!!}}"/>
                             <textarea rows="1" cols="1" name="feedback" style="width:100%; height:100px;" id="text"></textarea>
-                            <button type="submit" id="submit" data-id="{{$product->id}}">Gui</button>
-                            <input type="hidden" name="id_product" value="{{$product->id}}"/>
+                            <button type="button" id="submit" data-id="{{$product->id}}">Gui</button>
+                            <input id="product" type="hidden" name="id_product" value="{{$product->id}}"/>
+                            <input id="user" type="hidden" name="id_product" value="{{Auth::id()}}"/>
                         </form>
                     </div>
                 </div>

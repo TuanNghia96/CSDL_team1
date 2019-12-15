@@ -29,6 +29,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <form method="POST">
+                    <input name="_token" type="hidden" value="{!!csrf_token()!!}}"/>
+                    <input name="cart_id" type="hidden" value="{{$cart_id}}"/>
                         @foreach($productcart as $product)
                         <tr class="cart_item">
                             <td class="product-name">
@@ -49,7 +52,8 @@
                             </td>
 
                             <td class="product-quantity">
-                                <input type="number" id="qty" style="width:40px; height=20px" name="sl" value="{{$product->quantity}}" min="1" data-id="" />
+                                <input class ="sl" type="number" id="qty" style="width:40px; height=20px" name="sl" value="{{$product->quantity}}" min="1" data-id=""/>
+                                <i class="fa fa-pencil" aria-hidden="true" id="quantity" data-id="{{$product->id}}"></i>
                             </td>
                             <td class="product-remove">
                                 <a href="{{route('delete_cart',$product->id)}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
@@ -57,6 +61,7 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    </form>
                     <tfoot>
                     </tfoot>
 
