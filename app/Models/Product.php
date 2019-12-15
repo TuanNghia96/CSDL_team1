@@ -127,19 +127,19 @@ class Product extends Model
         
             $file = $request->image_font;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['image_font'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['image_font'] = '/' . $filePart . '/' . $file->getClientOriginalName();
         }
         if ($request->hasFile('image_back')) {
         
             $file = $request->image_back;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['image_back'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['image_back'] = '/' . $filePart . '/' . $file->getClientOriginalName();
         }
         if ($request->hasFile('image_up')) {
         
             $file = $request->image_up;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['image_up'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['image_up'] = '/' . $filePart . '/' . $file->getClientOriginalName();
         }
         $input['size'] = ($input['size'] / 10);
         $input['created_at'] = Carbon::now();

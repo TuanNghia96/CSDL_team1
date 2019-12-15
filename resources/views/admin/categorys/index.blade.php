@@ -36,7 +36,7 @@
                         <td>
                             <p class="text-right">
                                 <a href="{{ route('categorys.show', $value->id) }}">hiện thị</a>　|　
-                                <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">thay đổi</button>
+                                <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">Xóa</button>
                             </p>
                             
                             <!-- Modal -->
@@ -47,7 +47,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Bạn có chắc chắn muốn thay đổi trạng thái bản ghi này không?</h5>
+                                                <h5 class="modal-title">Bạn có chắc chắn muốn xóa bản ghi này không?</h5>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>

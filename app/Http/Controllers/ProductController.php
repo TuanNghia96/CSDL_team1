@@ -130,7 +130,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('admin')) {
-            $this->product->delete($id);
+            $this->product->find($id)->delete();
             return redirect(route('products.index'));
         } else {
             return redirect(route('home'));

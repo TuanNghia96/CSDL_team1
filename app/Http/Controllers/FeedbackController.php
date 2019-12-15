@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendAnswerEmail;
 use App\Models\Feedback;
-/* use Illuminate\Http\Request; */
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 class FeedbackController extends Controller
 {
     protected $feedback;
@@ -42,5 +43,23 @@ class FeedbackController extends Controller
         $user_id=$request->user_id;
         $result=Feedback::set_review($user_id,$id_product,$txt);
         echo $result;
+    }
+    /**
+     * send answer of feedback to customer
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function answer(Request $request)
+    {
+        if (Gate::allows('admin')) {
+            $input = $request->all();
+            $input['admin'] = Auth::user()->name;
+            dispatch(new SendAnswerEmail($input));
+            $this->feedback->find($input['id'])->delete();
+            return redirect(route('feedbacks.index'));
+        } else{
+            return redirect(route('home'));
+        }
     }
 }

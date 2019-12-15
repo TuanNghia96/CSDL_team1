@@ -81,7 +81,6 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Khách hàng</th>
                         <th scope="col">Thời gian.</th>
                         <th scope="col">Thanh toán.</th>
                         <th scope="col">Trạng thái.</th>
@@ -93,10 +92,9 @@
                         @foreach($user->orders()->get() as $id => $value)
                             <tr>
                                 <td>{{ $id }}</td>
-                                <td><a href="#">{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</a></td>
                                 <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                                 <td>{{ $value->total }}</td>
-                                <td>{{ $value->status }}</td>
+                                <td>{{ \App\Models\Order::$status[$value->status] }}</td>
                                 <td><a href="{{ route('orders.show', $value->id) }}">hiện thị</a></td>
                             </tr>
                         @endforeach
