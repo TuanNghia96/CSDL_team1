@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class OrderMail extends Mailable
 {
@@ -37,6 +38,6 @@ class OrderMail extends Mailable
             'status' => Order::$status,
             'reason' => $this->reason
         ];
-        return $this->view('mail.order')->with($data);
+        return $this->view('mail.answer')->with($data);
     }
 }

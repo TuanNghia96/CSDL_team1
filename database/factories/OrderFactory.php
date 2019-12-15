@@ -13,6 +13,6 @@ $factory->define(Order::class, function (Faker $faker) {
         'memo' => $faker->realText(50),
         'total' => $faker->numberBetween(50000, 1000000),
         'status' => array_rand(Order::$status),
-        'created_at' => Carbon::now()->subDay(rand(0, 30))
+        'created_at' => Carbon::now()->subDay(rand(0, 65))
     ];
 });

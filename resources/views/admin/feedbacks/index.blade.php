@@ -3,7 +3,8 @@
 @section('title', 'Quản lý phản hồi')
 
 @section('content')
-        <!-- Page Content  -->
+
+    <!-- Page Content  -->
         <div id="content">
             
             <div class="row">
@@ -57,6 +58,7 @@
                     </form>
                 </div>
                 
+                
                 @if ($feedbacks->count() == 0)
                     <div><h3 class="text-center red">{{ 'Không tìm thấy bản ghi nào.' }}</h3></div>
                 @else
@@ -68,6 +70,7 @@
                             <th>Tên sản phẩm</th>
                             <th>Nội dung</th>
                             <th>Thời gian</th>
+                            <th>Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,6 +81,32 @@
                                 <td><a href="{{ route('products.show', $value->product_id) }}">{{ $value->product->name }}</a></td>
                                 <td>{{ $value->content }}</td>
                                 <td>{{ $value->created_at }}</td>
+                                <td>
+                                    <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">Trả lời</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="{{ 'delete-modal' . $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form method="post" action="{{ route('feedbacks.answer') }}">
+                                            @csrf
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Bạn có chắc chắn muốn xóa bản ghi này không?</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <input type="hidden" value="{{ $value->id }}" name="id">
+                                                            <label for="recipient-name" class="col-form-label">Lý do:</label>
+                                                            <input type="text" class="form-control" name="answer" id="recipient-name" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                        <button type="submit" class="btn btn-danger">OK</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                             </tr>
                         @endforeach
                         </tbody>

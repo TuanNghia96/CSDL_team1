@@ -5,7 +5,7 @@
                     <div class="widget">
                         <h4 class="widget-title">Instagram Feed</h4>
                         <div id="beta-instagram-feed">
-                            <div></div>
+                           <!--  <div></div> -->
                         </div>
                     </div>
                 </div>

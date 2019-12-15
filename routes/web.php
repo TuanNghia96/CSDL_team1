@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-
+    Route::get('/', 'UserController@index')->name('admin');
     //Customers
     Route::resource('users', 'UserController');
     
@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('categorys', 'CategoryController')->except(['edit', 'update']);
     //Feedback
     Route::resource('feedbacks', 'FeedbackController')->only('index');
+    Route::post('feedbacks/answer', 'FeedbackController@answer')->name('feedbacks.answer');
     //Product
     Route::resource('products', 'ProductController');
     //Order
@@ -31,16 +32,37 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('orders/status/{id}', 'OrderController@updateStatus')->name('orders.status');
     Route::post('orders/cancel', 'OrderController@cancel')->name('orders.cancel');
     //Graphic
+
     Route::get('graphics/order', 'GraphicController@order')->name('graphics.order');
     Route::get('graphics/product', 'GraphicController@product')->name('graphics.product');
     Route::get('graphics/user', 'GraphicController@user')->name('graphics.user');
+    Route::get('graphics/revenue', 'GraphicController@revenue')->name('graphics.revenue');
+    //test
+    Route::get('test/order', 'TestController@check')->name('test.order');
     
 });
 
-Route::get("home",["as"=>"home","uses"=>"Product@list"]); /*Route dieu chinh den trang chu*/
+Route::get("home",["as"=>"home","uses"=>"ProductController@list"]); /*Route dieu chinh den trang chu*/
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get("cart/{t}",["as"=>"cart","uses"=>"ProductController@Cart"])->middleware('login');
+Route::get("deletecart/{t}",["as"=>"delete_cart","uses"=>"ProductController@delete_Cart"])->middleware('login');
+Route::get("productdetail/{t}",["as"=>"productdetail","uses"=>"ProductController@ProductDetail"]);
+Route::get("category/{t}",["as"=>"category","uses"=>"ProductController@category"]);
+Route::get("about",function(){
+    return view("home.about");
+})->name("about");
+Route::get("lienhe",function(){
+    return view("home.contact");
+})->name("lienhe");
+Route::get("dathang/{t}",["as"=>"dathang","uses"=>"ProductController@showorder"])->middleware('login');
+Route::post("feedback",["as"=>"feedback","uses"=>"FeedbackController@Savefeedback"])->middleware('login');
+Route::get("sreach",["as"=>"sreach","uses"=>"ProductController@Sreach"]);
+Route::get("user/{t}",["as"=>"user","uses"=>"Customer@user"])->middleware('login');
+Route::get("order/{t}",["as"=>"order","uses"=>"ProductController@order"])->middleware('login');
+Route::get("rediect",["as"=>"rediect","uses"=>"ProductController@rediect"]);
+Route::post("changeinfo",["as"=>"changinfo","uses"=>"UserController@update"])->middleware('login');
+Route::post("updatecart",["as"=>"updatecart","uses"=>"ProductController@updatecart"]);

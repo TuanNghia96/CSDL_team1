@@ -1,4 +1,4 @@
-@extends("block.index")
+@extends("layout.index")
 @section("content")
 <div class="inner-header">
 		<div class="container">

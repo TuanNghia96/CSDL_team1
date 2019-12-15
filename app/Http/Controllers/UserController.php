@@ -108,10 +108,11 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UsersStoreRequest $request, $id)
+    public function update(UsersStoreRequest $request)
     {
-        $this->user->updateData($request, $id);
-        return redirect($request->url_back ?? route('admin.users.index'));
+       $id=$request->id;
+       var_dump($request);
+      /*   return redirect($request->url_back ?? route('admin.users.index')); */
     }
     
     /**

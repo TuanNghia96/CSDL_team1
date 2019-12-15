@@ -1569,7 +1569,6 @@ ul.children ul.children li:hover>a {
     left: 0;
     position: absolute;
     padding-top: 1.5em;
-    color: #f90
 }
 
 .star-rating span:before {
@@ -1719,10 +1718,6 @@ ul.children ul.children li:hover>a {
     margin-bottom: 5px
 }
 
-.cart-item-amount span {
-    color: #f90
-}
-
 .cart-total {
     border-bottom: 1px solid #e1e1e1;
     font-size: 15px;
@@ -1732,6 +1727,10 @@ ul.children ul.children li:hover>a {
 
 .cart-total-value {
     color: #f90
+}
+
+#x {
+    color: black;
 }
 
 .beta-tags {
@@ -5986,4 +5985,9 @@ li.box-port-filter {
 
 .history-slider span {
     font-family: "Open Sans", sans-serif;
+}
+
+td {
+    width: 100px;
+    height: 100px;
 }
