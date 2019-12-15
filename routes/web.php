@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-
+    Route::get('/', 'UserController@index')->name('admin');
     //Customers
     Route::resource('users', 'UserController');
     
@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('graphics/product', 'GraphicController@product')->name('graphics.product');
     Route::get('graphics/user', 'GraphicController@user')->name('graphics.user');
     Route::get('graphics/revenue', 'GraphicController@revenue')->name('graphics.revenue');
+    //test
+    Route::get('test/order', 'TestController@check')->name('test.order');
     
 });
 

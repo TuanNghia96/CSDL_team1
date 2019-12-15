@@ -25,7 +25,7 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:30',
             'image_font' => 'image|' . (($this->method() == 'POST') ? 'required' : 'nullable'),
             'image_back' => 'image|' . (($this->method() == 'POST') ? 'required' : 'nullable'),
             'image_up' => 'image|' . (($this->method() == 'POST') ? 'required' : 'nullable'),
