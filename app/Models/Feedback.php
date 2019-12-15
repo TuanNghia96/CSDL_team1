@@ -32,7 +32,6 @@ class Feedback extends Model
             $builder->where('product_id', $input['product_id']);
         }
         return $builder->paginate();
-    
     }
     
     /**
