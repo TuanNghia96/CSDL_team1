@@ -37,7 +37,7 @@
                     <a href="{{ route('products.index') }}">Danh sách</a>
                 </li>
                 <li>
-                    <a href="{{ route('products.index') }}">Thêm mới</a>
+                    <a href="{{ route('products.create') }}">Thêm mới</a>
                 </li>
             </ul>
         </li>
