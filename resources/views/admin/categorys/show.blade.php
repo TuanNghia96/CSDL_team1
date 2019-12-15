@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Thông tin người dùng')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <th>Ngày tạo</th>
-                    <td>{{ $category->created_at }}</td>
+                    <td>{{ date("H:i:s d/m/Y",strtotime($category->created_at)) }}</td>
                 </tr>
             
             </table>
@@ -51,7 +51,7 @@
                             <td><a href="#">{{ $value->name }}</a></td>
                             <td>{{ $value->price }}</td>
                             <td>{{ $value->status }}</td>
-                            <td>{{ $value->created_at }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                         </tr>
                     @endforeach
                 @else
@@ -59,6 +59,5 @@
                 @endif
                 </tbody>
             </table>
-        </div>
     </div>
 @endsection

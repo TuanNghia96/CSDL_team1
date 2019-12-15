@@ -16,27 +16,23 @@ class Feedback extends Model
         'created_at'
     ];
     
+    /**
+     * get data
+     *
+     * @param array $input
+     * @return Feedback
+     */
     public function getData($input)
     {
         $builder = $this->orderBy('created_at');
         if (isset($input['user_id'])) {
-            $builder->where('user_id', '=', $input['user_id']);
+            $builder->where('user_id', $input['user_id']);
         }
         if (isset($input['product_id'])) {
-            $builder->where('product_id', '=', $input['product_id']);
+            $builder->where('product_id', $input['product_id']);
         }
-        if (isset($input['email'])) {
-            $builder->where('email', 'LIKE', '%' . $input['email'] . '%');
-        }
-        if (isset($input['phone'])) {
-            $builder->where('phone', '=', $input['phone']);
-        }
-        if (isset($input['address'])) {
-            $builder->where('address', 'LIKE', '%' . $input['address'] . '%');
-        }
-        if (isset($input['role'])) {
-            $builder->where('role', '=', $input['role']);
-        }
+        return $builder->paginate();
+    
     }
     
     /**
@@ -56,6 +52,10 @@ class Feedback extends Model
     }
     static public function get_review($id){
         $result=DB::table('feedbacks')->join('users','users.id',"=","feedbacks.user_id")->where("product_id","=","$id")->get();
+        return $result;
+    }
+    static public function set_review($user_id,$id_product,$txt){
+        $result=DB::table('feedbacks')->insert(["user_id"=>$user_id,"product_id"=>$id_product,"content"=>"$txt","created_at"=>date('Y-m-d H:i:s')]);
         return $result;
     }
 }

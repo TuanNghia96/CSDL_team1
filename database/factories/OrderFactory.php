@@ -12,7 +12,7 @@ $factory->define(Order::class, function (Faker $faker) {
         'user_id' => $faker->randomElement(User::pluck('id')),
         'memo' => $faker->realText(50),
         'total' => $faker->numberBetween(50000, 1000000),
-        'status' => $faker->randomElement([0, 1]),
-        'created_at' => Carbon::now()
+        'status' => array_rand(Order::$status),
+        'created_at' => Carbon::now()->subDay(rand(0, 30))
     ];
 });

@@ -21,4 +21,9 @@ class Category extends Model
         $result=DB::table('categorys')->orderByRaw('created_at DESC')->offset(0)->limit(15)->get();
         return $result;
     }
+   /*  static public function get($id){
+        $result=DB::table('categorys')->where("product_id","=",$id)->get();
+        return $result;
+    } */
+    
 }

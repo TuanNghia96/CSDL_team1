@@ -1,15 +1,19 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Quản lý người dùng')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
-            
+        <!-- Page Content  -->
+        <div id="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h2><a href="{{ route('users.index') }}">Danh sách người dùng</a></h2>
+                    <div class="page-header row">
+                        <div class="col">
+                            <h2><a href="{{ route('users.index') }}">Danh sách người dùng</a></h2>
+                        </div>
+                        <div class="col text-right">
+                            <a href="{{ route('users.create') }}" class="btn btn-success">Tạo mới</a>
+                        </div>
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4">
@@ -114,7 +118,9 @@
                                 <td>
                                     <p class="text-left">
                                         <a href="{{ route('users.show', $value->id) }}">hiển thị</a>　|　
+                                        @if($value->id == Auth::user()->id)
                                         <a href="{{ route('users.edit', $value->id) }}">Sửa</a>　|　
+                                        @endif
                                         <button class="btn btn-link text-danger mb-1" data-toggle="modal" data-target="{{ '#delete-modal' . $key }}">
                                             @if($value->role == \App\Models\User::ADMIN_ROLE)
                                                 Xóa
@@ -125,16 +131,32 @@
                                             @endif
                                         </button>
                                     </p>
-                                  
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="{{ 'delete-modal' . $key }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form method="post" action="{{ route('users.destroy', $value->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Bạn có chắc chắn muốn xóa bản ghi này không?</h5>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                        <button type="submit" class="btn btn-danger">OK</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     
                     </table>
-                    <div class="text-center">{{ $users->links() }}</div>
+                    <div class="col-md-12">{{ $users->appends(request()->input())->links() }}</div>
                 @endif
             </div>
-        </div>
     </div>
 @endsection

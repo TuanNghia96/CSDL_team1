@@ -1,10 +1,10 @@
-@extends('layout.index')
+@extends('layouts.app')
 
 @section('title', 'Thông tin người dùng')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             <div class="col-md-12">
                 <div class="page-header">
                     <h2>Thông tin người dùng</h2>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th scope="col">Ngày khởi tạo</th>
-                    <td>{{ $user->created_at }}</td>
+                    <td>{{ date("H:i:s d/m/Y",strtotime($user->created_at)) }}</td>
                 </tr>
             </table>
             <h5>Những feedback của người dùng.</h5>
@@ -66,43 +66,45 @@
                             <td>{{ $id }}</td>
                             <td>{{ $value->product_id }}</td>
                             <td>{{ $value->content }}</td>
-                            <td>{{ $value->created_at }}</td>
+                            <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                             <td><a href="#">hiện thị</a></td>
                         </tr>
                     @endforeach
                 @else
-                    <td>Không có đơn hàng nào</td>
+                    <td>Không có phản hồi nào nào</td>
                 @endif
                 </tbody>
             </table>
-            
-            <h5>Những đơn hàng của người dùng.</h5>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Thời gian.</th>
-                    <th scope="col">Thanh toán.</th>
-                    <th scope="col">Trạng thái.</th>
-                    <th scope="col">Hành động.</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if($user->orders()->count())
-                    @foreach($user->orders()->get() as $id => $value)
-                        <tr>
-                            <td>{{ $id }}</td>
-                            <td><a href="#">{{ $value->created_at }}</a></td>
-                            <td>{{ $value->total }}</td>
-                            <td>{{ $value->status }}</td>
-                            <td><a href="#">hiện thị</a></td>
-                        </tr>
-                    @endforeach
-                @else
-                    <td rowspan="4">Không có đơn hàng nào</td>
-                @endif
-                </tbody>
-            </table>
-        </div>
+            @if($user->role == \App\Models\User::CUSTOMER_ROLE)
+                <h5>Những đơn hàng của người dùng.</h5>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Khách hàng</th>
+                        <th scope="col">Thời gian.</th>
+                        <th scope="col">Thanh toán.</th>
+                        <th scope="col">Trạng thái.</th>
+                        <th scope="col">Hành động.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if($user->orders()->count())
+                        @foreach($user->orders()->get() as $id => $value)
+                            <tr>
+                                <td>{{ $id }}</td>
+                                <td><a href="#">{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</a></td>
+                                <td>{{ date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
+                                <td>{{ $value->total }}</td>
+                                <td>{{ $value->status }}</td>
+                                <td><a href="{{ route('orders.show', $value->id) }}">hiện thị</a></td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <td rowspan="4">Không có đơn hàng nào</td>
+                    @endif
+                    </tbody>
+                </table>
+            @endif
     </div>
 @endsection

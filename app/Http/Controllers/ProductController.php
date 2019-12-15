@@ -6,6 +6,12 @@ use Session;
 use App\Models\Cart;
 use App\Models\Feedback;
 use App\Models\Category;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductStoreRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Routing\Redirector;
+
 class ProductController extends Controller
 {
     protected $product;
@@ -14,6 +20,7 @@ class ProductController extends Controller
      * CustomerController constructor.
      *
      * @param \App\Models\Product $product
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __construct(Product $product)
     {
@@ -24,28 +31,45 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if (Gate::allows('admin')) {
+            $products = $this->product->listData($request->all());
+            $categorys = Category::pluck('name', 'id');
+            return view('admin.products.index', compact(['products', 'categorys']));
+        } else {
+            return redirect(route('home'));
+        }
     }
-    /**
-     * Show the form for creating a new resource.
+/**
+    * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        if (Gate::allows('admin')) {
+            $sex = Product::$sex;
+            $categorys = Category::pluck('name', 'id');
+            return view('admin.products.create', compact(['sex', 'categorys']));
+        } else {
+            return redirect(route('home'));
+        }
     }
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param ProductStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        //
+        if (Gate::allows('admin')) {
+            $this->product->storeData($request);
+            return redirect($request->url_back ?? route('products.index'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     /**
      * Display the specified resource.
@@ -55,7 +79,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Gate::allows('admin')) {
+            $product = $this->product->find($id);
+            return view('admin.products.show', compact('product'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     /**
      * Show the form for editing the specified resource.
@@ -65,30 +94,48 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Gate::allows('admin')) {
+            $product = $this->product->find($id);
+            $sex = Product::$sex;
+            $categorys = Category::pluck('name', 'id');
+            return view('admin.products.edit', compact(['product', 'sex', 'categorys']));
+        } else {
+            return redirect(route('home'));
+        }
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param ProductStoreRequest $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductStoreRequest $request, $id)
     {
-        //
+        if (Gate::allows('admin')) {
+            $this->product->updateData($request);
+            return redirect($request->url_back ?? route('products.index'));
+        } else {
+            return redirect(route('home'));
+        }
     }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
-    }
-    
+        if (Gate::allows('admin')) {
+            $this->product->delete($id);
+            return redirect(route('products.index'));
+        } else {
+            return redirect(route('home'));
+        }
+    }  
     public function list(){
         /* $products = $this->product->get(); */
         $New_Product=Product::New_Product(8);
@@ -97,34 +144,35 @@ class ProductController extends Controller
     } 
     public function Cart(Request $request,$id){
         /* $input=$request->all(); */
-        $product=Product::find($id);
-        $oldCart=Session("cart")?session::get('cart'):NULL;
-        $cart=new Cart($oldCart);
-        $cart->add($product,$id);
-        $request->session()->put('cart',$cart);
+         $product=Product::find($id);
+        $id_Cart=Session("id_cart")?session::get('id_cart'):NULL;
+        $user_id=Auth::id();
+        if($id_Cart==NULL){
+            $id_cart=Cart::add_NewCart($user_id,$product);
+            $request->session()->put("id_cart",$id_cart);
+        }
+        else{ 
+            $cart=Cart::add_Cart($id_Cart,$product);
+        }
         return redirect()->back(); 
     }
     public function delete_Cart(Request $request,$id){
-        $oldCart=Session::has('cart')?Session::get('cart'):NULL;
-        $cart=new Cart($oldCart);
-        $cart->removeItem($id);
-        if(count($cart->items)>0){
-            $request->session()->put('cart',$cart);
-        }
-        else $request->session()->forget('cart');
+        $id_cart=Session::has('id_cart')?Session::get('id_cart'):NULL;
+        Cart::removeItem($id_cart,$id);
         return redirect()->back();
     }
-    public function Order(Request $request){
+ /*    public function Order(Request $request){
         $oldCart=Session::has('cart')?session::get('cart'):NULL;
         return view("home.cart",compact($oldCart));
-    }
+    } */
     public function ProductDetail(Request $request,$id){
         $product=Product::find($id);
         $new_product=Product::New_Product(4);
         $best_product=Product::Best_Product();
         $product_lq=Product::product_lq($product->id,$product->category_id);
         $review=Feedback::get_review($id);
-        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review"));
+        $producttype=Category::find($id);
+        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype"));
     }
     public function Category(Request $request,$id){
         $category=Category::get_name();
@@ -133,8 +181,43 @@ class ProductController extends Controller
         $best_product=Product::Best_category_product($id);
         return view("home.product_type",compact("category","product_category","best_product"));
     }
-    public function SaveOrder(Request $request){
-        $oldCart=Session::has('cart')?session::get('cart'):NULL;
-          
+    public function Sreach(Request $request){
+        $txt=$request->s;
+        $New_Product=Product::sreach_category($txt);
+        return view("home.sreach",compact("New_Product")); 
+    }
+    public function order($id_Cart){
+            $cart=Cart::get_cart($id_Cart);
+            $cartdetail=Cart::get_orderdetail($id_Cart);
+            $productcart=[];
+            $totalQty=0;
+            $totalPrice=$cart[0]->total;
+            $cart_id=$cart[0]->id;
+            foreach($cartdetail as $cart){
+                $p=Product::find($cart->product_id);
+                $totalQty+=$cart->quantity;
+                $p->quantity=$cart->quantity;
+                array_push($productcart,$p);
+			}
+		return view("home.cart",compact("totalPrice","cartdetail","productcart","totalQty","cart_id"));
+        }
+    public function showorder($id_Cart){
+            $cart=Cart::get_cart($id_Cart);
+            $cartdetail=Cart::get_orderdetail($id_Cart);
+            $productcart=[];
+            $totalQty=0;
+            $totalPrice=$cart[0]->total;
+            foreach($cartdetail as $cart){
+                $p=Product::find($cart->product_id);
+                $totalQty+=$cart->quantity;
+                $p->quantity=$cart->quantity;
+                array_push($productcart,$p);
+			}
+		return view("home.showorder",compact("totalPrice","cartdetail","productcart","totalQty"));
+    }
+    public function rediect(Request $request){
+       $request->session()->put('id_cart',NULL);
+       Auth::logout();
+        return redirect()->route('home');
     }
 }

@@ -6,20 +6,26 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <img src="assets/dest/images/lena.jpg" alt="">
+                        <img id="anhchinh" src="assets/dest/images/lena.jpg"/></br>
+                        <img id="anh1" src="assets/dest/images/lena.jpg" style="width:80px;height:80px"/>
+                        <img id="anh2" src="assets/dest/images/lena.jpg" style="width:80px;height:80px"/>
+                        <img id="anh3" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/160811_%EB%AA%A8%EB%AA%A8%EB%9E%9C%EB%93%9C_%EC%83%81%EC%95%94_%ED%99%8D%EB%B3%B4._%EB%82%B8%EC%8B%9C_29_pic_%283%29.png" style="width:80px;height:80px"/>
                     </div>
                     <div class="col-sm-8">
                         <div class="single-item-body">
-                            <p class="single-item-title">Name: {{$product->name}}</p><br/>
+                            <p class="single-item-price">Name: {{$product->name}}</p><br/>
                             <p class="single-item-price">
-                                <span>Price: {{$product->price}} VND</span><br/>
-                            </p>
+                                <span>Price: {{$product->price}} VND</span>
+                            </p><br/>
+                            <p class="single-item-price">Product Type: {{$producttype->name}}</p><br/>
                             <p class="single-item-price">
-                                <span>High: {{$product->high}}</span><br/>
-                            </p>
+                                <span>Size:10* <?php echo 10*$product->size; ?></span>
+                            </p><br/>
                             <p class="single-item-price">
-                                <span>Sex: {{$product->sex}}</span><br>
-                            </p>
+                                @if($product->sex) <span>Sex: Nữ</span>
+                                @else<span>Sex: Nam</span>
+                                @endif
+                            </p><br/>
                         </div>
 
                         <div class="clearfix"></div>
@@ -36,9 +42,9 @@
                 <div class="space40">&nbsp;</div>
                 <div class="woocommerce-tabs">
                     <ul class="tabs">
-                        <li><a href="#tab-review" id="review">Reviews {{count($review)}}</a></li>
+                        <li id="review">Reviews {{count($review)}}</li>
                     </ul>
-                    <div class="panel" id="tab-review">
+                    <div id="tab" style="display:none;"> 
                         @if(empty($review))
                         <p> No Review</p>
                             @else 
@@ -48,7 +54,12 @@
                                 <br/>
                             @endforeach 
                         @endif
-                        <!-- <textarea rows="1" cols="1" name="comment"></textarea> -->
+                        <form action="{{route('feedback')}}" method="POST">
+                            @csrf
+                            <textarea rows="1" cols="1" name="feedback" style="width:100%; height:100px;" id="text"></textarea>
+                            <button type="submit" id="submit" data-id="{{$product->id}}">Gui</button>
+                            <input type="hidden" name="id_product" value="{{$product->id}}"/>
+                        </form>
                     </div>
                 </div>
                 <div class="space50">&nbsp;</div>

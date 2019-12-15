@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +15,11 @@
     <link rel="stylesheet" title="style" href="assets/dest/css/style.css">
     <link rel="stylesheet" href="assets/dest/css/animate.css">
     <link rel="stylesheet" title="style" href="assets/dest/css/huong-style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 </head>
 <body>
     @include("layout.header")
@@ -35,6 +38,7 @@
     <script src="assets/dest/js/wow.min.js"></script>
     <!--customjs-->
     <script src="assets/dest/js/custom2.js"></script>
+    <script src="assets/dest/js/index.js"></script>
     <script>
         $(document).ready(function($) {
             $(window).scroll(function() {
@@ -51,7 +55,21 @@
             $("#i").click(function(){
                 $("#info").show();
                 $("#order").hide();;
-            }); 
-        });
+            });
+            $("#anh1").click(function(){
+                $("#anhchinh").attr("src",$("#anh1").attr("src"));
+            });
+            $("#anh2").click(function(){
+                $("#anhchinh").attr("src",$("#anh2").attr("src"));
+            });
+            $("#anh3").click(function(){
+                $("#anhchinh").attr("src",$("#anh3").attr("src"));
+            });
+            $("#review").click(function(){
+                if($("#tab").css("display")=="none")  $("#tab").css("display","block");
+                else  $("#tab").css("display","none");
+            });  
+        });         
     </script>
 </body>
+</html>

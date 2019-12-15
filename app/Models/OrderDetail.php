@@ -13,4 +13,24 @@ class OrderDetail extends Model
         'product_id',
         'quantity'
     ];
+    
+    /**
+     * relation to product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+    
+    /**
+     * relationship to order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function order()
+    {
+        return $this->belongsTo(\App\Models\Order::class);
+    }
 }

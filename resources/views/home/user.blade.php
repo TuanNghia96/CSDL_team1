@@ -13,17 +13,55 @@
         </div>
         <div class="col-sm-9">
             <div id="info">
-            <form action="{{}}" method="post" enctype="multipart/form-data">
-                Full Name <input type="text" value="Nguyen Van Dung" name="name" required/><br/>
-                Số Điện Thoại <input type="text" disabled value="0983567927" name="phonenumber" required/><br/>
-                Email <input type="email" disabled value="dung.nv@gmail.com" name="email" required/> <br/>
-                Địa Chỉ <input type="text" value="Thanh Hoa" name="address" required/><br/>
-                Avatar <input type="file" value="" name="avatar" required/><br/>
+            <form action="{{route('changinfo')}}" method="post" enctype="multipart/form-data">
+            @csrf
+                Full Name <input type="text" value="{{$user->name}}" name="name" required/><br/>
+                Số Điện Thoại <input type="text" value="{{$user->phone}}" name="phonenumber" required/><br/>
+                Email <input type="email" disabled value="{{$user->email}}" name="email" required/> <br/>
+                Địa Chỉ <input type="text" value="{{$user->address}}" name="address" required/><br/>
+                Avatar <input type="file" value="" name="avatar_url" required/><br/>
+                <input type="hidden" value="{{$user->id}}" name="id"/>
                 <br/><input type="submit" value="Cập Nhập" name="Submit"/>
             </form>
             </div>
             <div id="order" style="display:none;">
-                <p>Nguyen VAn Dung</p>
+            @if($orders==NULL)
+                    <div><h3 class="text-center red">{{ 'Không tìm thấy bản ghi nào.' }}</h3></div>
+                @else
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Mã Số Đơn Hàng</th>
+                            <th class="text-center">Tên Đơn Hàng</th>
+                            <th class="text-center">Giá trị</th>
+                            <th class="text-center">Trang thái</th>
+                            <th class="text-center">Thời gian</th>
+                            <th class="text-center">Chi Tiết</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($orders as $value)
+                            <tr>
+                                <td>Đơn hàng #{{$value->id}}</td>
+                                <td>{{$value->memo}}</td>
+                                <td>{{ $value->total }}</td>
+                                <td>{{ $status[$value->status] }}</td>
+                                <td>{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
+                                <td>
+                                    <p class="text-center">
+                                        @if($value->status==1)
+                                        <a href= "{{ route('order', $value->id) }}">Đặt Hàng</a>
+                                        @else
+                                        <a href="{{route('dathang',$value->id)}}">Chi Tiết</a>
+                                        @endif
+                                    </p>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="row">{{ $orders->links()}}</div>
+                @endif
             </div>
         </div>
     </div>

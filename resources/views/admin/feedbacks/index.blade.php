@@ -1,19 +1,19 @@
-@extends('layout.index')
+@extends('layouts.app')
 
-@section('title', 'Quản lý người dùng')
+@section('title', 'Quản lý phản hồi')
 
 @section('content')
-    <div class="section main">
-        <div class="container">
+        <!-- Page Content  -->
+        <div id="content">
             
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2><a href="{{ route('feedbacks.index') }}">Danh sách người dùng</a></h2>
+                        <h2><a href="{{ route('feedbacks.index') }}">Danh sách phản hồi</a></h2>
                     </div>
                 </div>
                 <div class="border border-primary rounded mt-3 mb-3 p-4 col-md-12">
-                    <form action="{{ route('users.index') }}" method="get">
+                    <form action="{{ route('feedbacks.index') }}" method="get">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
@@ -74,17 +74,16 @@
                         @foreach($feedbacks as $key => $value)
                             <tr>
                                 <td>{{ $feedbacks->perPage() * ($feedbacks->currentPage() - 1) + $key + 1 }}</td>
-                                <td><a href="{{ route('users.show', $value->user->id) }}">{{ $value->user->name }}</a></td>
-                                <td><a href="#">{{ $value->product->name }}</a></td>
+                                <td><a href="{{ route('users.show', $value->user_id) }}">{{ $value->user->name }}</a></td>
+                                <td><a href="{{ route('products.show', $value->product_id) }}">{{ $value->product->name }}</a></td>
                                 <td>{{ $value->content }}</td>
                                 <td>{{ $value->created_at }}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center">{{ $feedbacks->appends(request()->input())->links() }}</div>
+                    <div class="col-md-12">{{ $feedbacks->appends(request()->input())->links() }}</div>
                 @endif
             </div>
-        </div>
     </div>
 @endsection

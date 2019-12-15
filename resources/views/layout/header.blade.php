@@ -3,15 +3,36 @@
         <div class="container">
             <div class="pull-left auto-width-left">
                 <ul class="top-menu menu-beta l-inline">
-                    <li><a href=""><i class="fa fa-home"></i> Dai Hoc Bach Khoa Ha Noi</a></li>
-                    <li><a href=""><i class="fa fa-phone"></i> 0983567927</a></li>
+                    <li><a href="{{route('home')}}"><i class="fa fa-home"></i> Dai Hoc Bach Khoa Ha Noi</a></li>
+                    <li><a href="{{route('home')}}"><i class="fa fa-phone"></i> 0983567927</a></li>
                 </ul>
             </div>
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
-                    <li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
-                    <li><a href="#">Đăng kí</a></li>
-                    <li><a href="#">Đăng nhập</a></li>
+                    <!-- Authentication Links -->
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{route('user',Auth::user()->id)}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -22,12 +43,12 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="index.html" id="logo"><img src="assets/dest/images/logo-cake.png" width="200px" alt=""></a>
+                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo-cake.png" width="200px" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>
                 <div class="beta-comp">
-                    <form role="search" method="get" id="searchform" action="/">
+                    <form role="search" method="get" id="searchform" action="{{route('sreach')}}">
                         <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
                         <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                     </form>
@@ -35,28 +56,26 @@
 
                 <div class="beta-comp">
                     <div class="cart">
-                        <div class="beta-select"><i class="fa fa-shopping-cart"></i> </i> Giỏ hàng (@if(Session::has('cart')){{Session('cart')->totalQty}}@else Trống @endif)<i class="fa fa-chevron-down"></i></div>
+                        <div class="beta-select"><i class="fa fa-shopping-cart"></i> </i> Giỏ hàng (@if(Session::has('id_cart')){{$totalQty}}@else Trống @endif)<i class="fa fa-chevron-down"></i></div>
                         <div class="beta-dropdown cart-body">
-                            @if(Session::has('cart')) 
-                            @foreach($product_cart as $cart)
+                            @if(Session::has('id_cart')) @foreach($product_cart as $cart)
                             <div class="cart-item">
-                            <a class="cart-item-delete" href="{{route('delete_cart',$cart['item']['id'])}}"><i class="fa fa-times"></i></a>
+                                <a class="cart-item-delete" href="{{route('delete_cart',$cart->id)}}"><i class="fa fa-times"></i></a>
                                 <div class="media">
-                                    <a class="pull-left" href="#"><img src="{{$cart['item']['image_font']}}" alt=""></a>
+                                    <a class="pull-left" href="{{route('productdetail',$cart->id)}}"><img src="{{$cart->image_font}}" alt=""></a>
                                     <div class="media-body">
-                                        <span class="cart-item-title">{{$cart['item']['name']}}</span>
-                                        <span class="cart-item-options">Size:{{$cart['item']['high']}}</span>
-                                        <span class="cart-item-amount">SL:{{$cart['qty']}}; <span  style="color:black">Pirce:{{$cart['price']}} VND</span></span>
+                                        <span class="cart-item-title">{{$cart->name}}</span>
+                                        <span  style="color:black">Pirce:{{$cart->price}} VND</span>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                             <div class="cart-caption">
-                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{Session('cart')->totalPrice}}</span></div>
+                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{$totalPrice}}</span></div>
                                 <div class="clearfix"></div>
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
-                                    <a href="{{route('ss')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
+                                    <a href="{{route('order',Session::get('id_cart'))}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
                             @endif
@@ -79,11 +98,6 @@
                 <ul class="l-inline ov">
                     <li><a href="{{route('home')}}">Trang chủ</a></li>
                     <li><a href="{{route('category',1)}}">Sản phẩm</a>
-                       <!--  <ul class="sub-menu">
-                            <li><a href="product_type.html">Sản phẩm 1</a></li>
-                            <li><a href="product_type.html">Sản phẩm 2</a></li>
-                            <li><a href="product_type.html">Sản phẩm 4</a></li>
-                        </ul> -->
                     </li>
                     <li><a href="{{route('about')}}">Giới thiệu</a></li>
                     <li><a href="{{route('lienhe')}}">Liên hệ</a></li>

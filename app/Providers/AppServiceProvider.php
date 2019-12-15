@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Session;
 use App\Models\Cart;
+use App\Models\Product;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,10 +31,19 @@ class AppServiceProvider extends ServiceProvider
             $view->with("loai_sp",$loai_sp);
         });
         view()->composer(["layout.header","home.cart"],function($view){
-            if(Session("cart")){
-            $oldCart=Session::get("cart");
-            $cart= new Cart($oldCart);
-            $view->with(['cart'=>Session::get("cart"),"product_cart"=>$cart->items,"totalPrice"=>$cart->total,"totalQty"=>$cart->totalQty]);
+            if(Session("id_cart")){
+            $id_Cart=Session::get('id_cart');
+            $cart=Cart::get_cart($id_Cart);
+            $cartdetail=Cart::get_orderdetail($id_Cart);
+            $product=[];
+            $totalQty=0;
+            $totalPrice=$cart[0]->total;
+            foreach($cartdetail as $cart){
+                $p=Product::find($cart->product_id);
+                $totalQty+=$cart->quantity;
+                array_push($product,$p);
+            }
+            $view->with(["cart"=>$cart,"product_cart"=>$product,"totalPrice"=>$totalPrice,"totalQty"=>$totalQty]);
             }
         });  
     }

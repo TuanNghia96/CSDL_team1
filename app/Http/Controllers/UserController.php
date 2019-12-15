@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -27,9 +28,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->user->getList($request->all());
-        $role = User::$role;
-        return view('admin.users.index', compact(['users', 'role']));
+        if (Gate::allows('admin')) {
+            $users = $this->user->getList($request->all());
+            $role = User::$role;
+            return view('admin.users.index', compact(['users', 'role']));
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -39,8 +44,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        $role = User::$role;
-        return view('admin.users.create', compact('role'));
+        if (Gate::allows('admin')) {
+            $role = User::$role;
+            return view('admin.users.create', compact('role'));
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -51,9 +60,12 @@ class UserController extends Controller
      */
     public function store(UsersStoreRequest $request)
     {
-        
-        $this->user->storeData($request);
-        return redirect($request->url_back ?? route('admin.users.index'));
+        if (Gate::allows('admin')) {
+            $this->user->storeData($request);
+            return redirect($request->url_back ?? route('admin.users.index'));
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -64,9 +76,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->user->find($id);
-        $role = User::$role;
-        return view('admin.users.show', compact(['user', 'role']));
+        if (Gate::allows('admin')) {
+            $user = $this->user->find($id);
+            $role = User::$role;
+            return view('admin.users.show', compact(['user', 'role']));
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -77,8 +93,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->user->find($id);
-        return view('admin.users.edit', compact('user'));
+        if (Gate::allows('admin')) {
+            $user = $this->user->find($id);
+            return view('admin.users.edit', compact('user'));
+        } else{
+            return redirect(route('home'));
+        }
     }
     
     /**
@@ -88,10 +108,11 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UsersStoreRequest $request, $id)
+    public function update(UsersStoreRequest $request)
     {
-        $this->user->updateData($request, $id);
-        return redirect($request->url_back ?? route('admin.users.index'));
+       $id=$request->id;
+       var_dump($request);
+      /*   return redirect($request->url_back ?? route('admin.users.index')); */
     }
     
     /**
@@ -102,14 +123,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = $this->user->find($id);
-        if ($user->role == User::ADMIN_ROLE) {
-            $user->delete();
-        } elseif ($user->status == 1) {
-            $user->update(['status' => 0]);
-        } else {
-            $user->update(['status' => 1]);
+        if (Gate::allows('admin')) {
+            $user = $this->user->find($id);
+            if ($user->role == User::ADMIN_ROLE) {
+                $user->delete();
+            } elseif ($user->status == 1) {
+                $user->update(['status' => 0]);
+            } else {
+                $user->update(['status' => 1]);
+            }
+            return back();
+        } else{
+            return redirect(route('home'));
         }
-        return back();
     }
 }

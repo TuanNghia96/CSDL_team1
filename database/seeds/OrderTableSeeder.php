@@ -13,6 +13,6 @@ class OrderTableSeeder extends Seeder
     public function run()
     {
         Order::truncate();
-        factory('App\Models\Order', 10)->create();
+        factory('App\Models\Order', 300)->create();
     }
 }

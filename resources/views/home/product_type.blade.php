@@ -40,8 +40,8 @@
 									</div>
 								</div>
 							@endforeach
-							<div class="row">{{$product_category->links()}}</div>
 							</div>
+							<div class="row">{{$product_category->links()}}</div>
 						</div> <!-- .beta-products-list -->
 
 						<div class="space50">&nbsp;</div>
@@ -73,8 +73,8 @@
 									</div>
 								</div>
 							@endforeach
-							<div class="row">{{$best_product->links()}}</div>
 							</div>
+							<div class="row">{{$best_product->links()}}</div>
 							<div class="space40">&nbsp;</div>
 						</div> <!-- .beta-products-list -->
 					</div>
