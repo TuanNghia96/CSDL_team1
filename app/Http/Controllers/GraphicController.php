@@ -148,6 +148,14 @@ class GraphicController extends Controller
                     $name2 = $name1;
                     $max1 = $value->orders()->count();
                     $name1 = $value->name;
+                } else if ($max2 < $value->orders()->count()) {
+                    $max3 = $max2;
+                    $name3 = $name2;
+                    $max2 = $value->orders()->count();
+                    $name2 = $value->name;
+                } else if ($max3 < $value->orders()->count()) {
+                    $max3 = $value->orders()->count();
+                    $name3 = $value->name;
                 }
             }
             $chart2 = new HighChart();
