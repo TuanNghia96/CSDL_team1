@@ -2,28 +2,27 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
+use App\Models\Feedback;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class OrderMail extends Mailable
+class AnswerEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $input;
 
-    protected $order;
-    protected $reason;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order, $reason = null)
+    public function __construct($input)
     {
-        $this->order = $order;
-        $this->reason = $reason;
+        $this->input = $input;
     }
 
     /**
@@ -33,10 +32,12 @@ class OrderMail extends Mailable
      */
     public function build()
     {
+        $feedback= Feedback::find($this->input['id']);
         $data = [
-            'order' => $this->order,
-            'status' => Order::$status,
-            'reason' => $this->reason
+            'answer' => $this->input['answer'],
+            'admin' => $this->input['admin'],
+            'customer' => $feedback->user->name,
+            'content' => $feedback->content
         ];
         return $this->view('mail.answer')->with($data);
     }

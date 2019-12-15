@@ -62,7 +62,7 @@ class OrderController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -142,4 +142,6 @@ class OrderController extends Controller
             return redirect(route('home'));
         }
     }
+    
+
 }

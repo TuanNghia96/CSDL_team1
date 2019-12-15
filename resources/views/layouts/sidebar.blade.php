@@ -37,7 +37,7 @@
                     <a href="{{ route('products.index') }}">Danh sách</a>
                 </li>
                 <li>
-                    <a href="{{ route('products.index') }}">Thêm mới</a>
+                    <a href="{{ route('products.create') }}">Thêm mới</a>
                 </li>
             </ul>
         </li>
@@ -61,7 +61,10 @@
                     <a href="{{ route('graphics.product') }}">Sản phẩm</a>
                 </li>
                 <li>
-                    <a href="{{ route('graphics.user') }}">Khách hàng.</a>
+                    <a href="{{ route('graphics.user') }}">Khách hàng</a>
+                </li>
+                <li>
+                    <a href="{{ route('graphics.revenue') }}">Doanh thu</a>
                 </li>
             </ul>
         </li>
