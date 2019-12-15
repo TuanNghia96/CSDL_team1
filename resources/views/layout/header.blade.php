@@ -8,7 +8,7 @@
                 </ul>
             </div>
             <div class="pull-right auto-width-right">
-                <ul class="navbar-nav ml-auto top-menu ">
+                <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
                         <li class="menu-beta l-inline" >

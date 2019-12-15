@@ -219,7 +219,6 @@ class ProductController extends Controller
     }
     public function rediect(Request $request){
        $request->session()->put('id_cart',NULL);
-       Auth::logout();
         return redirect()->route('home');
     }
     public function updatecart(Request $request){

@@ -70,7 +70,7 @@
         <!-- #content -->
     </div>
     <div id="content">
-        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}} VND</span></h5></div>
+        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}}</span> VND</h5></div>
         <div class="your-order-head"  class="row">
             <h5>Hình thức thanh toán</h5><br/>
         </div>
