@@ -94,12 +94,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('admin')) {
-            $category = $this->category->find($id);
-            if ($category->status = 0) {
-                $this->category->find($id)->update(['status' => 1]);
-            } else {
-                $this->category->find($id)->update(['status' => 0]);
-            }
+            $this->category->find($id)->delete();
             return back();
         } else{
             return redirect(route('home'));
