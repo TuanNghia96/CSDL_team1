@@ -41,7 +41,7 @@
                             </div>
                             
                             <div class="row">
-                            <form 
+                          
                                 @foreach($New_Product as $product)
                                     <div class="col-sm-3">
                                         <div class="single-item">

@@ -8,14 +8,14 @@
                 </ul>
             </div>
             <div class="pull-right auto-width-right">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto top-menu ">
                     <!-- Authentication Links -->
                     @guest
-                        <li class="nav-item">
+                        <li class="menu-beta l-inline" >
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="menu-beta l-inline">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
