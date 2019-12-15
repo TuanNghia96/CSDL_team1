@@ -1,12 +1,16 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Http\Requests\ProductStoreRequest;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Session;
+use App\Models\Cart;
+use App\Models\Feedback;
+use App\Models\Category;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductStoreRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Routing\Redirector;
 
 class ProductController extends Controller
 {
@@ -37,11 +41,8 @@ class ProductController extends Controller
             return redirect(route('home'));
         }
     }
-
-
-
 /**
-     * Show the form for creating a new resource.
+    * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +56,6 @@ class ProductController extends Controller
             return redirect(route('home'));
         }
     }
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -71,7 +71,6 @@ class ProductController extends Controller
             return redirect(route('home'));
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -87,7 +86,6 @@ class ProductController extends Controller
             return redirect(route('home'));
         }
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,7 +103,7 @@ class ProductController extends Controller
             return redirect(route('home'));
         }
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -122,7 +120,6 @@ class ProductController extends Controller
             return redirect(route('home'));
         }
     }
-    
     /**
      * Remove the specified resource from storage.
      *
@@ -133,16 +130,101 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('admin')) {
-            $this->product->delete($id);
+            $this->product->find($id)->delete();
             return redirect(route('products.index'));
         } else {
             return redirect(route('home'));
         }
-    }
-    
+    }  
     public function list(){
-        $products = $this->product->get();
-        
-        return view("home.trangchu",compact('products'));
+        /* $products = $this->product->get(); */
+        $New_Product=Product::New_Product(8);
+/*          var_dump($New_Product); */
+        return view("home.trangchu",compact("New_Product"));
+    } 
+    public function Cart(Request $request,$id){
+        /* $input=$request->all(); */
+       /*  $id=$request->product_id; */
+        $product=Product::find($id);
+        $id_Cart=Session("id_cart")?session::get('id_cart'):NULL;
+        $user_id=Auth::id();
+        if($id_Cart==NULL){
+            $id_cart=Cart::add_NewCart($user_id,$product);
+            $request->session()->put("id_cart",$id_cart);
+        }
+        else{ 
+            $cart=Cart::add_Cart($id_Cart,$product);
+        }
+        return redirect()->back();
+    }
+    public function delete_Cart(Request $request,$id){
+        $id_cart=Session::has('id_cart')?Session::get('id_cart'):NULL;
+        Cart::removeItem($id_cart,$id);
+        return redirect()->back();
+    }
+ /*    public function Order(Request $request){
+        $oldCart=Session::has('cart')?session::get('cart'):NULL;
+        return view("home.cart",compact($oldCart));
+    } */
+    public function ProductDetail(Request $request,$id){
+        $product=Product::find($id);
+        $new_product=Product::New_Product(4);
+        $best_product=Product::Best_Product();
+        $product_lq=Product::product_lq($product->id,$product->category_id);
+        $review=Feedback::get_review($id);
+        $producttype=Category::find($id);
+        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype"));
+    }
+    public function Category(Request $request,$id){
+        $category=Category::get_name();
+        if(!$id) $id=$category[0]->id; 
+        $product_category=Product::category_product($id);
+        $best_product=Product::Best_category_product($id);
+        return view("home.product_type",compact("category","product_category","best_product"));
+    }
+    public function Sreach(Request $request){
+        $txt=$request->s;
+        $New_Product=Product::sreach_category($txt);
+        return view("home.sreach",compact("New_Product")); 
+    }
+    public function order($id_Cart){
+            $cart=Cart::get_cart($id_Cart);
+            $cartdetail=Cart::get_orderdetail($id_Cart);
+            $productcart=[];
+            $totalQty=0;
+            $totalPrice=$cart[0]->total;
+            $cart_id=$cart[0]->id;
+            foreach($cartdetail as $cart){
+                $p=Product::find($cart->product_id);
+                $totalQty+=$cart->quantity;
+                $p->quantity=$cart->quantity;
+                array_push($productcart,$p);
+			}
+		return view("home.cart",compact("totalPrice","cartdetail","productcart","totalQty","cart_id"));
+        }
+    public function showorder($id_Cart){
+            $cart=Cart::get_cart($id_Cart);
+            $cartdetail=Cart::get_orderdetail($id_Cart);
+            $productcart=[];
+            $totalQty=0;
+            $totalPrice=$cart[0]->total;
+            foreach($cartdetail as $cart){
+                $p=Product::find($cart->product_id);
+                $totalQty+=$cart->quantity;
+                $p->quantity=$cart->quantity;
+                array_push($productcart,$p);
+			}
+		return view("home.showorder",compact("totalPrice","cartdetail","productcart","totalQty"));
+    }
+    public function rediect(Request $request){
+       $request->session()->put('id_cart',NULL);
+        return redirect()->route('home');
+    }
+    public function updatecart(Request $request){
+        $cart_id=$request->cart_id;
+        $product_id=$request->product_id;
+        $quantity=$request->quantity;
+        $result=Cart::upcart($cart_id,$product_id,$quantity);
+        return $result;
     }
 }

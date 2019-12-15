@@ -119,7 +119,22 @@ class User extends Model implements Authenticatable
         }
         return $this->find($id)->update($input);
     }
-    
+    public function updateinfo($request, $id)
+    {
+        $input = $request->all();
+        $filePart = '/image/users/';
+      /*   if ($request->hasFile('avata_url')) { */
+            
+            $file = $request->avata_url;
+            $file->move($filePart, $file->getClientOriginalName());
+            $input['avata_url'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+       /*  } else {
+            unset($input['avata_url']);
+        }
+        $input['role'] = 1;
+        $result=DB::table('users')->where("id","=",$id)->update(["name"=>$request->name,"phone"=>$request->phone,"address"=>$request->address,"avatar_url"=>$input["avatar_url"]]); */
+        return $input['avatar_url'];
+    }
     /**
      * relationship to feedback
      *

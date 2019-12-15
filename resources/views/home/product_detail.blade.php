@@ -1,216 +1,137 @@
-@extends("block.index")
-@section("content")
+@extends("layout.index") @section("content")
 <div class="container">
-		<div id="content">
-			<div class="row">
-				<div class="col-sm-9">
+    <div id="content">
+        <div class="row">
+            <div class="col-sm-9">
 
-					<div class="row">
-						<div class="col-sm-4">
-							<img src="assets/dest/images/products/6.jpg" alt="">
-						</div>
-						<div class="col-sm-8">
-							<div class="single-item-body">
-								<p class="single-item-title">Sample Woman Top</p>
-								<p class="single-item-price">
-									<span>$34.55</span>
-								</p>
-							</div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img id="anhchinh" src="assets/dest/images/lena.jpg"/></br>
+                        <img id="anh1" src="assets/dest/images/lena.jpg" style="width:80px;height:80px"/>
+                        <img id="anh2" src="assets/dest/images/lena.jpg" style="width:80px;height:80px"/>
+                        <img id="anh3" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/160811_%EB%AA%A8%EB%AA%A8%EB%9E%9C%EB%93%9C_%EC%83%81%EC%95%94_%ED%99%8D%EB%B3%B4._%EB%82%B8%EC%8B%9C_29_pic_%283%29.png" style="width:80px;height:80px"/>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="single-item-body">
+                            <p class="single-item-price">Name: {{$product->name}}</p><br/>
+                            <p class="single-item-price">
+                                <span>Price: {{$product->price}} VND</span>
+                            </p><br/>
+                            <p class="single-item-price">Product Type: {{$producttype->name}}</p><br/>
+                            <p class="single-item-price">
+                                <span>Size:10* <?php echo 10*$product->size; ?></span>
+                            </p><br/>
+                            <p class="single-item-price">
+                                @if($product->sex) <span>Sex: Nữ</span>
+                                @else<span>Sex: Nam</span>
+                                @endif
+                            </p><br/>
+                        </div>
 
-							<div class="clearfix"></div>
-							<div class="space20">&nbsp;</div>
+                        <div class="clearfix"></div>
+                        <div class="space20">&nbsp;</div>
 
-							<div class="single-item-desc">
-								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe.</p>
-							</div>
-							<div class="space20">&nbsp;</div>
+                        <div class="single-item-desc">
 
-							<p>Options:</p>
-							<div class="single-item-options">
-								<select class="wc-select" name="size">
-									<option>Size</option>
-									<option value="XS">XS</option>
-									<option value="S">S</option>
-									<option value="M">M</option>
-									<option value="L">L</option>
-									<option value="XL">XL</option>
-								</select>
-								<select class="wc-select" name="color">
-									<option>Color</option>
-									<option value="Red">Red</option>
-									<option value="Green">Green</option>
-									<option value="Yellow">Yellow</option>
-									<option value="Black">Black</option>
-									<option value="White">White</option>
-								</select>
-								<select class="wc-select" name="color">
-									<option>Qty</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-								<a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
+                            <a class="add-to-cart" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
 
-					<div class="space40">&nbsp;</div>
-					<div class="woocommerce-tabs">
-						<ul class="tabs">
-							<li><a href="#tab-description">Description</a></li>
-							<li><a href="#tab-reviews">Reviews (0)</a></li>
-						</ul>
-
-						<div class="panel" id="tab-description">
-							<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-							<p>Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequaturuis autem vel eum iure reprehenderit qui in ea voluptate velit es quam nihil molestiae consequr, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? </p>
-						</div>
-						<div class="panel" id="tab-reviews">
-							<p>No Reviews</p>
-						</div>
-					</div>
-					<div class="space50">&nbsp;</div>
-					<div class="beta-products-list">
-						<h4>Related Products</h4>
-
-						<div class="row">
-							<div class="col-sm-4">
-								<div class="single-item">
-									<div class="single-item-header">
-										<a href="product.html"><img src="assets/dest/images/products/4.jpg" alt=""></a>
-									</div>
-									<div class="single-item-body">
-										<p class="single-item-title">Sample Woman Top</p>
-										<p class="single-item-price">
-											<span>$34.55</span>
-										</p>
-									</div>
-									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="single-item">
-									<div class="single-item-header">
-										<a href="product.html"><img src="assets/dest/images/products/5.jpg" alt=""></a>
-									</div>
-									<div class="single-item-body">
-										<p class="single-item-title">Sample Woman Top</p>
-										<p class="single-item-price">
-											<span>$34.55</span>
-										</p>
-									</div>
-									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="single-item">
-									<div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-
-									<div class="single-item-header">
-										<a href="#"><img src="assets/dest/images/products/6.jpg" alt=""></a>
-									</div>
-									<div class="single-item-body">
-										<p class="single-item-title">Sample Woman Top</p>
-										<p class="single-item-price">
-											<span class="flash-del">$34.55</span>
-											<span class="flash-sale">$33.55</span>
-										</p>
-									</div>
-									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="#"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="#">Details <i class="fa fa-chevron-right"></i></a>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> <!-- .beta-products-list -->
-				</div>
-				<div class="col-sm-3 aside">
-					<div class="widget">
-						<h3 class="widget-title">Best Sellers</h3>
-						<div class="widget-body">
-							<div class="beta-sales beta-lists">
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/1.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/2.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/3.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/4.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> <!-- best sellers widget -->
-					<div class="widget">
-						<h3 class="widget-title">New Products</h3>
-						<div class="widget-body">
-							<div class="beta-sales beta-lists">
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/1.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/2.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/3.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="assets/dest/images/products/sales/4.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> <!-- best sellers widget -->
-				</div>
-			</div>
-		</div> <!-- #content -->
-	</div> <!-- .container -->
+                <div class="space40">&nbsp;</div>
+                <div class="woocommerce-tabs">
+                    <ul class="tabs">
+                        <li id="review">Reviews {{count($review)}}</li>
+                    </ul>
+                    <div id="tab" style="display:none;"> 
+                        @if(empty($review))
+                        <p> No Review</p>
+                            @else 
+                            @foreach($review as $re)
+                                <p><strong>{{$re->email}}</strong></p>
+                                <p>{{$re->content}}</p>
+                                <br/>
+                            @endforeach 
+                        @endif
+                        <form action="{{route('feedback')}}" method="POST" name="SetReview">
+                            @csrf
+                            <input type="hidden" name="_token" value="{{!!csrf_token()!!}}"/>
+                            <textarea rows="1" cols="1" name="feedback" style="width:100%; height:100px;" id="text"></textarea>
+                            <button type="button" id="submit" data-id="{{$product->id}}">Gui</button>
+                            <input id="product" type="hidden" name="id_product" value="{{$product->id}}"/>
+                            <input id="user" type="hidden" name="id_product" value="{{Auth::id()}}"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="space50">&nbsp;</div>
+                <div class="beta-products-list">
+                    <h4>Related Products</h4>
+                    <div class="row">
+                        @foreach($product_lq as $product)
+                        <div class="col-sm-4">
+                            <div class="single-item">
+                                <div class="single-item-header">
+                                    <a href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
+                                </div>
+                                <div class="single-item-body">
+                                    <p class="single-item-title">{{$product->name}}</p>
+                                    <p class="single-item-price">
+                                        <span>{{$product->price}}</span>
+                                    </p>
+                                </div>
+                                <div class="single-item-caption">
+                                    <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- .beta-products-list -->
+            </div>
+            <div class="col-sm-3">
+                <div class="widget">
+                    <h3 class="widget-title">Best_Seller</h3>
+                    <div class="widget-body">
+                        <div class="beta-sales beta-lists">
+                            @foreach($best_product as $product)
+                            <div class="media beta-sales-item">
+                                <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
+                                <div class="media-body">
+                                    {{$product->name}}
+                                    <span class="beta-sales-price">{{$product->price}} VND</span>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <!-- best sellers widget -->
+                <div class="widget">
+                    <h3 class="widget-title">New Products</h3>
+                    <div class="widget-body">
+                        <div class="beta-sales beta-lists">
+                            @foreach($new_product as $product)
+                            <div class="media beta-sales-item">
+                                <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
+                                <div class="media-body">
+                                    {{$product->name}}
+                                    <span class="beta-sales-price">{{$product->price}} VND</span>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>           
+                    </div>
+                </div>
+                <!-- best sellers widget -->
+            </div>
+        </div>
+    </div>
+    <!-- #content -->
+</div>
+<!-- .container -->
 
 @endsection

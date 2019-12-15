@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Feedback extends Model
 {
@@ -31,7 +32,6 @@ class Feedback extends Model
             $builder->where('product_id', $input['product_id']);
         }
         return $builder->paginate();
-    
     }
     
     /**
@@ -48,5 +48,13 @@ class Feedback extends Model
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);
+    }
+    static public function get_review($id){
+        $result=DB::table('feedbacks')->join('users','users.id',"=","feedbacks.user_id")->where("product_id","=","$id")->get();
+        return $result;
+    }
+    static public function set_review($user_id,$id_product,$txt){
+        $result=DB::table('feedbacks')->insert(["user_id"=>$user_id,"product_id"=>$id_product,"content"=>"$txt","created_at"=>date('Y-m-d H:i:s')]);
+        return $result;
     }
 }

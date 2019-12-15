@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendAnswerEmail;
 use App\Models\Feedback;
-use App\Models\Order;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class FeedbackController extends Controller
@@ -38,7 +37,13 @@ class FeedbackController extends Controller
             return redirect(route('home'));
         }
     }
-    
+    public function Savefeedback(Request $request){
+        $id_product=$request->product_id;
+        $txt=$request->feedback;
+        $user_id=$request->user_id;
+        $result=Feedback::set_review($user_id,$id_product,$txt);
+        echo $result;
+    }
     /**
      * send answer of feedback to customer
      *
