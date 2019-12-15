@@ -76,8 +76,7 @@ class RegisterController extends Controller
         $data['status'] = 1;
         $data['password'] = Hash::make($data['password']);
         $data['created_at'] = Carbon::now();
-         $data['avata_url'] = '../image/users/anonimus.png';
-         
+        $data['avata_url'] = '/image/users/anonimus.png';
 
         return User::create($data);
     }
