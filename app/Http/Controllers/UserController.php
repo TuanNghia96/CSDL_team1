@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Routing\Redirector;
+
 class UserController extends Controller
 {
     protected $user;
@@ -32,7 +33,7 @@ class UserController extends Controller
             $users = $this->user->getList($request->all());
             $role = User::$role;
             return view('admin.users.index', compact(['users', 'role']));
-        } else{
+        } else {
             return redirect(route('home'));
         }
     }
@@ -47,7 +48,7 @@ class UserController extends Controller
         if (Gate::allows('admin')) {
             $role = User::$role;
             return view('admin.users.create', compact('role'));
-        } else{
+        } else {
             return redirect(route('home'));
         }
     }
@@ -63,7 +64,7 @@ class UserController extends Controller
         if (Gate::allows('admin')) {
             $this->user->storeData($request);
             return redirect($request->url_back ?? route('admin.users.index'));
-        } else{
+        } else {
             return redirect(route('home'));
         }
     }
@@ -80,7 +81,7 @@ class UserController extends Controller
             $user = $this->user->find($id);
             $role = User::$role;
             return view('admin.users.show', compact(['user', 'role']));
-        } else{
+        } else {
             return redirect(route('home'));
         }
     }
@@ -96,7 +97,7 @@ class UserController extends Controller
         if (Gate::allows('admin')) {
             $user = $this->user->find($id);
             return view('admin.users.edit', compact('user'));
-        } else{
+        } else {
             return redirect(route('home'));
         }
     }
@@ -108,16 +109,22 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UsersStoreRequest $request)
+    public function update(UsersStoreRequest $request, $id)
     {
-      /*  $id=$request->id; */
-       var_dump($request);
-      /*   return redirect($request->url_back ?? route('admin.users.index')); */
+        if (Gate::allows('admin')) {
+            $this->user->updateData($request, $id);
+            return redirect($request->url_back ?? route('users.index'));
+        } else {
+            return redirect(route('home'));
+        }
     }
-    public function changeinfo(Request $request){
+    
+    public function changeinfo(Request $request)
+    {
         User::updateinfo($request);
         return redirect()->back();
     }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -136,7 +143,7 @@ class UserController extends Controller
                 $user->update(['status' => 1]);
             }
             return back();
-        } else{
+        } else {
             return redirect(route('home'));
         }
     }
