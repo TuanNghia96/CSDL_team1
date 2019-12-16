@@ -21,9 +21,15 @@
                             </a>
                 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('user',Auth::id())}}">
+                                @can('customer')
+                                <a class="dropdown-item" href="{{route('user',Auth::id())}}">
                                     {{ __('Trang Cá Nhân') }}
                                 </a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('admin') }}">
+                                        {{ __('Vào trang quản lý') }}
+                                    </a>
+                                @endcan
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
