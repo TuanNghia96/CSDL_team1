@@ -136,27 +136,32 @@ class ProductController extends Controller
         } else {
             return redirect(route('home'));
         }
-    }  
+    }
     public function list(){
          //$products = $this->product->get();
         $New_Product=Product::New_Product(8);
         $Best_Product=Product::Product_Best(8);
         return view("home.trangchu",compact("New_Product","Best_Product"));
-    } 
+    }
     public function Cart(Request $request,$id){
-        /* $input=$request->all(); */
-       /*  $id=$request->product_id; */
-        $product=Product::find($id);
-        $id_Cart=Session("id_cart")?session::get('id_cart'):NULL;
-        $user_id=Auth::id();
-        if($id_Cart==NULL){
-            $id_cart=Cart::add_NewCart($user_id,$product);
-            $request->session()->put("id_cart",$id_cart);
+        if (Gate::allows('customer')) {
+            
+                /* $input=$request->all(); */
+           /*  $id=$request->product_id; */
+            $product=Product::find($id);
+            $id_Cart=Session("id_cart")?session::get('id_cart'):NULL;
+            $user_id=Auth::id();
+            if($id_Cart==NULL){
+                $id_cart=Cart::add_NewCart($user_id,$product);
+                $request->session()->put("id_cart",$id_cart);
+            }
+            else{
+                $cart=Cart::add_Cart($id_Cart,$product);
+            }
+            return redirect()->back();
+        } else {
+            return redirect(route('home'));
         }
-        else{ 
-            $cart=Cart::add_Cart($id_Cart,$product);
-        }
-        return redirect()->back();
     }
     public function delete_Cart(Request $request,$id_cart,$id){
         Cart::removeItem($id_cart,$id);
@@ -177,7 +182,7 @@ class ProductController extends Controller
     }
     public function Category(Request $request,$id){
         $category=Category::get_name();
-        if(!$id) $id=$category[0]->id; 
+        if(!$id) $id=$category[0]->id;
         $product_category=Product::category_product($id);
         $best_product=Product::Best_category_product($id);
         return view("home.product_type",compact("category","product_category","best_product"));
@@ -185,35 +190,41 @@ class ProductController extends Controller
     public function Sreach(Request $request){
         $txt=$request->s;
         $New_Product=Product::sreach_category($txt);
-        return view("home.sreach",compact("New_Product")); 
+        return view("home.sreach",compact("New_Product"));
     }
     public function order($cart_id){
-            $cart=Cart::get_cart($cart_id);
-            $cartdetail=Cart::get_orderdetail($cart_id);
-            $productcart=[];
-            $totalQty=0;
-            $totalPrice=$cart[0]->total;
-            foreach($cartdetail as $cart){
-                $p=Product::find($cart->product_id);
-                $totalQty+=$cart->quantity;
-                $p->quantity=$cart->quantity;
-                array_push($productcart,$p);
-			}
-		return view("home.cart",compact("totalPrice","cartdetail","productcart","totalQty","cart_id"));
+        if (Gate::allows('customer')) {
+                $cart=Cart::get_cart($cart_id);
+                $cartdetail=Cart::get_orderdetail($cart_id);
+                $productcart=[];
+                $totalQty=0;
+                $totalPrice=$cart[0]->total;
+                foreach($cartdetail as $cart){
+                    $p=Product::find($cart->product_id);
+                    $totalQty+=$cart->quantity;
+                    $p->quantity=$cart->quantity;
+                    array_push($productcart,$p);
+                }
+		        return view("home.cart",compact("totalPrice","cartdetail","productcart","totalQty","cart_id"));
+            } else {
+                return redirect(route('home'));
+            }
         }
     public function showorder($id_Cart){
-            $cart=Cart::get_cart($id_Cart);
-            $cartdetail=Cart::get_orderdetail($id_Cart);
-            $productcart=[];
-            $totalQty=0;
-            $totalPrice=$cart[0]->total;
-            foreach($cartdetail as $cart){
-                $p=Product::find($cart->product_id);
-                $totalQty+=$cart->quantity;
-                $p->quantity=$cart->quantity;
-                array_push($productcart,$p);
-			}
-		return view("home.showorder",compact("totalPrice","cartdetail","productcart","totalQty"));
+    
+            $cart = Cart::get_cart($id_Cart);
+            $cartdetail = Cart::get_orderdetail($id_Cart);
+            $productcart = [];
+            $totalQty = 0;
+            $totalPrice = $cart[0]->total;
+            foreach ($cartdetail as $cart) {
+                $p = Product::find($cart->product_id);
+                $totalQty += $cart->quantity;
+                $p->quantity = $cart->quantity;
+                array_push($productcart, $p);
+            }
+            return view("home.showorder", compact("totalPrice", "cartdetail", "productcart", "totalQty"));
+
     }
     public function rediect(Request $request){
        $request->session()->put('id_cart',NULL);

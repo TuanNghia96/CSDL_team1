@@ -56,20 +56,26 @@ class GraphicController extends Controller
             $chart1 = new HighChart();
             $chart2 = new HighChart();
             $order = new Order();
+            //char number 1
             $labels = [];
             $dataset = [];
-            for ($i = 0; $i <= 30; $i++) {
+            $current_date = Carbon::now();
+            $date = Carbon::parse($current_date)->format('Y-m');
+            for ($i = 1; $i <= 30; $i++) {
                 array_push($labels, $i);
-                array_push($dataset, intval($order->whereDate('created_at', Carbon::now()->subDay($i))->sum('total')));
+                array_push($dataset, intval($order->whereDate('created_at', $date. '-' . $i)->sum('total')));
             }
             $chart1->labels($labels);
             $chart1->dataset('Doanh thu theo ngày trong tháng này', 'column', $dataset);
     
+            //char number 2
             $labels2 = [];
             $dataset2 = [];
+            $current_date = Carbon::now()->subMonth(1);
+            $date = Carbon::parse($current_date)->format('Y-m');
             for ($i = 0; $i <= 30; $i++) {
                 array_push($labels2, $i);
-                array_push($dataset2, intval($order->whereDate('created_at',Carbon::now()->subDay($i)->subMonth(1))->sum('total')));
+                array_push($dataset2, intval($order->whereDate('created_at', $date. '-' . $i)->sum('total')));
             }
             $chart2->labels($labels2);
             $chart2->dataset('Doanh thu theo ngày trong tháng trước.', 'column', $dataset2);

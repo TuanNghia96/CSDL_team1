@@ -47,15 +47,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
-    protected function redirectTo()
-    {
-        $role = Auth::user()->role;
-        if ($role == User::ADMIN_ROLE) {
-            return '/admin/users';
-        } else {
-            return '/home';
-        }
-    }
     
     /**
      * Get the maximum number of attempts to allow.
@@ -83,5 +74,25 @@ class LoginController extends Controller
         $request->session()->invalidate();
         
         return redirect(route('home'));
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        $remember = $request->get('remember') == 'on' ? true : false;
+        
+        if(Auth::attempt($credentials, $remember)) {
+            $enabled = \Auth::user()->status;
+            
+            if(!$enabled) {
+                Auth::logout();
+                return redirect(route('home'));
+            }
+            $role = Auth::user()->role;
+            if ($role == User::ADMIN_ROLE) {
+                return redirect(route('users.index'));
+            } else {
+                return redirect(route('home'));
+            }
+        }
     }
 }
