@@ -17,12 +17,11 @@ class CreateTrigger extends Migration
         DB::unprepared("
         CREATE TRIGGER after_price_update AFTER UPDATE ON `products` FOR EACH ROW
             BEGIN
-                INSERT INTO product_price_audit
-                SET product_id = id,
-                price_before = OLD.price,
-                price_after = NEW.price,
-                created_at = NOW();
-            END
+                IF OLD.price <> NEW.price THEN
+                INSERT INTO product_price_audit(product_id,price_before,price_after,created_at)
+                    VALUES(old.id,old.price,new.price,now());
+            END IF;
+         END
         ");
     }
     
