@@ -53,6 +53,11 @@ class Product extends Model
         $result=DB::table("categorys")->join("products","products.category_id","=","categorys.id")->where("categorys.name","like","%$text%")->orwhere("products.name","like","%$text%")->paginate(8);
         return $result;
     }
+    static public function Product_Best($sl){
+        $result=DB::table('products')->orderByRaw('bought DESC')->paginate($sl);
+        return $result;
+    }
+
     const FEMALE_SEX = 0;
     const MALE_SEX = 1;
     public static $sex = [

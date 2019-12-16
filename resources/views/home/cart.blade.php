@@ -36,7 +36,7 @@
                         <tr class="cart_item">
                             <td class="product-name">
                                 <div class="media">
-                                    <img class="pull-left" height="40px" width="40px" style="margin-right:10px" src="{{$product['item']['image_font']}}" alt="">
+                                    <img class="pull-left" height="40px" width="40px" style="margin-right:10px" src="{{$product->image_font}}" alt="">
                                     <div class="media-body">
                                         <p class="font-large table-title">{{$product->name}}</p>
                                     </div>
@@ -56,7 +56,7 @@
                                 <i class="fa fa-pencil" aria-hidden="true" id="quantity" data-id="{{$product->id}}"></i>
                             </td>
                             <td class="product-remove">
-                                <a href="{{route('delete_cart',$product->id)}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
+                                <a href="{{route('delete_cart',[$cart_id,$product->id])}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -70,7 +70,7 @@
         <!-- #content -->
     </div>
     <div id="content">
-        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}}</span></h5></div>
+        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}}</span> VND</h5></div>
         <div class="your-order-head"  class="row">
             <h5>Hình thức thanh toán</h5><br/>
         </div>
@@ -86,7 +86,7 @@
                 </li>
             </ul>
         </div>
-        <div class="text-center"><a href="{{route('dathang',$cart_id)}}"><button id ="dathang" type="submit" class="beta-btn primary"> Đặt hàng <i class="fa fa-chevron-right"></i></button></a></div>
+        <div class="text-center"><a id= "kkk" href="{{route('dathang',$cart_id)}}"><button id ="dathang" type="submit" class="beta-btn primary"> Đặt hàng <i class="fa fa-chevron-right"></i></button></a></div>
     </div>
 </div>
 <!-- .container -->

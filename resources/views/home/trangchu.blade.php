@@ -35,6 +35,8 @@
                         <div class="beta-products-list">
                             <h4>New Products</h4><br/>
                             @if($New_Product)
+                            <form method="POST">
+                            <input name="_token" type="hidden" value="{!!csrf_token()!!}}"/>
                             <div class="beta-products-details">
                                 <p class="pull-left">{{count($New_Product)}} styles found</p>
                                 <div class="clearfix"></div>
@@ -54,7 +56,7 @@
                                                 </p>
                                             </div>
                                             <div class="single-item-caption" data-id="5">
-                                                <a id="mua" class="add-to-cart pull-left" href="{{route('cart',$product->id)}}" ><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
+                                                <a id="mua" class="add-to-cart pull-left" href="javascript:void(0)" ><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
                                                 <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -62,9 +64,9 @@
                                     </div>
                               @endforeach
                             </div>
+                            </form>
                             @endif
                             <br/>
-                            <div class="row">{{$New_Product->links()}}</div>
                         </div>
                         <!-- .beta-products-list -->
                         
@@ -77,7 +79,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
-                           @foreach($New_Product as $top)
+                           @foreach($Best_Product as $top)
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             <div class="single-item-header">
@@ -98,30 +100,7 @@
                                     </div>
                             @endforeach
                             </div>
-                            <div class="space40">&nbsp;</div>
-                            <h4>Product</h4><br/>
-                            <div class="row">
-                            @foreach($New_Product as $top)
-                                    <div class="col-sm-3">
-                                        <div class="single-item">
-                                            <div class="single-item-header">
-                                                <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" alt=""></a>
-                                            </div>
-                                            <div class="single-item-body">
-                                                <p class="single-item-title">{{$top->name}}</p>
-                                                <p class="single-item-price">
-                                                    <span>{{$top->price}}</span>
-                                                </p>
-                                            </div>
-                                            <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}" >Details <i class="fa fa-chevron-right"></i></a>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            @endforeach
-                            </div>
+                            <div class="row" style="margin:20px 250px;">{{$New_Product->links()}}</div>
                         </div>
                         <!-- .beta-products-list -->
                     </div>

@@ -42,7 +42,7 @@ class FeedbackController extends Controller
         $txt=$request->feedback;
         $user_id=$request->user_id;
         $result=Feedback::set_review($user_id,$id_product,$txt);
-        echo $result;
+        echo auth()->user()->email;
     }
     /**
      * send answer of feedback to customer

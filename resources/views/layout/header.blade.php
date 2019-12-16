@@ -11,11 +11,11 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li class="nav-item">
+                        <li class="menu-beta l-inline" >
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="menu-beta l-inline">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
@@ -26,6 +26,9 @@
                             </a>
                 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('user',Auth::id())}}">
+                                    {{ __('Trang Cá Nhân') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -48,7 +51,7 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo-cake.png" width="200px" alt=""></a>
+                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" width="200px" style="width:60px; height:60px;" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>
@@ -65,7 +68,7 @@
                         <div class="beta-dropdown cart-body">
                             @if(Session::has('id_cart')) @foreach($product_cart as $cart)
                             <div class="cart-item">
-                                <a class="cart-item-delete" href="{{route('delete_cart',$cart->id)}}"><i class="fa fa-times"></i></a>
+                                <a class="cart-item-delete" href="{{route('delete_cart',[session()->get('id_cart'),$cart->id])}}"><i class="fa fa-times"></i></a>
                                 <div class="media">
                                     <a class="pull-left" href="{{route('productdetail',$cart->id)}}"><img src="{{$cart->image_font}}" alt=""></a>
                                     <div class="media-body">

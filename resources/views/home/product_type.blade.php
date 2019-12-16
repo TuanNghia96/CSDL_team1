@@ -24,7 +24,7 @@
 								<div class="col-sm-4">
 									<div class="single-item">
 										<div class="single-item-header">
-											<a href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
+											<a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$product->name}} </p>
@@ -57,7 +57,7 @@
 								<div class="col-sm-4">
 									<div class="single-item">
 										<div class="single-item-header">
-											<a href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
+											<a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$product->name}}</p>

@@ -6,10 +6,10 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <img id="anhchinh" src="assets/dest/images/lena.jpg"/></br>
-                        <img id="anh1" src="assets/dest/images/lena.jpg" style="width:80px;height:80px"/>
-                        <img id="anh2" src="assets/dest/images/lena.jpg" style="width:80px;height:80px"/>
-                        <img id="anh3" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/160811_%EB%AA%A8%EB%AA%A8%EB%9E%9C%EB%93%9C_%EC%83%81%EC%95%94_%ED%99%8D%EB%B3%B4._%EB%82%B8%EC%8B%9C_29_pic_%283%29.png" style="width:80px;height:80px"/>
+                        <img id="anhchinh" src="{{$product->image_font}}"/></br>
+                        <img id="anh1" src="{{$product->image_font}}" style="width:80px;height:80px"/>
+                        <img id="anh2" src="{{$product->image_back}}" style="width:80px;height:80px"/>
+                        <img id="anh3" src="{{$product->image_up}}" style="width:80px;height:80px"/>
                     </div>
                     <div class="col-sm-8">
                         <div class="single-item-body">
@@ -17,9 +17,9 @@
                             <p class="single-item-price">
                                 <span>Price: {{$product->price}} VND</span>
                             </p><br/>
-                            <p class="single-item-price">Product Type: {{$producttype->name}}</p><br/>
+                            <p class="single-item-price">Product Type: {{$product->name}}</p><br/>
                             <p class="single-item-price">
-                                <span>Size:10* <?php echo 10*$product->size; ?></span>
+                                <span>Size:(Width * Height) 10 * <?php echo 10*$product->size; ?></span>
                             </p><br/>
                             <p class="single-item-price">
                                 @if($product->sex) <span>Sex: Nữ</span>
@@ -54,6 +54,8 @@
                                 <br/>
                             @endforeach 
                         @endif
+                        <p><strong id="email"></strong><p>
+                        <p id="rv"><p>
                         <form action="{{route('feedback')}}" method="POST" name="SetReview">
                             @csrf
                             <input type="hidden" name="_token" value="{{!!csrf_token()!!}}"/>
@@ -61,6 +63,7 @@
                             <button type="button" id="submit" data-id="{{$product->id}}">Gui</button>
                             <input id="product" type="hidden" name="id_product" value="{{$product->id}}"/>
                             <input id="user" type="hidden" name="id_product" value="{{Auth::id()}}"/>
+                           
                         </form>
                     </div>
                 </div>
@@ -72,7 +75,7 @@
                         <div class="col-sm-4">
                             <div class="single-item">
                                 <div class="single-item-header">
-                                    <a href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
+                                    <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
                                 </div>
                                 <div class="single-item-body">
                                     <p class="single-item-title">{{$product->name}}</p>
@@ -99,10 +102,10 @@
                         <div class="beta-sales beta-lists">
                             @foreach($best_product as $product)
                             <div class="media beta-sales-item">
-                                <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
-                                <div class="media-body">
-                                    {{$product->name}}
-                                    <span class="beta-sales-price">{{$product->price}} VND</span>
+                                <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
+                                <div class="media-body" style="font-size:18px">
+                                    {{$product->name}}<br/>
+                                    <span class="beta-sales-price" style="font-size:15px">{{$product->price}}VND</span>
                                 </div>
                             </div>
                             @endforeach
@@ -116,10 +119,10 @@
                         <div class="beta-sales beta-lists">
                             @foreach($new_product as $product)
                             <div class="media beta-sales-item">
-                                <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="assets/dest/images/lena.jpg" alt=""></a>
-                                <div class="media-body">
-                                    {{$product->name}}
-                                    <span class="beta-sales-price">{{$product->price}} VND</span>
+                                <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
+                                <div class="media-body"style="font-size:18px">
+                                    {{$product->name}}<br/>
+                                    <span class="beta-sales-price"style="font-size:15px">{{$product->price}} VND</span>
                                 </div>
                             </div>
                             @endforeach
