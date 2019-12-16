@@ -66,3 +66,4 @@ Route::get("order/{t}",["as"=>"order","uses"=>"ProductController@order"])->middl
 Route::get("rediect",["as"=>"rediect","uses"=>"ProductController@rediect"]);
 Route::post("changeinfo",["as"=>"changeinfo","uses"=>"UserController@changeinfo"])->middleware('login');
 Route::post("updatecart",["as"=>"updatecart","uses"=>"ProductController@updatecart"]);
+Route::get("confirmorder/{t}",["as"=>"confirmorder","uses"=>"ProductController@confirmorder"]);

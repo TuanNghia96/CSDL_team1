@@ -40,11 +40,8 @@
                 </div>
 
                 <div class="space40">&nbsp;</div>
-                <div class="woocommerce-tabs">
-                    <ul class="tabs">
-                        <li id="review">Reviews {{count($review)}}</li>
-                    </ul>
-                    <div id="tab" style="display:none;"> 
+                <div class="woocommerce-tabs"><span style="margin:15px 0px;">Review<span>
+                    <div id="tab" style="display:block;"> 
                         @if(empty($review))
                         <p> No Review</p>
                             @else 
@@ -54,8 +51,6 @@
                                 <br/>
                             @endforeach 
                         @endif
-                        <p><strong id="email"></strong><p>
-                        <p id="rv"><p>
                         <form action="{{route('feedback')}}" method="POST" name="SetReview">
                             @csrf
                             <input type="hidden" name="_token" value="{{!!csrf_token()!!}}"/>

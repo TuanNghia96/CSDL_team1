@@ -110,9 +110,9 @@ class UserController extends Controller
      */
     public function update(UsersStoreRequest $request)
     {
-      /*  $id=$request->id; */
+        $id=$request->id;
        var_dump($request);
-      /*   return redirect($request->url_back ?? route('admin.users.index')); */
+        return redirect($request->url_back ?? route('admin.users.index'));
     }
     public function changeinfo(Request $request){
         User::updateinfo($request);

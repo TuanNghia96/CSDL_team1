@@ -226,4 +226,16 @@ class ProductController extends Controller
         $result=Cart::upcart($cart_id,$product_id,$quantity);
         return $result;
     }
+    public function confirmorder($id_cart){
+        $result=Order::find($id_cart);
+        $price=$result[0]->total;
+        if($price==0){
+            $result=Cart::deletecart($id_cart);
+            return dedirect()->route('home');
+        }
+        else{
+            $result=Cart::confirmorder($id_Cart);
+            return dedirecy()->route("home.show","$id_cart");
+        }
+    }
 }

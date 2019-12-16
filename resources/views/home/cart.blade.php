@@ -18,6 +18,7 @@
     <div id="content" class="row">
         <div class="table-responsive">
             <!-- Shop Products Table -->   
+            <form method="POST">
                 <table class="shop_table beta-shopping-cart-table" cellspacing="0">
                     <thead>
                         <tr>
@@ -29,7 +30,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <form method="POST">
                     <input name="_token" type="hidden" value="{!!csrf_token()!!}}"/>
                     <input name="cart_id" type="hidden" value="{{$cart_id}}"/>
                         @foreach($productcart as $product)
@@ -52,8 +52,8 @@
                             </td>
 
                             <td class="product-quantity">
-                                <input class ="sl" type="number" id="qty" style="width:40px; height=20px" name="sl" value="{{$product->quantity}}" min="1" data-id=""/>
-                                <i class="fa fa-pencil" aria-hidden="true" id="quantity" data-id="{{$product->id}}"></i>
+                                <input class ="sl" type="number" id="qty" style="width:40px; height:29px" name="sl" value="{{$product->quantity}}" min="1" data-id=""/>
+                                <br/><button type="button" class="confime" data-id="{{$product->id}}" style="width:20px; height:28px"><i class="fa fa-pencil" aria-hidden="true" id="quantity"></i></button><span>Update</span>
                             </td>
                             <td class="product-remove">
                                 <a href="{{route('delete_cart',[$cart_id,$product->id])}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
@@ -61,11 +61,12 @@
                         </tr>
                         @endforeach
                     </tbody>
-                    </form>
                     <tfoot>
+                      
                     </tfoot>
-
                 </table>
+                <textarea rows="4" cols="10" name="nhanxet" style="width:100%; height:100px;" id="text" placeholder="Nội dung bạn cần thêm chơ đơn hàng này"></textarea>
+                </form>
         </div>
         <!-- #content -->
     </div>
@@ -78,15 +79,14 @@
         <div class="your-order-body"  class="row">
             <ul class="payment_methods methods">
                 <li class="payment_method_bacs">
-                    <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="COD" checked="checked" data-order_button_text="">
-                    <label for="payment_method_bacs">Thanh toán khi nhận hàng </label>
-                    <div class="payment_box payment_method_bacs" style="display: block;">
+                    <div><strong>
                         Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng
+                        </strong>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="text-center"><a id= "kkk" href="{{route('dathang',$cart_id)}}"><button id ="dathang" type="submit" class="beta-btn primary"> Đặt hàng <i class="fa fa-chevron-right"></i></button></a></div>
+        <div class="text-center"><a id= "kkk" href="{{route('dathang',$cart_id)}}"><button id ="dathang" type="submit" class="beta-btn primary" data-id={{$cart_id}}> Đặt hàng <i class="fa fa-chevron-right"></i></button></a></div>
     </div>
 </div>
 <!-- .container -->
