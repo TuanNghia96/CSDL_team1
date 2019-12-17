@@ -4,6 +4,12 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $(".single-item").mouseenter(function() {
+        $(".single-item-caption").show();
+    });
+    $(".single-item").mouseleave(function() {
+        $(".single-item-caption").hide();
+    });
     $("#o").click(function() {
         $("#info").hide();
         $("#order").show();
@@ -43,6 +49,7 @@ $(document).ready(function() {
                 success: function(data) {
                     $("#text").before("<p><strong>" + data + "</strong></p>");
                     $("#text").before("<p>" + txt + "</p>");
+                    $("#text").attr("value", " ");
                 }
             });
         }

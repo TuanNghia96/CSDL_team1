@@ -91,12 +91,18 @@ class Cart extends Model
 		$result=DB::table('orders')->where("id","=",$id_Cart)->delete();
 		return $result;
 	}
-	static public function confirmorder($id_cart){
+	static public function confirmorder($id_cart,$text){
 		$result=DB::table('order_details')->where("order_id","=",$id_cart);
 		foreach($result as $product){
-			$result=DB::table("products")->where("id","=",$product->id)->update(["bought"=>$product->quantity]);
+			$result=DB::table("products")->where("id","=",$product->id)->get();
+			$bought=$result[0]->bought+$product->quantity;
+			$result=DB::table("products")->where("id","=",$product->id)->update(["bought"=>$bought]);
 		}
-		$result=DB::table("orders")->where("id","=",$id_cart)->update(["status"=>2]);
+		$result=DB::table("orders")->where("id","=",$id_cart)->update(["status"=>1,"memo"=>$txt]);
 		return $result;
 	} 
+	static public function updatestatus($id_Cart){
+		$result=DB::table('orders')->where("id","=",$id_Cart)->update(["status"=>1]);
+		return $result;
+	}
 }

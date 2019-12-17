@@ -39,7 +39,7 @@
                         <div class="row">
                             @foreach($New_Product as $product)
                             <div class="col-sm-3">
-                                <div class="single-item">
+                                <div class="single-item" style="padding:10px; margin:5px 0px;">
                                     <div class="single-item-header">
                                         <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
                                     </div>
@@ -49,7 +49,7 @@
                                             <span>{{$product->price}}</span>
                                         </p>
                                     </div>
-                                    <div class="single-item-caption">
+                                    <div class="single-item-caption" style="margin:2px 0px 0px 0px">
                                         <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
                                         <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>

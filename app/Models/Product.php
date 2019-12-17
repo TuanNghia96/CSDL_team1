@@ -42,7 +42,7 @@ class Product extends Model
         return $result;
     }
     static public function category_product($id_category){
-        $result=DB::table('products')->where("category_id","=","$id_category")->orderByRaw('products.created_at DESC')->paginate(3);
+        $result=DB::table('products')->where("category_id","=","$id_category")->orderByRaw('products.created_at DESC')->paginate(9);
         return $result;
     }
     static public function Best_category_product($category_id){

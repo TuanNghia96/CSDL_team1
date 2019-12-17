@@ -211,7 +211,7 @@ class ProductController extends Controller
             }
         }
     public function showorder($id_Cart){
-    
+            $cart =Cart::updatestatus($id_Cart);
             $cart = Cart::get_cart($id_Cart);
             $cartdetail = Cart::get_orderdetail($id_Cart);
             $productcart = [];
@@ -237,16 +237,11 @@ class ProductController extends Controller
         $result=Cart::upcart($cart_id,$product_id,$quantity);
         return $result;
     }
-    public function confirmorder($id_cart){
-        $result=Order::find($id_cart);
-        $price=$result[0]->total;
-        if($price==0){
-            $result=Cart::deletecart($id_cart);
-            return dedirect()->route('home');
-        }
-        else{
-            $result=Cart::confirmorder($id_Cart);
-            return dedirecy()->route("home.show","$id_cart");
-        }
+    public function confirmorder(Request $request){
+      /*   $id_Cart=$request->id_Cart;
+        $text=$request->nhanxet;
+        $result=Cart::confirmorder($id_Cart,$text);
+        return dedirect()->route("dathang",$id_Cart); */
+        var_dump($request);
     }
 }

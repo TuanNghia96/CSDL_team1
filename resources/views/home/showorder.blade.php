@@ -3,7 +3,8 @@
 <div class="container">
     <div id="content" class="row">
         <div class="table-responsive">
-            <!-- Shop Products Table -->   
+            <!-- Shop Products Table -->
+            <h4>Đơn hàng của bạn</h4>   
                 <table class="shop_table beta-shopping-cart-table" cellspacing="0">
                     <thead>
                         <tr>
@@ -23,7 +24,6 @@
                                     </div>
                                 </div>
                             </td>
-
                             <td class="product-price">
                                 <span class="amount" id="price">{{$product->price}}</span>
                             </td>

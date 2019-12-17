@@ -49,7 +49,13 @@
                     $(".header-bottom").removeClass('fixNav')
                 }
             });
-      
+            $("#kkk").click(function() {
+            var price = Number($("span#total_price").text());
+            if (price == 0) {
+             alert("Đặt hàng không thành công");
+             $("a#kkk").attr("href", "{{route('home')}}");
+                } 
+            });
         });   
     </script>
 </body>
