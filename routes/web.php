@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
 });
 //route of admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
