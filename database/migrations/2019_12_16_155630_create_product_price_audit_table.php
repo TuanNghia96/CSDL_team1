@@ -15,6 +15,7 @@ class CreateProductPriceAuditTable extends Migration
     {
         Schema::create('product_price_audit', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('email', 100)->nullable();
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('price_before');
