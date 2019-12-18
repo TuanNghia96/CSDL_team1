@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class Product extends Model
 {
@@ -175,6 +176,7 @@ class Product extends Model
         }
         $input['size'] = ($input['size'] / 10);
         $input['created_at'] = Carbon::now();
-        return $this->find($input['id'])->update($input);
+        $this->find($input['id'])->update($input);
+        PriceAudit::orderBy('created_at', 'DESC')->where('price_after', $input['price'])->where('product_id', $input['id'])->first()->update(['email' => Auth::user()->email]);
     }
 }

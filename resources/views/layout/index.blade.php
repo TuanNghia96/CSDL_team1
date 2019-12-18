@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield("title")</title>
     <base href="{{asset('')}}"/>
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
@@ -24,7 +25,6 @@
     @yield("content")
     @include("layout.footer")
     <script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="{{  asset('js/app.js') }}"></script>
     <script src="assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
     <script src="assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
     <script src="assets/dest/vendors/animo/Animo.js"></script>
@@ -35,7 +35,6 @@
     <script src="assets/dest/js/waypoints.min.js"></script>
     <script src="assets/dest/js/wow.min.js"></script>
     <!--customjs-->
-    
 
     <script src="assets/dest/js/custom2.js"></script>
     

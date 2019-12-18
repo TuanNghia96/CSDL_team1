@@ -24,6 +24,7 @@
                         <th class="text-center">Giá trước</th>
                         <th class="text-center">Trang thái</th>
                         <th class="text-center">Giá sau</th>
+                        <th class="text-center">Tác động bởi</th>
                         <th class="text-center">Thời gian</th>
                         <th class="text-center">Hành động</th>
                     </tr>
@@ -42,6 +43,7 @@
                                         @endif
                                     </b></h3></td>
                             <td class="text-center">{{ $value->price_after }}</td>
+                            <td class="text-center">{{ $value->email }}</td>
                             <td class="text-center">{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                             <td class="text-center">
                                 <form action="{{ route('products.audit') }}" method="get">

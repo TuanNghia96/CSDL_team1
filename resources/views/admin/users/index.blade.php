@@ -93,7 +93,7 @@
                 @if ($users->count() == 0)
                     <div><h3 class="text-center red">{{ 'Không tìm thấy bản ghi nào.' }}</h3></div>
                 @else
-                    <table class="table">
+                    <table class="table" id="table_id">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -159,4 +159,5 @@
                 @endif
             </div>
     </div>
+    
 @endsection
