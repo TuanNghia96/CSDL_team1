@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield("title")</title>
     <base href="{{asset('')}}"/>
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
@@ -16,14 +17,12 @@
     <link rel="stylesheet" href="assets/dest/css/animate.css">
     <link rel="stylesheet" title="style" href="assets/dest/css/huong-style.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
     @include("layout.header")
     @yield("content")
     @include("layout.footer")
     <script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="{{  asset('js/app.js') }}"></script>
     <script src="assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
     <script src="assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
     <script src="assets/dest/vendors/animo/Animo.js"></script>

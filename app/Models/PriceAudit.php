@@ -8,6 +8,9 @@ class PriceAudit extends Model
 {
     protected $table = 'product_price_audit';
     public $timestamps = false;
+    protected $fillable = [
+        'email'
+    ];
     
     /**
      * relation to product
