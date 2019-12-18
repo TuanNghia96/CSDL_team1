@@ -4,12 +4,12 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $(".single-item").mouseenter(function() {
-        $(".single-item-caption").show();
-    });
-    $(".single-item").mouseleave(function() {
-        $(".single-item-caption").hide();
-    });
+    /*     $(".single-item").mouseenter(function() {
+            $(this).find("div.single-item-caption").show();
+        });
+        $(".single-item").mouseleave(function() {
+            $(this).find("div.single-item-caption").hide();
+        }); */
     $("#o").click(function() {
         $("#info").hide();
         $("#order").show();
