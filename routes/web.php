@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
 });
 //route of admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('feedbacks/answer', 'FeedbackController@answer')->name('feedbacks.answer');
     //Product
     Route::resource('products', 'ProductController');
+    Route::get('product/audit/', 'ProductController@audit')->name('products.audit');
+    
     //Order
     Route::resource('orders', 'OrderController')->only(['index', 'show']);
     Route::get('orders/status/{id}', 'OrderController@updateStatus')->name('orders.status');
