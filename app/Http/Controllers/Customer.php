@@ -38,7 +38,7 @@ class Customer extends Controller
         $user=User::find($id);
         $status = Order::$status;
         $orders=Cart::get_cart_userid($id);
-        return view("home.user",compact("user","orders","status","order"));
+        return view("home.user",compact("user","orders","status","orders"));
     }
   /*   public function SaveChange(Request $request){
 

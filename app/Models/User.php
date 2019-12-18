@@ -108,7 +108,7 @@ class User extends Model implements Authenticatable
             }
             $file = $request->avata_url;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['avata_url'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['avata_url'] = $filePart . '/' . $file->getClientOriginalName();
         } else {
             unset($input['avata_url']);
         }
@@ -126,7 +126,7 @@ class User extends Model implements Authenticatable
     {
         $id=$request->id;
         $input = $request->all();
-        $filePart = 'public/images/users/';
+        $filePart = 'images/users/';
         if ($request->hasFile('avata_url')) {
     
             if(File::exists(public_path(self::find($id)->avata_url))){
@@ -135,11 +135,12 @@ class User extends Model implements Authenticatable
             $file = $request->avata_url;
             $file->move($filePart, $file->getClientOriginalName());
             $input['avata_url'] = $filePart . $file->getClientOriginalName();
+            $result=DB::table('users')->where("id","=",$id)->update(["name"=>"$request->name","phone"=>"$request->phone","address"=>"$request->address","avata_url"=>"$input[avata_url]"]);
         } else {
-            unset($input['avata_url']);
-        }
-        $input['role'] = 1;
-        $result=DB::table('users')->where("id","=",$id)->update(["name"=>"$request->name","phone"=>"$request->phone","address"=>"$request->address","avata_url"=>"$input[avata_url]"]);
+            unset($input['avata_url']); 
+            $input['role'] = 1;
+            $result=DB::table('users')->where("id","=",$id)->update(["name"=>"$request->name","phone"=>"$request->phone","address"=>"$request->address"]);
+        } 
         return $result;
     }
     /**

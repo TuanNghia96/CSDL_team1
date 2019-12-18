@@ -210,58 +210,45 @@ class ProductController extends Controller
         Cart::removeItem($id_cart, $id);
         return redirect()->back();
     }
-    
-    /*    public function Order(Request $request){
-           $oldCart=Session::has('cart')?session::get('cart'):NULL;
-           return view("home.cart",compact($oldCart));
-       } */
-    public function ProductDetail(Request $request, $id)
-    {
-        $product = Product::find($id);
-        $new_product = Product::New_Product(4);
-        $best_product = Product::Best_Product();
-        $product_lq = Product::product_lq($product->id, $product->category_id);
-        $review = Feedback::get_review($id);
-        $producttype = Category::find($id);
-        return view("home.product_detail", compact("product", "new_product", "best_product", "product_lq", "review", "producttype"));
+    public function ProductDetail(Request $request,$id){
+        $product=Product::find($id);
+        $new_product=Product::New_Product(4);
+        $best_product=Product::Best_Product();
+        $product_lq=Product::product_lq($product->id,$product->category_id);
+        $review=Feedback::get_review($id);
+        $producttype=Category::find($id);
+        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype"));
     }
-    
-    public function Category(Request $request, $id)
-    {
-        $category = Category::get_name();
-        if (!$id) $id = $category[0]->id;
-        $product_category = Product::category_product($id);
-        $best_product = Product::Best_category_product($id);
-        return view("home.product_type", compact("category", "product_category", "best_product"));
+    public function Category(Request $request,$id){
+        $category=Category::get_name();
+        if(!$id) $id=$category[0]->id;
+        $product_category=Product::category_product($id);
+        $best_product=Product::Best_category_product($id);
+        return view("home.product_type",compact("category","product_category","best_product"));
     }
-    
-    public function Sreach(Request $request)
-    {
-        $txt = $request->s;
-        $New_Product = Product::sreach_category($txt);
-        return view("home.sreach", compact("New_Product"));
+    public function Sreach(Request $request){
+        $txt=$request->s;
+        $New_Product=Product::sreach_category($txt);
+        return view("home.sreach",compact("New_Product"));
     }
-    
-    public function order($cart_id)
-    {
+    public function order($cart_id){
         if (Gate::allows('customer')) {
-            $cart = Cart::get_cart($cart_id);
-            $cartdetail = Cart::get_orderdetail($cart_id);
-            $productcart = [];
-            $totalQty = 0;
-            $totalPrice = $cart[0]->total;
-            foreach ($cartdetail as $cart) {
-                $p = Product::find($cart->product_id);
-                $totalQty += $cart->quantity;
-                $p->quantity = $cart->quantity;
-                array_push($productcart, $p);
+                $cart=Cart::get_cart($cart_id);
+                $cartdetail=Cart::get_orderdetail($cart_id);
+                $productcart=[];
+                $totalQty=0;
+                $totalPrice=$cart[0]->total;
+                foreach($cartdetail as $cart){
+                    $p=Product::find($cart->product_id);
+                    $totalQty+=$cart->quantity;
+                    $p->quantity=$cart->quantity;
+                    array_push($productcart,$p);
+                }
+		        return view("home.cart",compact("totalPrice","cartdetail","productcart","totalQty","cart_id"));
+            } else {
+                return redirect(route('home'));
             }
-            return view("home.cart", compact("totalPrice", "cartdetail", "productcart", "totalQty", "cart_id"));
-        } else {
-            return redirect(route('home'));
         }
-    }
-    
     public function showorder($id_Cart)
     {
         
@@ -293,5 +280,12 @@ class ProductController extends Controller
         $quantity = $request->quantity;
         $result = Cart::upcart($cart_id, $product_id, $quantity);
         return $result;
+    }
+    public function confirmorder(Request $request){
+      /*   $id_Cart=$request->id_Cart;
+        $text=$request->nhanxet;
+        $result=Cart::confirmorder($id_Cart,$text);
+        return dedirect()->route("dathang",$id_Cart); */
+        var_dump($request);
     }
 }

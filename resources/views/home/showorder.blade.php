@@ -3,7 +3,8 @@
 <div class="container">
     <div id="content" class="row">
         <div class="table-responsive">
-            <!-- Shop Products Table -->   
+            <!-- Shop Products Table -->
+            <h4>Đơn hàng của bạn</h4>   
                 <table class="shop_table beta-shopping-cart-table" cellspacing="0">
                     <thead>
                         <tr>
@@ -23,7 +24,6 @@
                                     </div>
                                 </div>
                             </td>
-
                             <td class="product-price">
                                 <span class="amount" id="price">{{$product->price}}</span>
                             </td>
@@ -47,10 +47,14 @@
         </div>
 
         <div class="your-order-body"  class="row">
-                    <label for="payment_method_bacs">Thanh toán khi nhận hàng </label>
-                    <div class="payment_box payment_method_bacs" style="display: block;">
+        <ul class="payment_methods methods">
+                <li class="payment_method_bacs">
+                    <div><strong>
                         Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng
+                        </strong>
                     </div>
+                </li>
+            </ul>
         </div>
         <div class="text-center"><a href="{{route('rediect')}}"><button type="submit" class="beta-btn primary"> Home <i class="fa fa-chevron-right"></i></button></a></div>
     </div>
