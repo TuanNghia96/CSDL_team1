@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Routing\Redirector;
 
@@ -138,7 +139,17 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('admin')) {
-            $this->product->find($id)->delete();
+            $product = $this->product->find($id);
+            if(File::exists(public_path($product->image_font))){
+                unlink(public_path($product->image_font));
+            }
+            if(File::exists(public_path($product->image_back))){
+                unlink(public_path($product->image_back));
+            }
+            if(File::exists(public_path($product->image_up))){
+                unlink(public_path($product->image_up));
+            }
+            $product->delete();
             return redirect(route('products.index'));
         } else {
             return redirect(route('home'));
