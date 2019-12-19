@@ -21,15 +21,15 @@
                 </tr>
                 <tr>
                     <th scope="col">ảnh trước</th>
-                    <td><img src="{{ $product->image_font }}" class="img-thumbnail" width="250" height="auto" alt="{{ $product->name }}"></td>
+                    <td><img src="{{ asset($product->image_font) }}" class="img-thumbnail" width="250" height="auto" alt="{{ $product->name }}"></td>
                 </tr>
                 <tr>
                     <th scope="col">ảnh sau</th>
-                    <td><img src="{{ $product->	image_back }}" class="img-thumbnail" width="250" height="auto" alt="{{ $product->name }}"></td>
+                    <td><img src="{{ asset($product->image_back) }}" class="img-thumbnail" width="250" height="auto" alt="{{ $product->name }}"></td>
                 </tr>
                 <tr>
                     <th scope="col">ảnh trên</th>
-                    <td><img src="{{ $product->image_up }}" class="img-thumbnail" width="250" height="auto" alt="{{ $product->name }}"></td>
+                    <td><img src="{{ asset($product->image_up) }}" class="img-thumbnail" width="250" height="auto" alt="{{ $product->name }}"></td>
                 </tr>
                 <tr>
                     <th scope="col">Giới tính</th>

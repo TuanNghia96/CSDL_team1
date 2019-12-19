@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Routing\Redirector;
 
@@ -136,6 +137,9 @@ class UserController extends Controller
         if (Gate::allows('admin')) {
             $user = $this->user->find($id);
             if ($user->role == User::ADMIN_ROLE) {
+                if(File::exists(public_path($user->avata_url))){
+                    unlink(public_path($user->avata_url));
+                }
                 $user->delete();
             } elseif ($user->status == 1) {
                 $user->update(['status' => 0]);

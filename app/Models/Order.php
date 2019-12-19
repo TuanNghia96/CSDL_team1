@@ -16,12 +16,14 @@ class Order extends Model
         'created_at'
     ];
     
+    const EXIST_STATUS = 0;
     const ORDER_STATUS = 1;
     const DELIVERY_STATUS = 2;
     const DELIVERED_STATUS = 3;
     const CANCEL_STATUS = 4;
     
     public static $status = [
+        self::EXIST_STATUS => 'Chưa đặt hàng',
         self::ORDER_STATUS => 'Đặt hàng',
         self::DELIVERY_STATUS => 'Giao hàng',
         self::DELIVERED_STATUS => 'Đã giao',
