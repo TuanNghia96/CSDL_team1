@@ -81,10 +81,12 @@ class Cart extends Model
 		$result=DB::table("order_details")->where([["order_id","=",$cart_id],["product_id","=",$product_id]])->update(["quantity"=>$quantity]);
 		$result=DB::table("products")->where("id","=",$product_id)->get();
 		$price=$result[0]->price;
+		
 		$order=DB::table("orders")->where("id","=",$cart_id)->get();
 		$total=$order[0]->total;
 		$price=$total+($quantity-$sl)*$price;
 		$result=DB::table("orders")->where("id","=",$cart_id)->update(["total"=>$price]);
+		
 		return $price;
 	}
 	static public function deletecart($id_Cart){
@@ -92,13 +94,14 @@ class Cart extends Model
 		return $result;
 	}
 	static public function confirmorder($id_cart,$text){
-		$result=DB::table('order_details')->where("order_id","=",$id_cart);
+		$result=DB::table('order_details')->where("order_id","=",$id_cart)->get();
 		foreach($result as $product){
-			$result=DB::table("products")->where("id","=",$product->id)->get();
-			$bought=$result[0]->bought+$product->quantity;
-			$result=DB::table("products")->where("id","=",$product->id)->update(["bought"=>$bought]);
+			$product_id=$product->product_id;
+			$order=DB::table("products")->where("id","=",$product_id)->get();
+			$bought=$order[0]->bought+$product->quantity;
+			$order=DB::table("products")->where("id","=",$product_id)->update(["bought"=>$bought]);
 		}
-		$result=DB::table("orders")->where("id","=",$id_cart)->update(["status"=>1,"memo"=>$txt]);
+		$result=DB::table("orders")->where("id","=",$id_cart)->update(["status"=>1,"memo"=>"$text"]);
 		return $result;
 	} 
 	static public function updatestatus($id_Cart){

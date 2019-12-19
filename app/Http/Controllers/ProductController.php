@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Routing\Redirector;
-
+use Session;
 class ProductController extends Controller
 {
     protected $product;
@@ -173,10 +173,9 @@ class ProductController extends Controller
         return view("home.trangchu", compact("New_Product", "Best_Product"));
     }
     
-    public function Cart(Request $request, $id)
+    public function Cart(Request $request,$id)
     {
         if (Gate::allows('customer')) {
-            
             /* $input=$request->all(); */
             /*  $id=$request->product_id; */
             $product = Product::find($id);
@@ -190,7 +189,7 @@ class ProductController extends Controller
             }
             return redirect()->back();
         } else {
-            return redirect(route('home'));
+            return redirect()->route('home');
         }
     }
     
@@ -242,6 +241,7 @@ class ProductController extends Controller
     {
         
         $cart = Cart::get_cart($id_Cart);
+        $memo=$cart[0]->memo;
         $cartdetail = Cart::get_orderdetail($id_Cart);
         $productcart = [];
         $totalQty = 0;
@@ -252,7 +252,7 @@ class ProductController extends Controller
             $p->quantity = $cart->quantity;
             array_push($productcart, $p);
         }
-        return view("home.showorder", compact("totalPrice", "cartdetail", "productcart", "totalQty"));
+        return view("home.showorder", compact("totalPrice", "cartdetail", "productcart", "totalQty","memo"));
         
     }
     
@@ -271,10 +271,9 @@ class ProductController extends Controller
         return $result;
     }
     public function confirmorder(Request $request){
-      /*   $id_Cart=$request->id_Cart;
-        $text=$request->nhanxet;
+        $id_Cart=$request->id;
+        $text=$request->txt;
         $result=Cart::confirmorder($id_Cart,$text);
-        return dedirect()->route("dathang",$id_Cart); */
-        var_dump($request);
+        return "OK";
     }
 }

@@ -13,13 +13,13 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="single-item-body">
-                            <p class="single-item-price">Name: {{$product->name}}</p><br/>
+                            <p class="single-item-price">Tên sản phẩm: {{$product->name}}</p><br/>
                             <p class="single-item-price">
-                                <span>Price: {{$product->price}} VND</span>
+                                <span>Giá: {{$product->price}} VND</span>
                             </p><br/>
-                            <p class="single-item-price">Product Type: {{$product->name}}</p><br/>
+                            <p class="single-item-price">Dòng sản phẩm: {{$product->name}}</p><br/>
                             <p class="single-item-price">
-                                <span>Size:(Width * Height) 10 * <?php echo 10*$product->size; ?></span>
+                                <span>Kích thước: 10 * <?php echo 10*$product->size; ?></span>
                             </p><br/>
                             <p class="single-item-price">
                                 @if($product->sex) <span>Sex: Nữ</span>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="space40">&nbsp;</div>
-                <div class="woocommerce-tabs"><span style="margin:15px 0px;">Review<span>
+                <div class="woocommerce-tabs"><span style="margin:15px 0px;">Nhận xét<span>
                     <div id="tab" style="display:block;"> 
                         @if(empty($review))
                         <p> No Review</p>
@@ -64,13 +64,13 @@
                 </div>
                 <div class="space50">&nbsp;</div>
                 <div class="beta-products-list">
-                    <h4>Related Products</h4>
+                    <h4>Sản phẩm liên quan</h4>
                     <div class="row">
                         @foreach($product_lq as $product)
                         <div class="col-sm-4">
                             <div class="single-item" style="padding:10px; margin:5px 0px;">
                                 <div class="single-item-header">
-                                    <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
+                                    <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" style="width:270px; height:270px;" alt=""></a>
                                 </div>
                                 <div class="single-item-body">
                                     <p class="single-item-title">{{$product->name}}</p>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="single-item-caption" style="margin:2px 0px 0px 0px">
                                     <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
+                                    <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
             </div>
             <div class="col-sm-3">
                 <div class="widget">
-                    <h3 class="widget-title">Best_Seller</h3>
+                    <h3 class="widget-title">Sản phẩm bán chạy</h3>
                     <div class="widget-body">
                         <div class="beta-sales beta-lists">
                             @foreach($best_product as $product)
@@ -109,7 +109,7 @@
                 </div>
                 <!-- best sellers widget -->
                 <div class="widget">
-                    <h3 class="widget-title">New Products</h3>
+                    <h3 class="widget-title">Sản phẩm mới</h3>
                     <div class="widget-body">
                         <div class="beta-sales beta-lists">
                             @foreach($new_product as $product)
