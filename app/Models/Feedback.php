@@ -50,7 +50,7 @@ class Feedback extends Model
         return $this->belongsTo(\App\Models\User::class);
     }
     static public function get_review($id){
-        $result=DB::table('feedbacks')->join('users','users.id',"=","feedbacks.user_id")->where("product_id","=","$id")->get();
+        $result=DB::table('feedbacks')->join('users','users.id',"=","feedbacks.user_id")->where("product_id","=","$id")->offset(0)->limit(3)->get();
         return $result;
     }
     static public function set_review($user_id,$id_product,$txt){
