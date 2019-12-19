@@ -44,22 +44,23 @@
                     <div id="tab" style="display:block;"> 
                         @if(empty($review))
                         <p> No Review</p>
-                            @else 
+                            @else
                             @foreach($review as $re)
                                 <p><strong>{{$re->email}}</strong></p>
                                 <p>{{$re->content}}</p>
                                 <br/>
-                            @endforeach 
+                            @endforeach
                         @endif
-                        <form action="{{route('feedback')}}" method="POST" name="SetReview">
-                            @csrf
-                            <input type="hidden" name="_token" value="{{!!csrf_token()!!}}"/>
-                            <textarea rows="1" cols="1" name="feedback" style="width:100%; height:100px;" id="text"></textarea>
-                            <button type="button" id="submit" data-id="{{$product->id}}">Gui</button>
-                            <input id="product" type="hidden" name="id_product" value="{{$product->id}}"/>
-                            <input id="user" type="hidden" name="id_product" value="{{Auth::id()}}"/>
-                           
-                        </form>
+                        @if($check)
+                            <form action="{{route('feedback')}}" method="POST" name="SetReview">
+                                @csrf
+                                <input type="hidden" name="_token" value="{{!!csrf_token()!!}}"/>
+                                <textarea rows="1" cols="1" name="feedback" style="width:100%; height:100px;" id="text"></textarea>
+                                <button type="button" id="submit" data-id="{{$product->id}}">Gui</button>
+                                <input id="product" type="hidden" name="id_product" value="{{$product->id}}"/>
+                                <input id="user" type="hidden" name="id_product" value="{{Auth::id()}}"/>
+                            </form>
+                        @endif
                     </div>
                 </div>
                 <div class="space50">&nbsp;</div>
@@ -121,7 +122,7 @@
                                 </div>
                             </div>
                             @endforeach
-                        </div>           
+                        </div>
                     </div>
                 </div>
                 <!-- best sellers widget -->

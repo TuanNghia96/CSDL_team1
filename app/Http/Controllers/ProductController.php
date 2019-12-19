@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderDetail;
 use App\Models\PriceAudit;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -11,6 +12,7 @@ use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Routing\Redirector;
 use Session;
@@ -138,7 +140,17 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('admin')) {
-            $this->product->find($id)->delete();
+            $product = $this->product->find($id);
+            if(File::exists(public_path($product->image_font))){
+                unlink(public_path($product->image_font));
+            }
+            if(File::exists(public_path($product->image_back))){
+                unlink(public_path($product->image_back));
+            }
+            if(File::exists(public_path($product->image_up))){
+                unlink(public_path($product->image_up));
+            }
+            $product->delete();
             return redirect(route('products.index'));
         } else {
             return redirect(route('home'));
@@ -205,7 +217,13 @@ class ProductController extends Controller
         $product_lq=Product::product_lq($product->id,$product->category_id);
         $review=Feedback::get_review($id);
         $producttype=Category::find($id);
-        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype"));
+        $check = 0;
+        foreach (Auth::user()->orders()->get() as $value){
+            if ($value->ordersDetail->where('product_id', $id)->first()){
+                $check = 1;
+            }
+        }
+        return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype", 'check'));
     }
     public function Category(Request $request,$id){
         $category=Category::get_name();
