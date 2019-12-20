@@ -2,13 +2,10 @@
 
 namespace App\Mail;
 
-use App\Models\Feedback;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class AnswerEmail extends Mailable
 {
@@ -32,12 +29,11 @@ class AnswerEmail extends Mailable
      */
     public function build()
     {
-        $feedback= Feedback::find($this->input['id']);
         $data = [
             'answer' => $this->input['answer'],
             'admin' => $this->input['admin'],
-            'customer' => $feedback->user->name,
-            'content' => $feedback->content
+            'customer' => User::find($this->input['user_id'])->name,
+            'content' => $this->input['question']
         ];
         return $this->view('mail.answer')->with($data);
     }
