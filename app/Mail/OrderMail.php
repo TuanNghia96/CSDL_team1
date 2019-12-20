@@ -36,8 +36,10 @@ class OrderMail extends Mailable
         $data = [
             'order' => $this->order,
             'status' => Order::$status,
-            'reason' => $this->reason
+            'reason' => $this->reason,
+            'url' => Order::$statusUrl
         ];
-        return $this->view('mail.answer')->with($data);
+        
+        return $this->view('mail.order')->with($data);
     }
 }
