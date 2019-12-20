@@ -25,32 +25,32 @@
         </div>
         <!--slider-->
     </div>
-    <div class="container">
+    <div class="container pl-0 pr-0 " style="max-width: 100%;">
     <div id="ketqua" class="row"></div>
-        <div id="content" class="space-top-none">
-            <div class="main-content">
+        <div id="content" class="space-top-none pb-0">
+            <div class="main-content" style="background:linear-gradient(to bottom, rgb(197,222,234) 0%,rgb(138,187,215) 31%,rgb(6,109,171) 100%);">
                 <div class="space60">&nbsp;</div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="beta-products-list">
-                            <h4>New Products</h4><br/>
+                            <h4 style="color: #0e0a0a; padding-left: 40px; font-size: 500%;"><b>Sản Phẩm mới</b></h4><br/>
                             @if($New_Product)
                             <form method="POST">
                             <input name="_token" type="hidden" value="{!!csrf_token()!!}}"/>
                             <div class="beta-products-details">
-                                <p class="pull-left">{{count($New_Product)}} styles found</p>
+                                <p class="pull-left" style="padding-left:20px"> Tìm thấy {{count($New_Product)}} sản phẩm mới</p>
                                 <div class="clearfix"></div>
                             </div>
                             
                             <div class="row">
                                 @foreach($New_Product as $product)
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3" style="padding-left:30px; padding-right:30px; padding-bottom:30px">
                                         <div class="single-item">
                                             <div class="single-item-header">
                                                 <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
-                                                <p class="single-item-title">{{$product->name}}</p>
+                                                <p class="single-item-title" style="color:#00136c; font-weight:bold">{{$product->name}}</p>
                                                 <p class="single-item-price">
                                                     <span>{{$product->price}}</span>
                                                 </p>
@@ -73,20 +73,20 @@
                         <div class="space50">&nbsp;</div>
                         
                         <div class="beta-products-list">
-                            <h4>Top Products</h4><br/>
+                            <h4 style="color: #0e0a0a; padding-left: 40px; font-size: 450%;">Sản phẩm hàng đầu</h4><br/>
                             <div class="beta-products-details">
-                                <p class="pull-left">{{count($New_Product)}} styles found</p>
+                                <p class="pull-left" style="padding-left:20px">Tìm thấy {{count($New_Product)}} sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
                            @foreach($Best_Product as $top)
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3" style="padding-left:30px; padding-right:30px; padding-bottom:30px">
                                         <div class="single-item">
                                             <div class="single-item-header">
                                                 <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
-                                                <p class="single-item-title">{{$top->name}}</p>
+                                                <p class="single-item-title"style="color:#00136c; font-weight:bold">{{$top->name}}</p>
                                                 <p class="single-item-price">
                                                     <span>{{$top->price}}</span>
                                                 </p>
@@ -100,7 +100,7 @@
                                     </div>
                             @endforeach
                             </div>
-                            <div class="row" style="margin:20px 250px;">{{$New_Product->links()}}</div>
+                            <div class="row" style="margin:20px 380px;">{{$New_Product->links()}}</div>
                         </div>
                         <!-- .beta-products-list -->
                     </div>
