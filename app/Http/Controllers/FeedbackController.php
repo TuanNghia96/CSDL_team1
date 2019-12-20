@@ -55,6 +55,8 @@ class FeedbackController extends Controller
         if (Gate::allows('admin')) {
             $input = $request->all();
             $input['admin'] = Auth::user()->name;
+            $input['question'] = $this->feedback->find($input['id'])->content;
+            $input['user_id'] = $this->feedback->find($input['id'])->user_id;
             dispatch(new SendAnswerEmail($input));
             $this->feedback->find($input['id'])->delete();
             return redirect(route('feedbacks.index'));

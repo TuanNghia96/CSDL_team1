@@ -30,6 +30,14 @@ class Order extends Model
         self::CANCEL_STATUS => 'Hủy đơn'
     ];
     
+    public static $statusUrl = [
+        self::EXIST_STATUS => 'https://cdn1.iconfinder.com/data/icons/shipping-delivery-4/24/Shipping_delivery_box_check-512.png',
+        self::ORDER_STATUS => 'https://cdn1.iconfinder.com/data/icons/shipping-delivery-4/24/Shipping_delivery_box_check-512.png',
+        self::DELIVERY_STATUS => 'https://cdn1.iconfinder.com/data/icons/shipping-delivery-4/24/Shipping_delivery_free_truck-512.png',
+        self::DELIVERED_STATUS => 'https://cdn1.iconfinder.com/data/icons/shipping-delivery-4/24/Shipping_delivery_box_hand_hold_care-256.png',
+        self::CANCEL_STATUS => 'https://cdn1.iconfinder.com/data/icons/shipping-delivery-4/24/Shipping_delivery_box_cancel_disable-512.png'
+    ];
+    
     /**
      * get list data
      *

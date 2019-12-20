@@ -25,43 +25,43 @@
         </div>
         <!--slider-->
     </div>
-    <div class="container">
+    <div class="container pl-0 pr-0 " style="max-width: 100%;">
     <div id="ketqua" class="row"></div>
-        <div id="content" class="space-top-none">
+        <div class="container">
             <div class="main-content">
-                <div class="space60">&nbsp;</div>
+            <div class="space60">&nbsp;</div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="beta-products-list">
-                            <h4>New Products</h4><br/>
+                            <h4 style="color: #0e0a0a; padding-left: 15px; font-size: 300%;"><b>Sản Phẩm mới</b></h4><br/>
                             @if($New_Product)
                             <div class="beta-products-details">
-                                <p class="pull-left">{{count($New_Product)}} styles found</p>
                                 <div class="clearfix"></div>
-                            </div>
-                            
+                            </div>                   
                             <div class="row">
                                 @foreach($New_Product as $product)
-                                    <div class="col-sm-3">
-                                        <div class="single-item"  style="padding:10px; margin:5px 0px;">
+                                    <div class="col-sm-3" style="padding-left:30px; padding-right:30px; padding-bottom:30px">
+                                        <div class="single-item">
+
                                             <div class="single-item-header">
                                                 <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" style="width:270px; height:auto;" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
-                                                <p class="single-item-title">{{$product->name}}</p>
+                                                <p class="single-item-title" style="color:#00136c; font-weight:bold">{{$product->name}}</p>
                                                 <p class="single-item-price">
-                                                    <span>{{$product->price}} VND</span>
+                                                    <span>{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                                                 </p>
                                             </div>
                                             <div class="single-item-caption" style="margin:2px 0px 0px 0px">
                                                 <a id="mua" class="add-to-cart pull-left" href="{{route('cart',$product->id)}}" ><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
-                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
+                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">chi tiết <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
                                     </div>
-                              @endforeach
+                                @endforeach
                             </div>
+                           
                             @endif
                             <br/>
                         </div>
@@ -70,34 +70,34 @@
                         <div class="space50">&nbsp;</div>
                         
                         <div class="beta-products-list">
-                            <h4>Top Products</h4><br/>
+                            <h4 style="color: #0e0a0a; padding-left: 15px; font-size: 300%;">Sản phẩm hàng đầu</h4><br/>
                             <div class="beta-products-details">
-                                <p class="pull-left">{{count($Best_Product)}} styles found</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
                            @foreach($Best_Product as $top)
-                                    <div class="col-sm-3">
-                                        <div class="single-item" style="padding:10px; margin:5px 0px;">
+                                    <div class="col-sm-3" style="padding-left:30px; padding-right:30px; padding-bottom:30px">
+                                        <div class="single-item">
+
                                             <div class="single-item-header">
                                                 <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" style="width:270px; height:auto;" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
-                                                <p class="single-item-title">{{$top->name}}</p>
+                                                <p class="single-item-title"style="color:#00136c; font-weight:bold">{{$top->name}}</p>
                                                 <p class="single-item-price">
-                                                    <span>{{$top->price}} VND</span>
+                                                    <span>{{number_format($top->price,0 ,'.' ,'.')}} VND</span>
                                                 </p>
                                             </div>
                                             <div class="single-item-caption" style="margin:2px 0px 0px 0px">
-                                                <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
+                                                <a class="add-to-cart pull-left" href="{{route('cart',$top->id)}}"><i class="fa fa-shopping-cart" data-id="{{$top->id}}"></i></a>
+                                                <a class="beta-btn primary" href="{{route('productdetail',$top->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
                                     </div>
                             @endforeach
                             </div>
-                            <div class="row" style="margin:20px 300px;">{{$New_Product->links()}}</div>
+                            <div class="row" style="margin:20px 380px;">{{$New_Product->links()}}</div>
                         </div>
                         <!-- .beta-products-list -->
                     </div>

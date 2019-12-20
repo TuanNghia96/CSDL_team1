@@ -1,6 +1,6 @@
 @extends("layout.index")
 @section("content")
-<div class="container">
+<div class="container pl-0 pr-0 " style="margin-right: 0px;margin-left: 0px;">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
 				<div class="space60">&nbsp;</div>
@@ -24,12 +24,12 @@
 								<div class="col-sm-4">
 									<div class="single-item" style="padding:10px; margin:5px 0px;">
 										<div class="single-item-header">
-											<a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
+											<a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" style="width:270px; height:auto;" alt=""></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$product->name}} </p>
 											<p class="single-item-price">
-												<span>{{$product->price}}</span>
+												<span>{{number_format($product->price,0 ,'.' ,'.')}}</span>
 											</p>
 										</div>
 										<div class="single-item-caption" style="margin:2px 0px 0px 0px">

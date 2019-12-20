@@ -1,11 +1,12 @@
-<div id="footer" class="color-div">
+<div id="footer" class="color-div" style="padding-top: 20px; padding-bottom: 20px">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="widget">
                         <h4 class="widget-title">Instagram Feed</h4>
-                        <div id="beta-instagram-feed">
+                        <div >
                            <!--  <div></div> -->
+                           <p>KHÔNG CÓ </p>
                         </div>
                     </div>
                 </div>
@@ -14,12 +15,12 @@
                         <h4 class="widget-title">Information</h4>
                         <div>
                             <ul>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
+                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</p></li>
+                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</p></li>
+                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</p></li>
+                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</p></li>
+                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</p></li>
+                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</p></li>
                             </ul>
                         </div>
                     </div>
@@ -31,8 +32,11 @@
                             <div>
                                 <div class="contact-info">
                                     <i class="fa fa-map-marker"></i>
-                                    <p>30 South Park Avenue San Francisco, CA 94108 Phone: +78 123 456 78</p>
-                                    <p>Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
+                                    <p>Đại học bách khoa Hà Nội </p>
+                                    <p> Địa chỉ : Số 1 Đại Cồ Việt </p>
+                                    <p> SĐT : 12345678915 </p>
+                                    <p>Email: nguyetanh150299@gmail.com</p>
+                                    <p>Vui lòng liên hệ ngoài giờ hành chính </p>
                                 </div>
                             </div>
                         </div>

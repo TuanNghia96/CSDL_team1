@@ -1,6 +1,6 @@
-<div id="header">
+<div id="header" >
     <div class="header-top">
-        <div class="container">
+        <div class="container ">
             <div class="pull-left auto-width-left">
                 <ul class="top-menu menu-beta l-inline">
                     <li><a href="{{route('home')}}"><i class="fa fa-home"></i> Dai Hoc Bach Khoa Ha Noi</a></li>
@@ -52,7 +52,7 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" width="200px" style="width:60px; height:60px;" alt=""></a>
+                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" width="200px" style="width:75px; height:75px;" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>
@@ -74,13 +74,13 @@
                                     <a class="pull-left" href="{{route('productdetail',$cart->id)}}"><img src="{{$cart->image_font}}" alt=""></a>
                                     <div class="media-body">
                                         <span class="cart-item-title">{{$cart->name}}</span>
-                                        <span  style="color:black">Pirce:{{$cart->price}} VND</span>
+                                        <span  style="color:black">Pirce:{{number_format($cart->price,0 ,'.' ,'.')}} VND</span>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                             <div class="cart-caption">
-                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{$totalPrice}}</span></div>
+                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format($totalPrice,0 ,'.' ,'.')}} VND</span></div>
                                 <div class="clearfix"></div>
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
@@ -99,7 +99,7 @@
         <!-- .container -->
     </div>
     <!-- .header-body -->
-    <div class="header-bottom" style="background-color: #0277b8;">
+    <div class="header-bottom" style="background-color: rgb(1,93,127);">
         <div class="container">
             <!--  <a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text'>Menu</span> <i class="fa fa-bars"></i></a> -->
             <div class="visible-xs clearfix"></div>
