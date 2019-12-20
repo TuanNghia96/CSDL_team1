@@ -95,12 +95,12 @@
                             <img src="{{ $product->image_font }}" class="img-thumbnail" width="150" height="auto" alt="{{ $product->name }}">
                         </td>
                         <td class="text-center">{{ $value->quantity }}</td>
-                        <td class="text-right">{{ $value->quantity * $product->price }} đ</td>
+                        <td class="text-right">{{ number_format($value->quantity * $product->price, 0, '', ',') }} đ</td>
                     </tr>
                 @endforeach
                 <tr>
                     <td colspan="4" class="text-right"><h4>Thanh toán:</h4></td>
-                    <td class="text-right"><h4><b>{{ $order->total }} đ</b></h4></td>
+                    <td class="text-right"><h4><b>{{ number_format($order->total, 0, '', ',') }} đ</b></h4></td>
                 </tr>
                 </tbody>
             </table>
