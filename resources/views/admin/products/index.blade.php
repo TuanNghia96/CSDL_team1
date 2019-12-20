@@ -94,7 +94,7 @@
                             <th>#</th>
                             <th class="text-center">Tên</th>
                             <th class="text-center">Thể loại</th>
-                            <th class="text-center">Giá tiền</th>
+                            <th class="text-center">Giá tiền(vnđ)</th>
                             <th class="text-center">Trang thái</th>
                             <th class="text-center">Thời gian</th>
                             <th class="text-center">Hành động</th>
@@ -106,7 +106,7 @@
                                 <td>{{ $products->perPage() * ($products->currentPage() - 1) + $key + 1 }}</td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->category->name }}</td>
-                                <td>{{ $value->price }}</td>
+                                <td>{{ number_format($value->price, 0, '', ',') }}</td>
                                 <td>@if (($value->status) == 0)Ngừng bán @else Kinh doanh @endif</td>
                                 <td>{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                                 <td>
