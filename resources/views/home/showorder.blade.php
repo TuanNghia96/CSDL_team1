@@ -11,7 +11,6 @@
                             <th class="product-name">Sản Phẩm</th>
                             <th class="product-price">Giá</th>
                             <th class="product-quantity">Số Lượng</th>
-                            <th class="product-price">Tổng Tiền</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,14 +25,12 @@
                                 </div>
                             </td>
                             <td class="product-price">
-                                <span class="amount" id="price">{{$product->price}}</span>
+                                <span class="amount" id="price">{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                             </td>
                             <td class="product-quantity">
                                 <input type="number" id="qty" style="width:40px; height=20px" name="sl" disabled value="{{$product->quantity}}" min="1" data-id="" />
                             </td>
-                            <td class="product-price">
-                                <span class="amount" id="price"><?php echo ($product->price)*($product->quantity); ?></span>
-                            </td>
+                          
                         </tr>
                         @endforeach 
                     </tbody>
@@ -46,7 +43,7 @@
         <!-- #content -->
     </div>
     <div id="content">
-        <div class="your-order-head"  class="row"><h5>Tổng tiền đơn hàng của bạn:<span id="total_price">{{$totalPrice}} VND</span></h5></div>
+        <div class="your-order-head"  class="row"><h5>Tổng tiền đơn hàng của bạn:<span id="total_price">{{number_format($totalPrice,0 ,'.' ,'.')}} VND</span></h5></div>
         <div class="your-order-head"  class="row">
             <h>Hình thức thanh toán</h5><br/> 
               <div><strong>

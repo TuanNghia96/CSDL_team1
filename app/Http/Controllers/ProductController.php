@@ -286,7 +286,7 @@ class ProductController extends Controller
         $product_id = $request->product_id;
         $quantity = $request->quantity;
         $result = Cart::upcart($cart_id, $product_id, $quantity);
-        return $result;
+        return number_format($result,0 ,'.' ,'.');
     }
     public function confirmorder(Request $request){
         $id_Cart=$request->id;

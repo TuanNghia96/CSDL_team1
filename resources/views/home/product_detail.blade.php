@@ -15,7 +15,7 @@
                         <div class="single-item-body">
                             <p class="single-item-price">Tên sản phẩm: {{$product->name}}</p><br/>
                             <p class="single-item-price">
-                                <span>Giá: {{$product->price}} VND</span>
+                                <span>Giá: {{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                             </p><br/>
                             <p class="single-item-price">Dòng sản phẩm: {{$product->name}}</p><br/>
                             <p class="single-item-price">
@@ -76,7 +76,7 @@
                                 <div class="single-item-body">
                                     <p class="single-item-title">{{$product->name}}</p>
                                     <p class="single-item-price">
-                                        <span>{{$product->price}}</span>
+                                        <span>{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                                     </p>
                                 </div>
                                 <div class="single-item-caption" style="margin:2px 0px 0px 0px">
@@ -101,7 +101,7 @@
                                 <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
                                 <div class="media-body" style="font-size:18px">
                                     {{$product->name}}<br/>
-                                    <span class="beta-sales-price" style="font-size:15px">{{$product->price}}VND</span>
+                                    <span class="beta-sales-price" style="font-size:15px">{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                                 </div>
                             </div>
                             @endforeach
@@ -118,7 +118,7 @@
                                 <a class="pull-left" href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
                                 <div class="media-body"style="font-size:18px">
                                     {{$product->name}}<br/>
-                                    <span class="beta-sales-price"style="font-size:15px">{{$product->price}} VND</span>
+                                    <span class="beta-sales-price"style="font-size:15px">{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                                 </div>
                             </div>
                             @endforeach

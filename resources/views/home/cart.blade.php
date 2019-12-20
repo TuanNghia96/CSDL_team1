@@ -44,7 +44,7 @@
                             </td>
 
                             <td class="product-price">
-                                <span class="amount" id="price">{{$product->price}}</span>
+                                <span class="amount" id="price">{{number_format($product->price,0 ,'.' ,'.')}}</span>
                             </td>
 
                             <td class="product-status">
@@ -71,7 +71,7 @@
         <!-- #content -->
     </div>
     <div id="content">
-        <div class="your-order-head"  class="row"><h5>Tổng tiền đơn hàng của bạn:<span id="total_price"> {{$totalPrice}}</span> VND</h5></div>
+        <div class="your-order-head"  class="row"><h5>Tổng tiền đơn hàng của bạn:<span id="total_price"> {{number_format($totalPrice,0 ,'.' ,'.')}}</span> VND</h5></div>
         <div class="your-order-head"  class="row">
             <h5>Hình thức thanh toán</h5><br/>
         </div>
