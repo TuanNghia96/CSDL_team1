@@ -73,4 +73,30 @@ $(document).ready(function() {
             }
         });
     });
+    /*     $("i.fa-shopping-cart").click(function() {
+            var id = $(this).attr("data-id");
+            var quantity = Number($("span#qty").text());
+            $.ajax({
+                url: "/addcart",
+                type: "POST",
+                data: {
+                    "id": id
+                },
+                success: function(Response) {
+                    if (Response == "OK") {
+                        alert("đã thêm vào giỏ hàng");
+                        $("span#qty").text(quantity + 1)
+                    } else {
+                        alert("không thể thêm vào giỏ hàng.Yêu cầu đăng nhập");
+                    }
+                }
+            });
+        }); */
+    $("a#giohang").click(function() {
+        var quantity = Number($("span#qty").text());
+        if (quantity == 0) {
+            alert("giỏ hàng trống qúy khách hãy mua hàng");
+            $("a#giohang").attr("href", "javascript:void(0)")
+        }
+    });
 });

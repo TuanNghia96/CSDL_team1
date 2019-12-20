@@ -41,7 +41,11 @@
     
     <script>
         $(document).ready(function() {
-    
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             }
+             });
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 150) {
                     $(".header-bottom").addClass('fixNav')
@@ -49,14 +53,29 @@
                     $(".header-bottom").removeClass('fixNav')
                 }
             });
-            $("#kkk").click(function() {
-            var price = Number($("span#total_price").text());
-            if (price == 0) {
-             alert("Đặt hàng không thành công");
-             $("a#kkk").attr("href", "{{route('home')}}");
-                } 
+        $("#bbb").click(function() {
+        var price = Number($("span#total_price").text());
+        var id = Number($(this).attr("data-id"));
+        var txt = $("textarea#text").val()
+        if (price == 0) {
+            alert("Đặt hàng không thành công");
+            $("a#kkk").attr("href", "{{route('home')}}");
+        } else {
+            $.ajax({
+                url: "/confirmorder",
+                type: "POST",
+                data: {
+                    "id": id,
+                    "txt": txt
+                },
+                success: function(Reponse) {
+                    alert("Đặt hàng thành công");
+                    $("button#chitiet").show();
+                }
             });
-        });   
+        }
+    });
+});   
     </script>
 </body>
 </html>

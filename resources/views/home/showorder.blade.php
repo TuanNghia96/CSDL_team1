@@ -25,34 +25,37 @@
                                 </div>
                             </td>
                             <td class="product-price">
-                                <span class="amount" id="price">{{$product->price}}</span>
+                                <span class="amount" id="price">{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                             </td>
                             <td class="product-quantity">
                                 <input type="number" id="qty" style="width:40px; height=20px" name="sl" disabled value="{{$product->quantity}}" min="1" data-id="" />
                             </td>
+                          
                         </tr>
                         @endforeach 
                     </tbody>
                     <tfoot>
                     </tfoot>
-
+                    
                 </table>
+                <div><h4>Tên Đơn Hàng: {{$memo}}</h4></div>
         </div>
         <!-- #content -->
     </div>
     <div id="content">
-        <div class="your-order-head"  class="row"><h5>Tổng Tiền:<span id="total_price">{{$totalPrice}} VND</span></h5></div>
+        <div class="your-order-head"  class="row"><h5>Tổng tiền đơn hàng của bạn:<span id="total_price">{{number_format($totalPrice,0 ,'.' ,'.')}} VND</span></h5></div>
         <div class="your-order-head"  class="row">
-            <h5>Hình thức thanh toán</h5><br/>
+            <h>Hình thức thanh toán</h5><br/> 
+              <div><strong>
+                        Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng
+                        </strong>
+                    </div>
         </div>
 
         <div class="your-order-body"  class="row">
         <ul class="payment_methods methods">
                 <li class="payment_method_bacs">
-                    <div><strong>
-                        Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng
-                        </strong>
-                    </div>
+                 
                 </li>
             </ul>
         </div>

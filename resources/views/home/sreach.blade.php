@@ -32,7 +32,7 @@
                     <div class="beta-products-list">
                         <h4>Kết quả tìm kiếm</h4><br/> @if($New_Product)
                         <div class="beta-products-details">
-                            <p class="pull-left">{{count($New_Product)}} styles found</p>
+                            <p class="pull-left">{{count($New_Product)}} sản phẩm</p>
                             <div class="clearfix"></div>
                         </div>
 
@@ -41,17 +41,17 @@
                             <div class="col-sm-3">
                                 <div class="single-item" style="padding:10px; margin:5px 0px;">
                                     <div class="single-item-header">
-                                        <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" alt=""></a>
+                                        <a href="{{route('productdetail',$product->id)}}"><img src="{{$product->image_font}}" style="width:270px; height:auto;" alt=""></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$product->name}}</p>
                                         <p class="single-item-price">
-                                            <span>{{$product->price}}</span>
+                                            <span>{{number_format($product->price,0 ,'.' ,'.')}} VND</span>
                                         </p>
                                     </div>
                                     <div class="single-item-caption" style="margin:2px 0px 0px 0px">
                                         <a class="add-to-cart pull-left" href="{{route('cart',$product->id)}}"><i class="fa fa-shopping-cart" data-id="{{$product->id}}"></i></a>
-                                        <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Details <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{route('productdetail',$product->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
