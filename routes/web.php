@@ -68,3 +68,4 @@ Route::get("rediect",["as"=>"rediect","uses"=>"ProductController@rediect"]);
 Route::post("changeinfo",["as"=>"changeinfo","uses"=>"UserController@changeinfo"])->middleware('login');
 Route::post("updatecart",["as"=>"updatecart","uses"=>"ProductController@updatecart"]);
 Route::post("confirmorder",["as"=>"confirmorder","uses"=>"ProductController@confirmorder"]);
+//Route::post("addcart",["as"=>"addcart","uses"=>"ProductController@Cart"])->middleware('login');

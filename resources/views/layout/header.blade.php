@@ -74,13 +74,13 @@
                                     <a class="pull-left" href="{{route('productdetail',$cart->id)}}"><img src="{{$cart->image_font}}" alt=""></a>
                                     <div class="media-body">
                                         <span class="cart-item-title">{{$cart->name}}</span>
-                                        <span  style="color:black">Pirce:{{$cart->price}} VND</span>
+                                        <span  style="color:black">Pirce:{{number_format($cart->price,0 ,'.' ,'.')}} VND</span>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                             <div class="cart-caption">
-                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{$totalPrice}}</span></div>
+                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format($totalPrice,0 ,'.' ,'.')}} VND</span></div>
                                 <div class="clearfix"></div>
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
