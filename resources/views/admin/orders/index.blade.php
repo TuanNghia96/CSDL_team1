@@ -28,7 +28,7 @@
                     <tr>
                         <th>#</th>
                         <th class="text-center">Tên khách hàng</th>
-                        <th class="text-center">Giá trị</th>
+                        <th class="text-center">Giá trị(vnđ)</th>
                         <th class="text-center">Trang thái</th>
                         <th class="text-center">Thời gian</th>
                         <th class="text-center">Hành động</th>
