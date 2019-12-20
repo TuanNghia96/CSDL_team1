@@ -19,7 +19,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-0" id="nav_id">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">3D MODEL</a>
+            <a class="navbar-brand" href="{{ route('home') }}">NEBULA</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
