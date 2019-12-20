@@ -14,11 +14,6 @@
                         <li class="menu-beta l-inline" >
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        @if (Route::has('register'))
-                            <li class="menu-beta l-inline">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -26,9 +21,15 @@
                             </a>
                 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('user',Auth::id())}}">
+                                @can('customer')
+                                <a class="dropdown-item" href="{{route('user',Auth::id())}}">
                                     {{ __('Trang Cá Nhân') }}
                                 </a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('admin') }}">
+                                        {{ __('Vào trang quản lý') }}
+                                    </a>
+                                @endcan
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -48,7 +49,7 @@
         <!-- .container -->
     </div>
     <!-- .header-top -->
-    <div class="header-body" style="    background: #d8d8d8;">
+    <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
                 <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" width="200px" style="width:75px; height:75px;" alt=""></a>
@@ -73,13 +74,13 @@
                                     <a class="pull-left" href="{{route('productdetail',$cart->id)}}"><img src="{{$cart->image_font}}" alt=""></a>
                                     <div class="media-body">
                                         <span class="cart-item-title">{{$cart->name}}</span>
-                                        <span  style="color:black">Pirce:{{$cart->price}} VND</span>
+                                        <span  style="color:black">Pirce:{{number_format($cart->price,0 ,'.' ,'.')}} VND</span>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                             <div class="cart-caption">
-                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{$totalPrice}}</span></div>
+                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format($totalPrice,0 ,'.' ,'.')}} VND</span></div>
                                 <div class="clearfix"></div>
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>

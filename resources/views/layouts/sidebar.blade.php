@@ -39,6 +39,9 @@
                 <li>
                     <a href="{{ route('products.create') }}">Thêm mới</a>
                 </li>
+                <li>
+                    <a href="{{ route('products.audit') }}">Thay đổi giá</a>
+                </li>
             </ul>
         </li>
         

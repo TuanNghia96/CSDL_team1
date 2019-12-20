@@ -753,7 +753,12 @@ h1,
     color: white;
     font-size: 5vw;
     line-height: 39.78px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-weight: 400;
     margin-top: 0
 }
@@ -763,7 +768,12 @@ h2,
     color: #253951;
     font-size: 3vw;
     line-height: 39.78px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-weight: 300;
     margin-top: 0
 }
@@ -773,7 +783,12 @@ h3,
     color: #253951;
     font-size: 2.30769em;
     line-height: 39.78px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-weight: 400;
     margin-top: 0
 }
@@ -783,7 +798,12 @@ h4,
     color: #253951;
     font-size: 2.30769em;
     line-height: 39.78px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-weight: 300;
     margin-top: 0
 }
@@ -793,7 +813,12 @@ h5,
     color: #253951;
     font-size: 1.92308em;
     line-height: 39.78px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-weight: 400;
     margin-top: 0
 }
@@ -1234,7 +1259,12 @@ a i {
 }
 
 .main-menu a {
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-size: 16px
 }
 
@@ -1400,7 +1430,12 @@ ul.children ul.children li:hover>a {
     font-size: 20px;
     color: #979797;
     margin-bottom: 15px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
 }
 
 .widget-main-body ul {
@@ -4485,13 +4520,23 @@ tfoot td a i {
     font-size: 40px;
     border-bottom: 1px solid #e1e1e1;
     line-height: 75px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
 }
 
 .beta-counter-title {
     font-size: 20px;
     margin-top: 20px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
 }
 
 .beta-progress .progress {
@@ -5382,7 +5427,12 @@ tfoot td a i {
     position: absolute;
     top: 31px;
     left: 0px;
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
     font-size: 15px;
 }
 
@@ -5959,7 +6009,12 @@ li.box-port-filter {
 }
 
 .countdown-amount {
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
 }
 
 .beta-pager-gallery.port-gallery a {
@@ -5980,11 +6035,21 @@ li.box-port-filter {
 }
 
 .beta-rotator {
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
 }
 
 .history-slider span {
-    font-family: "Open Sans", sans-serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
 }
 
 td {

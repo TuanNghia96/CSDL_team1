@@ -24,7 +24,7 @@
                 <br/><input type="submit" value="Cập Nhập" name="Submit"/>
             </form>
             </div>
-            <div id="order" style="display:none;">
+            <div id="order" style="display:none;"><span style="font-size:20px; text-color:bule;">Lịch Sử Giao Dịch</span><br/>
             @if($orders==NULL)
                     <div><h3 class="text-center red">{{ 'Không tìm thấy bản ghi nào.' }}</h3></div>
                 @else
@@ -49,9 +49,7 @@
                                 <td>{{  date("H:i:s d/m/Y",strtotime($value->created_at)) }}</td>
                                 <td>
                                     <p class="text-center">
-                                        @if($value->status==1)
-                                        <a href= "{{ route('order', $value->id) }}">Đặt Hàng</a>
-                                        @else
+                                        @if($value->status>=1)
                                         <a href="{{route('dathang',$value->id)}}">Chi Tiết</a>
                                         @endif
                                     </p>

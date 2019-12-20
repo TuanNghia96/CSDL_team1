@@ -14,7 +14,7 @@
                 </div>
                 
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('users.update', $user->id) }}" class="form-horizontal" role="form">
+                    <form method="post" action="{{ route('users.update', $user->id) }}" class="form-horizontal" role="form" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <input name="url_back" type="hidden" class="form-control" value="{{ url()->previous() }}">

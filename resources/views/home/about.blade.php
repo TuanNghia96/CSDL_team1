@@ -1,6 +1,6 @@
 @extends("layout.index") @section("content")
 <div class="container pl-0 pr-0" style="max-width: 100%">
-    <div id="content pr-0" style="background:linear-gradient(to bottom, rgb(1,60,115) 0%,rgb(1,85,141) 13%,rgb(1,109,177) 30%,rgb(1,109,177) 32%,rgb(1,109,177) 50%,rgb(1,78,133) 90%); padding-bottom: 120px; " >
+    <div id="content">
         <div class="our-history" style="padding-top:40px">
             <h1 class="text-center wow fadeInDown" style="">Lịch sử phát triển</h1>
             <div class="space19">&nbsp;</div>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3" style="padding-left: 30px;width: 295px; height: 300px;">
+            <div class="col-sm-3">
                 <div class="beta-person beta-person-full">
                     <div class="bets-img-hover">
                         <img src="assets/dest/images/nguyetanh.png" alt="">
