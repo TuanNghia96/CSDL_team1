@@ -17,15 +17,16 @@
 		
 		<div class="abs-fullwidth beta-map wow flipInX"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3678.0141923553406!2d89.551518!3d22.801938!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff8ff8ef7ea2b7%3A0x1f1e9fc1cf4bd626!2sPranon+Pvt.+Limited!5e0!3m2!1sen!2s!4v1407828576904" ></iframe></div>
 	</div>
-	<div class="container">
+	<div class="container pl-0 pr-0" style="background: linear-gradient(to bottom, rgba(250,255,245,1) 0%,rgba(220,229,215,1) 40%,rgba(176,190,174,1) 100%);">
 		<div id="content" class="space-top-none">
 			
 			<div class="space50">&nbsp;</div>
 			<div class="row">
-				<div class="col-sm-8">
-					<h2>Contact Form</h2>
+				<div class="col-sm-7">
+					<h2>Your Feedback</h2>
 					<div class="space20">&nbsp;</div>
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit ani m id est laborum.</p>
+					<p>Nếu bạn hài lòng xin vui lòng giới thiệu chúng tôi với mọi người </p>
+					<p> Nếu bạn không hài lòng xin hãy nói với chúng tôi </p>
 					<div class="space20">&nbsp;</div>
 					<form action="#" method="post" class="contact-form">	
 						<div class="form-block">
@@ -41,33 +42,50 @@
 							<textarea name="your-message" placeholder="Your Message"></textarea>
 						</div>
 						<div class="form-block">
-							<button type="submit" class="beta-btn primary">Send Message <i class="fa fa-chevron-right"></i></button>
+							<button type="submit" class="beta-btn primary">Gửi <i class="fa fa-chevron-right"></i></button>
 						</div>
 					</form>
 				</div>
-				<div class="col-sm-4">
-					<h2>Contact Information</h2>
+				<div class="col-sm-5">
+					<h2>Thông tin liên hệ </h2>
 					<div class="space20">&nbsp;</div>
 
-					<h6 class="contact-title">Address</h6>
+					<h5 class="contact-title">Địa chỉ</h5>
 					<p>
-						Suite 127 / 267 – 277 Brussel St,<br>
-						62 Croydon, NYC <br>
-						Newyork
+						Số 1 Đại Cồ Việt<br>
+						Đại Học Bách Khoa Hà Nội <br>
 					</p>
 					<div class="space20">&nbsp;</div>
-					<h6 class="contact-title">Business Enquiries</h6>
-					<p>
-						Doloremque laudantium, totam rem aperiam, <br>
-						inventore veritatio beatae. <br>
-						<a href="mailto:biz@betadesign.com">biz@betadesign.com</a>
+					<h5 class="contact-title">Đội ngũ admin</h5>
+					<br>
+					<p><b>
+						Nguyễn Thị Nguyệt Ánh </b>
+						Email : <br>
+						<a href="mailto:biz@betadesign.com">nguyetanh150299@gmail.com</a>
+					</p>
+					<br>
+					<p><b>
+						Nguyễn Bá Tuấn Nghĩa </b><br>
+						Email : 
+						<a href="mailto:biz@betadesign.com">nguyetanh150299@gmail.com</a>
+					</p>
+					<br>
+					<p><b>
+						Lê Xuân Anh </b><br>
+						Email : 
+						<a href="mailto:biz@betadesign.com">nguyetanh150299@gmail.com</a>
+					</p>
+					<br>
+					<p><b>
+						Nguyễn Văn Dũng </b></p>
+						Email :<a href="mailto:biz@betadesign.com">nguyetanh150299@gmail.com</a>
 					</p>
 					<div class="space20">&nbsp;</div>
-					<h6 class="contact-title">Employment</h6>
+					<h6 class="contact-title"></h6>
 					<p>
-						We’re always looking for talented persons to <br>
-						join our team. <br>
-						<a href="hr@betadesign.com">hr@betadesign.com</a>
+						Chúng tôi luôn trông đợi những phản hồi của bạn để có thể phục vụ bạn được tốt hơn <br>
+						Tham gia với chúng tôi trên Facebook. <br>
+						<a href="https://www.facebook.com/nguyetanh.nguyen.733">https://www.facebook.com/nguyetanh.nguyen.733</a>
 					</p>
 				</div>
 			</div>

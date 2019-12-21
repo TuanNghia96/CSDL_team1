@@ -15,18 +15,16 @@
                             <div class="col-sm-3">
                                 <img src="assets/dest/images/logoshop.png" style="max-width: 90%; padding-left: 60px;">
                             </div>
-                            <div class="col-sm-7">
-                                <h2 class="other-title" style="font-size: 300%; font-weight: bold">Nebula realize your dream</h2>
-                                <p style="padding-top: 20px;padding-top: 20px;color: #950000;font-size: 2vw;">
-                                    Đại học bách khoa Hà Nội
-                                </p><br/>
+                            <div class="col-sm-7" style="padding-top: 15px">
+                                <h2 class="other-title" style="font-size: 400%; font-weight: bold ; color: #ef0000; font-family: cursive;">Nebula </h2>
+                                <h2 style="color: #7bf0fc; font-family: fantasy; padding-top:10px">realize your dream</h2>
                                 <div class="space20">&nbsp;</div>
-                                <p>Hello world </p><br/>
-                                <p> NEBULA được sinh ra với sứ mệnh biến ước mơ của bạn thành hiện thực. Chúng tôi cung cấp những mô hình nhân vật bạn yêu thích với  bất cứ kích cỡ nào bạn thích. Hãy quên đi những ngày tháng ngắm thần tượng của mình trên giấy hay máy tính, giờ đây bạn hoàn toàn có thể cầm, chạm, mang thần tượng, ido của mình đi bất cứ đâu chỉ cần một cú nhấp chuột. </p>
-                                    <p>Nếu có quý khách có yêu cầu sản phẩm mới chỉ cần nhấc máy liên lạc ngay với chúng tôi để được tư vấn. </p> <br>
-                                <p style="font-weight:bold"> Đôi lời của nhóm tác giả : </p>
-                                <p> Đây là một sản phẩm web đơn giản chưa hoàn thiệm vậy nên team không khuyến khích sử dụng với mục đích thương mại.</p>
-                                <p> Đây cũng là thành quả của team với đội ngũ gồm 4 thành viên là kết quả của hơn 2 tháng vừa học "Hello world" vừa code. Chúng tôi sẽ rất vui nếu nhận được ý kiến đóng góp của bạn để website ngày càng hoàn thiện hơn  </p>
+                                <p style="color: white">Hello world </p><br/>
+                                <p style="color: white"> NEBULA được sinh ra với sứ mệnh biến ước mơ của bạn thành hiện thực. Chúng tôi cung cấp những mô hình nhân vật bạn yêu thích với  bất cứ kích cỡ nào bạn thích. Hãy quên đi những ngày tháng ngắm thần tượng của mình trên giấy hay máy tính, giờ đây bạn hoàn toàn có thể cầm, chạm, mang thần tượng, ido của mình đi bất cứ đâu chỉ cần một cú nhấp chuột. </p>
+                                    <p style="color: white">Nếu có quý khách có yêu cầu sản phẩm mới chỉ cần nhấc máy liên lạc ngay với chúng tôi để được tư vấn. </p> <br>
+                                <p style="font-weight:bold;color: white"> Đôi lời của nhóm tác giả : </p>
+                                <p style="color: white"> Đây là một sản phẩm web đơn giản chưa hoàn thiệm vậy nên team không khuyến khích sử dụng với mục đích thương mại.</p>
+                                <p style="color: white"> Đây cũng là thành quả của team với đội ngũ gồm 4 thành viên là kết quả của hơn 2 tháng vừa học "Hello world" vừa code. Chúng tôi sẽ rất vui nếu nhận được ý kiến đóng góp của bạn để website ngày càng hoàn thiện hơn  </p>
                                 <p> </p>
                                 <br>
                                 <h4 ><strong style="color:#dfff00;">  Hãy sống và làm việc theo cách của bạn. !</strong></h4>
