@@ -218,9 +218,11 @@ class ProductController extends Controller
         $review=Feedback::get_review($id);
         $producttype=Category::find($id);
         $check = 0;
-        foreach (Auth::user()->orders()->get() as $value){
-            if ($value->ordersDetail->where('product_id', $id)->first()){
-                $check = 1;
+        if(Auth::check()){
+            foreach (Auth::user()->orders()->get() as $value){
+                if ($value->ordersDetail->where('product_id', $id)->first()){
+                    $check = 1;
+                }
             }
         }
         return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype", 'check'));
