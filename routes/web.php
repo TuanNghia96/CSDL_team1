@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
 });
 //route of admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('feedbacks/answer', 'FeedbackController@answer')->name('feedbacks.answer');
     //Product
     Route::resource('products', 'ProductController');
+    Route::get('product/audit/', 'ProductController@audit')->name('products.audit');
+    
     //Order
     Route::resource('orders', 'OrderController')->only(['index', 'show']);
     Route::get('orders/status/{id}', 'OrderController@updateStatus')->name('orders.status');
@@ -65,3 +67,5 @@ Route::get("order/{t}",["as"=>"order","uses"=>"ProductController@order"])->middl
 Route::get("rediect",["as"=>"rediect","uses"=>"ProductController@rediect"]);
 Route::post("changeinfo",["as"=>"changeinfo","uses"=>"UserController@changeinfo"])->middleware('login');
 Route::post("updatecart",["as"=>"updatecart","uses"=>"ProductController@updatecart"]);
+Route::post("confirmorder",["as"=>"confirmorder","uses"=>"ProductController@confirmorder"]);
+//Route::post("addcart",["as"=>"addcart","uses"=>"ProductController@Cart"])->middleware('login');

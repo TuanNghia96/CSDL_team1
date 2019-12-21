@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 class Product extends Model
 {
     protected $table = 'products';
@@ -42,7 +45,7 @@ class Product extends Model
         return $result;
     }
     static public function category_product($id_category){
-        $result=DB::table('products')->where("category_id","=","$id_category")->orderByRaw('products.created_at DESC')->paginate(3);
+        $result=DB::table('products')->where("category_id","=","$id_category")->orderByRaw('products.created_at DESC')->paginate(9);
         return $result;
     }
     static public function Best_category_product($category_id){
@@ -57,7 +60,10 @@ class Product extends Model
         $result=DB::table('products')->orderByRaw('bought DESC')->paginate($sl);
         return $result;
     }
-
+     static public function Counter(){
+        $count = DB::table('orders')->orderByRaw('id DESC')->offset(1)->limit(2)->get();
+        return $count;
+    } 
     const FEMALE_SEX = 0;
     const MALE_SEX = 1;
     public static $sex = [
@@ -129,7 +135,6 @@ class Product extends Model
     
         $filePart = 'upload/product';
         if ($request->hasFile('image_font')) {
-        
             $file = $request->image_font;
             $file->move($filePart, $file->getClientOriginalName());
             $input['image_font'] = '/' . $filePart . '/' . $file->getClientOriginalName();
@@ -155,26 +160,38 @@ class Product extends Model
     {
         $input = $request->all();   
         $filePart = 'upload/product';
-        if ($request->hasFile('image_font')) {
+        $price = $this->find($input['id'])->price;
     
+        //update new and deleted old
+        if ($request->hasFile('image_font')) {
+            if(File::exists(public_path($this->find($input['id'])->image_font))){
+                unlink(public_path($this->find($input['id'])->image_font));
+            }
             $file = $request->image_font;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['image_font'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['image_font'] = '/' . $filePart . '/' . $file->getClientOriginalName();
         }
         if ($request->hasFile('image_back')) {
-        
+            if(File::exists(public_path($this->find($input['id'])->image_back))){
+                unlink(public_path($this->find($input['id'])->image_back));
+            }
             $file = $request->image_back;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['image_back'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['image_back'] = '/' . $filePart . '/' . $file->getClientOriginalName();
         }
         if ($request->hasFile('image_up')) {
-        
+            if(File::exists(public_path($this->find($input['id'])->image_up))){
+                unlink(public_path($this->find($input['id'])->image_up));
+            }
             $file = $request->image_up;
             $file->move($filePart, $file->getClientOriginalName());
-            $input['image_up'] = '../' . $filePart . '/' . $file->getClientOriginalName();
+            $input['image_up'] = '/' . $filePart . '/' . $file->getClientOriginalName();
         }
         $input['size'] = ($input['size'] / 10);
         $input['created_at'] = Carbon::now();
-        return $this->find($input['id'])->update($input);
+        $this->find($input['id'])->update($input);
+        if ($input['price'] != $price){
+            PriceAudit::orderBy('created_at', 'DESC')->where('price_after', $input['price'])->where('product_id', $input['id'])->first()->update(['email' => Auth::user()->email]);
+        }
     }
 }

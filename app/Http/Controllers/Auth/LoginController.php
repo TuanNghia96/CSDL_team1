@@ -67,6 +67,7 @@ class LoginController extends Controller
     {
         return 120;
     }
+    
     public function logout(Request $request)
     {
         $this->guard()->logout();
@@ -75,15 +76,22 @@ class LoginController extends Controller
         
         return redirect(route('home'));
     }
+    
+    /**
+     * login controller
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
         $remember = $request->get('remember') == 'on' ? true : false;
         
-        if(Auth::attempt($credentials, $remember)) {
+        if (Auth::attempt($credentials, $remember)) {
             $enabled = \Auth::user()->status;
             
-            if(!$enabled) {
+            if (!$enabled) {
                 Auth::logout();
                 return redirect(route('home'));
             }
@@ -94,5 +102,6 @@ class LoginController extends Controller
                 return redirect(route('home'));
             }
         }
+        return redirect(route('login'));
     }
 }

@@ -125,13 +125,14 @@
                         {{--price--}}
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label for="price" class="control-label @if($errors->has('price')) text-danger @endif">Giá tiền(đồng):</label>
+                                <label for="price" class="control-label @if($errors->has('price')) text-danger @endif">Giá tiền(vnđ):</label>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input type="number" class="form-control @if($errors->has('phone')) is-invalid @endif" name="price"  value="{{ old('price') ?? $product->price }}">
+                                    <input  name="loanAmount2" class="price_input" value="" type="text">
+                                    <input type="number" id="input_price" class="form-control @if($errors->has('phone')) is-invalid @endif" name="price"  value="{{ old('price') ?? $product->price }}">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend3">đ</span>
+                                        <span class="input-group-text" id="inputGroupPrepend3">vnđ</span>
                                     </div>
                                 </div>
                             </div>

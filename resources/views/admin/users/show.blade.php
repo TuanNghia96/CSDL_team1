@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <th scope="col">avatar</th>
-                    <td><img src="{{ $user->avata_url }}" class="img-thumbnail" width="250" height="auto" alt="{{ $user->name }}"></td>
+                    <td><img src="{{ asset($user->avata_url) }}" class="img-thumbnail" width="250" height="auto" alt="{{ $user->name }}"></td>
                 </tr>
                 <tr>
                     <th scope="col">Số điện thoại</th>
