@@ -1,5 +1,5 @@
 @extends("layout.index") @section("content")
-<div class="container pl-0 pr-0" style="max-width: 100%">
+<div class="container">
     <div id="content">
         <div class="our-history" style="padding-top:40px">
             <h1 class="text-center wow fadeInDown" style="">Lịch sử phát triển</h1>
