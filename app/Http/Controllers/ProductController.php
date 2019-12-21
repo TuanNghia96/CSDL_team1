@@ -223,11 +223,11 @@ class ProductController extends Controller
                 if ($value->ordersDetail->where('product_id', $id)->first()){
                     $check = 1;
                     }
+                }
             }
-        }
         return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype", 'check'));
-    }
-    public function Category(Request $request,$id){
+        }
+        public function Category(Request $request,$id){
         $category=Category::get_name();
         if(!$id) $id=$category[0]->id;
         $product_category=Product::category_product($id);
