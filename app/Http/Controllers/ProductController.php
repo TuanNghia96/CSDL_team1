@@ -214,7 +214,7 @@ class ProductController extends Controller
         $product=Product::find($id);
         $new_product=Product::New_Product(4);
         $best_product=Product::Best_Product();
-        $product_lq=Product::product_lq($product->id,$product->category_id);
+        $product_lq=Product::Product_lq($product->id,$product->category_id);
         $review=Feedback::get_review($id);
         $producttype=Category::find($id);
         $check = 0;
@@ -222,12 +222,12 @@ class ProductController extends Controller
             foreach (Auth::user()->orders()->get() as $value){
                 if ($value->ordersDetail->where('product_id', $id)->first()){
                     $check = 1;
+                    }
                 }
             }
-        }
         return view("home.product_detail",compact("product","new_product","best_product","product_lq","review","producttype", 'check'));
-    }
-    public function Category(Request $request,$id){
+        }
+        public function Category(Request $request,$id){
         $category=Category::get_name();
         if(!$id) $id=$category[0]->id;
         $product_category=Product::category_product($id);
@@ -294,6 +294,7 @@ class ProductController extends Controller
         $id_Cart=$request->id;
         $text=$request->txt;
         $result=Cart::confirmorder($id_Cart,$text);
+        $request->session()->put('id_cart', null);
         return "OK";
     }
 }

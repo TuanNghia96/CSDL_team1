@@ -70,7 +70,8 @@
                 },
                 success: function(Reponse) {
                     alert("Đặt hàng thành công");
-                    $("button#chitiet").show();
+                    $("a#kkk").attr("href", "{{route('home')}}");
+                    $("span#abc").text("Home");
                 }
             });
         }

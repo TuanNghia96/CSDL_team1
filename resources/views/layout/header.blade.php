@@ -106,7 +106,7 @@
             <nav class="main-menu">
                 <ul class="l-inline ov">
                     <li><a href="{{route('home')}}">Trang chủ</a></li>
-                    <li><a href="{{route('category',1)}}">Sản phẩm</a>
+                    <li><a href="{{route('category',18)}}">Sản phẩm</a>
                     </li>
                     <li><a href="{{route('about')}}">Giới thiệu</a></li>
                     <li><a href="{{route('lienhe')}}">Liên hệ</a></li>

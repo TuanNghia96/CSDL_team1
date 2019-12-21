@@ -22,8 +22,8 @@
                                 <span>Kích thước: 10 * <?php echo 10*$product->size; ?></span>
                             </p><br/>
                             <p class="single-item-price">
-                                @if($product->sex) <span>Sex: Nữ</span>
-                                @else<span>Sex: Nam</span>
+                                @if($product->sex) <span>Dành cho: Nam</span>
+                                @else<span>Dành cho: Nữ</span>
                                 @endif
                             </p><br/>
                         </div>
@@ -42,9 +42,7 @@
                 <div class="space40">&nbsp;</div>
                 <div class="woocommerce-tabs"><span style="margin:15px 0px;">Nhận xét<span>
                     <div id="tab" style="display:block;"> 
-                        @if(empty($review))
-                        <p> No Review</p>
-                            @else
+                        @if(isset($review))
                             @foreach($review as $re)
                                 <p><strong>{{$re->email}}</strong></p>
                                 <p>{{$re->content}}</p>
