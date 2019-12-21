@@ -52,7 +52,10 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" width="200px" style="width:75px; height:75px;" alt=""></a>
+                <p style="font-size: 500%; font-family: 'Georgia', Agency FB, serif; color: #e8103a">
+                    <a href="{{route('home')}}" id="logo"><img src="assets/dest/images/logo1.png" style="width:75px; height:75px;vertical-align: middle; display: inline" alt=""></a>
+                    <i>Nebula</i>
+                </p>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>

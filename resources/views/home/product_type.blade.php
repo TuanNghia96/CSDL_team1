@@ -1,6 +1,6 @@
 @extends("layout.index")
 @section("content")
-<div class="container pl-0 pr-0 " style="margin-right: 0px;margin-left: 0px;">
+<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
 				<div class="space60">&nbsp;</div>
