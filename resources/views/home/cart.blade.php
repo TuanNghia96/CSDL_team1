@@ -86,7 +86,7 @@
                 </li>
             </ul>
         </div>
-        <div class="text-center"><a id= "kkk" href="javascript:void(0)"><button id ="bbb" type="submit" class="beta-btn primary" data-id={{$cart_id}}> Đặt hàng <i class="fa fa-chevron-right"></i></button></a><a href="{{route('dathang',$cart_id)}}" ><button id="chitiet" type="button" class="beta-btn primary" style="margin:0px 5px; display:none;">Chi Tiet</button></a></div>
+        <div class="text-center"><a id= "kkk" href="javascript:void(0)"><button id ="bbb" type="submit" class="beta-btn primary" data-id={{$cart_id}}> <span id="abc">Đặt hàng</span><i class="fa fa-chevron-right"></i></button></a></div>
     </div>
 </div>
 <!-- .container -->

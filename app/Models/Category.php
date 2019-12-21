@@ -18,7 +18,7 @@ class Category extends Model
         return $this->hasMany(\App\Models\Product::class);
     }
     static public function get_name(){
-        $result=DB::table('categorys')->orderByRaw('created_at DESC')->offset(0)->limit(15)->get();
+        $result=DB::table('categorys')->orderByRaw('created_at DESC')->get();
         return $result;
     }
    /*  static public function get($id){
