@@ -41,7 +41,7 @@ class Product extends Model
         return $result;
     }
     static public function Product_lq($id,$id_category){
-        $result=DB::table('products')->join("categorys","categorys.id","=","products.category_id")->where([["products.id","!=","$id"],["products.category_id","=","$id_category"]])->orderByRaw('products.created_at DESC')->offset(0)->limit(3)->get();
+        $result=DB::table('products')->leftJoin("categorys","products.category_id","=","categorys.id")->where([["products.id","<>",$id],["products.category_id","=","$id_category"],])->orderByRaw('products.created_at DESC')->select("products.id","image_font","image_up","image_back","products.name","products.price")->offset(0)->limit(3)->get();
         return $result;
     }
     static public function category_product($id_category){

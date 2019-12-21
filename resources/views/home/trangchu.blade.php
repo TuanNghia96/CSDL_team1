@@ -80,7 +80,7 @@
                                         <div class="single-item">
 
                                             <div class="single-item-header">
-                                                <a href="{{route('productdetail',$product->id)}}"><img src="{{$top->image_font}}" style="width:270px; height:auto;" alt=""></a>
+                                                <a href="{{route('productdetail',$top->id)}}"><img src="{{$top->image_font}}" style="width:270px; height:auto;" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
                                                 <p class="single-item-title"style="color:#00136c; font-weight:bold">{{$top->name}}</p>

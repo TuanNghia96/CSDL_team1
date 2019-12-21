@@ -1,12 +1,12 @@
-<div id="footer" class="color-div" style="padding-top: 20px; padding-bottom: 20px">
+<div>
+    <div id="footer" class="color-div" style="padding-top: 20px; padding-bottom: 20px">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="widget">
                         <h4 class="widget-title">Instagram Feed</h4>
-                        <div >
-                           <!--  <div></div> -->
-                           <p>KHÔNG CÓ </p>
+                        <div>
+                            <p>KHÔNG CÓ </p>
                         </div>
                     </div>
                 </div>
@@ -15,12 +15,24 @@
                         <h4 class="widget-title">Information</h4>
                         <div>
                             <ul>
-                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</p></li>
-                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</p></li>
-                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</p></li>
-                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</p></li>
-                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</p></li>
-                                <li><p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</p></li>
+                                <li>
+                                    <p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</p>
+                                </li>
+                                <li>
+                                    <p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</p>
+                                </li>
+                                <li>
+                                    <p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</p>
+                                </li>
+                                <li>
+                                    <p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</p>
+                                </li>
+                                <li>
+                                    <p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</p>
+                                </li>
+                                <li>
+                                    <p href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</p>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -69,4 +81,5 @@
         </div>
         <!-- .container -->
     </div>
-    <!-- .copyright -->
+</div>
+<!-- .copyright -->
