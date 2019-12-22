@@ -2,10 +2,10 @@
 @section("content")
 <div class="container pl-0 pr-0 " style="margin-right: 0px;margin-left: 0px;">
 		<div id="content" class="space-top-none">
-			<div class="main-content">
+			<div class="main-content pl-0 pr-0" style="width: 1231px; background: linear-gradient(to bottom, rgb(197,222,234) 0%,rgb(138,187,215) 31%,rgb(6,109,171) 100%);">
 				<div class="space60">&nbsp;</div>
 				<div class="row">
-					<div class="col-sm-3">
+					<div class="col-sm-3" style="padding-left:40px;">
 						<ul class="aside-menu">
 						@foreach($category as $cate)
 							<li><a href="{{route('category',$cate->id)}}">{{$cate->name}}</a></li>

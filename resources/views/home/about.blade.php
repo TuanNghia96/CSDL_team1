@@ -1,8 +1,8 @@
 @extends("layout.index") @section("content")
-<div class="container pl-0 pr-0" style="max-width: 100%">
+<div class="container pl-0 pr-0" style="max-width: 100% ;background: linear-gradient(to bottom, rgba(19,72,113,1) 0%,rgba(24,108,154,1) 50%,rgba(32,151,210,1) 96%); ">
     <div id="content">
         <div class="our-history" style="padding-top:40px">
-            <h1 class="text-center wow fadeInDown" style="">Lịch sử phát triển</h1>
+            <h1 class="text-center wow fadeInDown" style="font-size: 400%;">Lịch sử phát triển</h1>
             <div class="space19">&nbsp;</div>
 
             <div class="history-slider">

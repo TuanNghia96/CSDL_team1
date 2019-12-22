@@ -27,8 +27,8 @@
     </div>
     <div class="container pl-0 pr-0 " style="max-width: 100%;">
     <div id="ketqua" class="row"></div>
-        <div class="container">
-            <div class="main-content">
+        <div class="container pl-0 pr-0" style="max-width: 100%">
+            <div class="main-content" style="background:linear-gradient(to bottom, rgb(197,222,234) 0%,rgb(138,187,215) 31%,rgb(6,109,171) 100%);">
             <div class="space60">&nbsp;</div>
                 <div class="row">
                     <div class="col-sm-12">
