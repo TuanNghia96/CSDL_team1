@@ -15,11 +15,13 @@
                             <div class="col-sm-3">
                                 <img src="assets/dest/images/logoshop.png" style="max-width: 90%; padding-left: 60px;">
                             </div>
-                            <div class="col-sm-7">
-                                <h2 class="other-title" style="font-size: 300%; font-weight: bold">Nebula realize your dream</h2>
-                                <p style="padding-top: 20px;padding-top: 20px;color: #950000;font-size: 2vw;">
-                                    Đại học bách khoa Hà Nội
-                                </p><br/>
+                            <div class="col-sm-7 mt-3">{{--style="font-size: 500%; font-family: 'Georgia', Agency FB, serif; color: #e8103a"--}}
+                                <h2 class="other-title" style="font-size: 500%; font-family: 'Georgia', Agency FB, serif; color: #e8103a;">Nebula <br>
+                                </h2><br>
+                                    <q class="mt-3" style="font-size: 230%">realize your dream</q>
+
+                                <div class="space20">&nbsp;</div>
+                                <div class="space20">&nbsp;</div>
                                 <div class="space20">&nbsp;</div>
                                 <p>Hello world </p><br/>
                                 <p> NEBULA được sinh ra với sứ mệnh biến ước mơ của bạn thành hiện thực. Chúng tôi cung cấp những mô hình nhân vật bạn yêu thích với  bất cứ kích cỡ nào bạn thích. Hãy quên đi những ngày tháng ngắm thần tượng của mình trên giấy hay máy tính, giờ đây bạn hoàn toàn có thể cầm, chạm, mang thần tượng, ido của mình đi bất cứ đâu chỉ cần một cú nhấp chuột. </p>
@@ -51,7 +53,7 @@
                     </div>
                     <div class="beta-person-body">
                         <h5>Lê Xuân Anh</h5>
-                        <p class="font-large">Web developer</p>
+                        <p class="font-large">Database Administrator</p>
                         <p>CNTT VIỆT NHẬT D</p>
                     </div>
                 </div>
@@ -63,7 +65,7 @@
                     </div>
                     <div class="beta-person-body">
                         <h5>Nguyễn Thị Nguyệt Ánh</h5>
-                        <p class="font-large">Web developer</p>
+                        <p class="font-large">Founder and CEO</p>
                         <p>CNTT VIỆT NHẬT D</p>
                     </div>
                 </div>
@@ -75,7 +77,7 @@
                     </div>
                     <div class="beta-person-body">
                         <h5>Nguyễn Văn Dũng</h5>
-                        <p class="font-large">Web developer</p>
+                        <p class="font-large">Technical director</p>
                         <p>CNTT VIỆT NHẬT D</p>
                     </div>
                 </div>
@@ -86,8 +88,8 @@
                         <img src="assets/dest/images/banghia.png" alt="">
                     </div>
                     <div class="beta-person-body">
-                        <h5>Lê Bá Tuấn Nghĩa</h5>
-                        <p class="font-large">Web developer</p>
+                        <h5>Nguyễn Bá Tuấn Nghĩa</h5>
+                        <p class="font-large">Project support</p>
                         <p>CNTT VIỆT NHẬT </p>
                     </div>
                 </div>

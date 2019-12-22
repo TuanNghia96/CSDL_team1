@@ -40,8 +40,8 @@
 									</div>
 								</div>
 							@endforeach
+								<div class="col-md-4 offset-md-4">{{$product_category->links()}}</div>
 							</div>
-							<div class="row">{{$product_category->links()}}</div>
 						</div> <!-- .beta-products-list -->
 
 						<div class="space50">&nbsp;</div>
