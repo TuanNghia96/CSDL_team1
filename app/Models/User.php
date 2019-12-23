@@ -49,7 +49,7 @@ class User extends Model implements Authenticatable
      */
     public function getList($input)
     {
-        $builder = $this->orderBy('created_at');
+        $builder = $this->orderBy('created_at', 'desc');
         if (isset($input['name'])) {
             $builder->where('name', 'LIKE', '%' . $input['name'] . '%');
         }
