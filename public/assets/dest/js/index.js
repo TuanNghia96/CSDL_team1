@@ -54,11 +54,11 @@ $(document).ready(function() {
             });
         }
     });
-    $("button.confime").click(function() {
+    $('.sl').bind('keyup mouseup keydown', function () {
         var quantity = $(this).parent().find(".sl").val();
         var cart_id = $("input[name='cart_id']").val();
         var _token = $("input[name='_token']").val();
-        var product_id = $(this).attr("data-id");
+        var product_id = $(this).parent().find(".product_id").val();
         $.ajax({
             url: '/updatecart',
             type: "POST",

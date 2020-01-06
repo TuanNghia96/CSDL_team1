@@ -104,7 +104,7 @@ class Product extends Model
     public function listData($input)
     {
         
-        $builder = $this->orderBy('created_at');
+        $builder = $this->orderBy('created_at', 'desc');
         if (isset($input['name'])) {
             $builder->where('name', 'LIKE', '%' . $input['name'] . '%');
         }

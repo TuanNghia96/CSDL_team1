@@ -52,8 +52,8 @@
                             </td>
 
                             <td class="product-quantity">
-                                <input class ="sl" type="number" id="qty" style="width: 30px;height: 29px;float: left;margin-right: 1px;" name="sl" value="{{$product->quantity}}" min="1" data-id=""/>
-                                <button type="button" class="confime" data-id="{{$product->id}}" style="width: 20px;height: 28px;float: left;margin-right: 1px;"><i class="fa fa-pencil" aria-hidden="true" id="quantity"></i></button><span style="float: left;">Update</span>
+                                <input type="hidden" class="product_id" value="{{$product->id}}">
+                                <input class ="sl"  type="number"  id="qty" style="width: 30px;height: 29px;float: left;margin-right: 1px;" name="sl" value="{{$product->quantity}}" min="1" data-id=""/>
                             </td>
                             <td class="product-remove">
                                 <a href="{{route('delete_cart',[$cart_id,$product->id])}}" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
