@@ -393,7 +393,7 @@
                                 <tr>
                                     <td>
                                         <p>Xin chào {{ $order->user->name }},</p>
-                                        <p>Chúng tôi gửi thông tin mà đơn hàng của bạn đã đặt tại cửa hàng chúng tôi. Xin hãy kiểm tra lại thông tin là báo lại cho quản trị viên nếu có bất kì điều gì sai lệch</p>
+                                        <p>Chúng tôi gửi thông tin mà đơn hàng mà bạn đã đặt tại cửa hàng chúng tôi. Xin hãy kiểm tra lại thông tin và báo lại cho quản trị viên nếu có bất kì điều gì sai lệch.</p>
                                         
                                         <span class="img-container"> <!-- Inline parent element -->
                                             <img width="33%" src="{{ $url[$order->status] }}" alt="">
@@ -457,7 +457,7 @@
                                             @foreach($order->ordersDetail()->get() as $key => $value)
                                                 <tr>
                                                     @php($product = $value->product)
-                                                    <td>{{ $key }}</td>
+                                                    <td>{{ $key + 1 }}</td>
                                                     <td align="left">{{ $product->name }}</td>
                                                     <td align="center">{{ $value->quantity }}</td>
                                                     <td align="right">{{ $value->quantity * $product->price }} đ</td>
@@ -469,8 +469,8 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <p>Đây là thư gửi đến bạn tự động vui lòng không gửi thư đến địa chỉ này.</p>
-                                        <p>Cảm ơn ban đã mua hàng của chúng tôi.</p>
+                                        <p>Đây là thư gửi tự động, vui lòng không gửi thư đến địa chỉ này.</p>
+                                        <p>Cảm ơn vì đã mua hàng của chúng tôi.</p>
                                     </td>
                                 </tr>
                             </table>
